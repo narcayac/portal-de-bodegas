@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #011943;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default button/input browser styles that interfere with design */
+button {
+  font-family: inherit;
+}
+
+select {
+  font-family: inherit;
+}
+
+textarea {
+  font-family: inherit;
+}
+
+input {
+  font-family: inherit;
+}

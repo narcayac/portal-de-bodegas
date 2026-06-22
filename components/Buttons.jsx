@@ -23,14 +23,14 @@ export function BtnPrimary({ children, href, onClick, full = false }) {
   return <button type="button" style={style} onClick={onClick} {...handlers}>{children}</button>;
 }
 
-/** WhatsApp button — brand blue with WhatsApp glyph (matches design system) */
+/** WhatsApp button — brand green (#25D366) with WhatsApp glyph */
 export function BtnWA({ children, msg, full = false, outline = false }) {
   const [h, sH] = useState(false);
   const style = {
     display: "inline-flex", alignItems: "center", gap: 8,
-    backgroundColor: outline ? "transparent" : (h ? C.blueDark : C.blue),
-    color: outline ? C.blue : "white",
-    border: outline ? `1px solid ${C.blue}` : "none",
+    backgroundColor: outline ? "transparent" : (h ? C.waDark : C.wa),
+    color: outline ? C.wa : "white",
+    border: outline ? `1px solid ${C.wa}` : "none",
     borderRadius: 4, padding: "13px 22px", fontSize: 14, fontWeight: 600,
     fontFamily: F.body, textDecoration: "none",
     transition: "background-color 0.15s",

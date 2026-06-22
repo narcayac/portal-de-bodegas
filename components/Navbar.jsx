@@ -122,9 +122,9 @@ export default function Navbar() {
             className="wa-pill"
             style={{
               display: "inline-flex", alignItems: "center", gap: 8,
-              backgroundColor: C.blue, color: "white", textDecoration: "none",
+              backgroundColor: C.wa, color: "white", textDecoration: "none",
               borderRadius: 999, fontFamily: F.body, fontSize: 13.5, fontWeight: 600,
-              boxShadow: "0 2px 10px rgba(6,133,222,0.30)",
+              boxShadow: "0 2px 10px rgba(37,211,102,0.32)",
             }}>
             <WhatsAppIcon size={18} />
             <span className="wa-label">WhatsApp</span>

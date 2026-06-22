@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #011943;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button, select, textarea, input {
+  font-family: inherit;
+}
+
+/* Collapse two-column layouts on mobile (project page + contact page) */
+@media (max-width: 768px) {
+  .pdp-grid,
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .pdp-grid > div {
+    border-right: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    position: static !important;
+  }
+  .contact-grid > * {
+    border-right: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}

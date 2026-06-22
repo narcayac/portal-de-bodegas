@@ -2,7 +2,7 @@ import Link from "next/link";
 import { C, F, W, waUrl, HREF, SITE, PROJECTS, m2, FAQ_GENERAL, WHY_US } from "../lib/data";
 import { Img, SectionLabel, JsonLd, FaqSection, faqSchema } from "../components/ui";
 import { AvailTable } from "../components/AvailTable";
-import { BtnPrimary, BtnOutline } from "../components/Buttons";
+import { BtnPrimary, BtnWA } from "../components/Buttons";
 import { pageMeta } from "../lib/seo";
 
 export const metadata = pageMeta({
@@ -71,15 +71,15 @@ export default function HomePage() {
         <div style={{ ...W, padding: "72px 40px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 28 }}>
             <div style={{ width: 4, height: 4, borderRadius: "50%", backgroundColor: C.blue }} />
-            <span style={{ fontFamily: F.body, fontSize: 11, color: C.slateLight, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+            <span style={{ fontFamily: F.mono, fontSize: 11, color: C.slateLight, letterSpacing: "0.14em", textTransform: "uppercase" }}>
               Sector Sur · Región Metropolitana · San Bernardo
             </span>
           </div>
           <h1 style={{
-            fontFamily: F.head, fontWeight: 800,
-            fontSize: "clamp(36px, 4.8vw, 60px)",
-            lineHeight: 1.05, color: "white",
-            maxWidth: 680, marginBottom: 22, letterSpacing: "-0.01em",
+            fontFamily: F.head, fontWeight: 600,
+            fontSize: "clamp(38px, 5vw, 64px)",
+            lineHeight: 1.04, color: "white",
+            maxWidth: 720, marginBottom: 22, letterSpacing: "-0.015em",
           }}>
             Encuentra la bodega ideal para tu empresa
           </h1>
@@ -87,8 +87,7 @@ export default function HomePage() {
             Distintas alternativas de tamaño disponibles en el sector sur de Santiago. Trato directo y sin intermediarios.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
-            <BtnPrimary href={HREF.disponibilidad}>Solicitar disponibilidad</BtnPrimary>
-            <BtnOutline href={HREF.contacto} light>Contactar por WhatsApp</BtnOutline>
+            <BtnWA msg="Hola, quiero contactar a Portal de Bodegas">Contactar por WhatsApp</BtnWA>
           </div>
         </div>
       </section>

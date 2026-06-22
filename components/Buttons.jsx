@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { C, F, waUrl } from "../lib/data";
+import { WhatsAppIcon } from "./ui";
 
 /** Primary action: "Solicitar disponibilidad" — brand blue. Renders a Next Link when `href` is set. */
 export function BtnPrimary({ children, href, onClick, full = false }) {
@@ -22,14 +23,14 @@ export function BtnPrimary({ children, href, onClick, full = false }) {
   return <button type="button" style={style} onClick={onClick} {...handlers}>{children}</button>;
 }
 
-/** WhatsApp button — green, strategic use only */
+/** WhatsApp button — brand blue with WhatsApp glyph (matches design system) */
 export function BtnWA({ children, msg, full = false, outline = false }) {
   const [h, sH] = useState(false);
   const style = {
-    display: "inline-flex", alignItems: "center", gap: 6,
-    backgroundColor: outline ? "transparent" : (h ? C.waDark : C.wa),
-    color: outline ? C.wa : "white",
-    border: outline ? `1px solid ${C.wa}` : "none",
+    display: "inline-flex", alignItems: "center", gap: 8,
+    backgroundColor: outline ? "transparent" : (h ? C.blueDark : C.blue),
+    color: outline ? C.blue : "white",
+    border: outline ? `1px solid ${C.blue}` : "none",
     borderRadius: 4, padding: "13px 22px", fontSize: 14, fontWeight: 600,
     fontFamily: F.body, textDecoration: "none",
     transition: "background-color 0.15s",
@@ -39,6 +40,7 @@ export function BtnWA({ children, msg, full = false, outline = false }) {
   return (
     <a href={waUrl(msg || "Hola, quiero cotizar una bodega")} target="_blank" rel="noopener noreferrer"
       style={style} onMouseEnter={() => sH(true)} onMouseLeave={() => sH(false)}>
+      <WhatsAppIcon size={17} />
       {children}
     </a>
   );

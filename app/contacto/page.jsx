@@ -1,4 +1,4 @@
-import { C, F, W, waUrl, FAQ_CONTACTO } from "../../lib/data";
+import { C, F, W, waUrl, SITE, FAQ_CONTACTO } from "../../lib/data";
 import { JsonLd, FaqSection, faqSchema, SectionLabel } from "../../components/ui";
 import { BtnWA } from "../../components/Buttons";
 import ContactForm from "../../components/ContactForm";
@@ -30,11 +30,11 @@ export default function ContactoPage() {
         padding: "64px 40px 48px",
       }}>
         <div style={{ ...W, padding: 0 }}>
-          <div style={{ fontFamily: F.body, fontSize: 10, color: C.slateLight, textTransform: "uppercase", letterSpacing: "0.10em", marginBottom: 14 }}>
-            Sin compromiso · Respuesta en 24 horas
+          <div style={{ fontFamily: F.mono, fontSize: 11, color: C.slateLight, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 14 }}>
+            Contacto · Respuesta en 24 horas
           </div>
-          <h1 style={{ fontFamily: F.head, fontWeight: 800, fontSize: "clamp(28px,4vw,46px)", color: "white", letterSpacing: "-0.01em", margin: 0 }}>
-            Cotiza tu Bodega
+          <h1 style={{ fontFamily: F.head, fontWeight: 600, fontSize: "clamp(30px,4.4vw,50px)", color: "white", letterSpacing: "-0.015em", margin: 0, lineHeight: 1.05 }}>
+            Hablemos de tu próxima bodega
           </h1>
         </div>
       </div>
@@ -47,7 +47,24 @@ export default function ContactoPage() {
 
           {/* Info sidebar */}
           <div style={{ padding: "0 0 0 48px", display: "flex", flexDirection: "column", gap: 0 }}>
-            <h2 style={{ fontFamily: F.head, fontWeight: 700, fontSize: 17, color: C.navy, margin: "0 0 20px", paddingBottom: 16, borderBottom: `0.5px solid ${C.border}` }}>
+            {/* Contact card */}
+            <div style={{ border: `0.5px solid ${C.border}`, borderTop: `2px solid ${C.navy}`, padding: "22px 24px", marginBottom: 28 }}>
+              {[
+                ["Teléfono", SITE.phoneDisplay, waUrl("Hola, quiero contactar a Portal de Bodegas")],
+                ["Email", SITE.email, `mailto:${SITE.email}`],
+                ["Ubicación", "San Bernardo, Región Metropolitana", null],
+              ].map(([label, value, href], i) => (
+                <div key={label} style={{ paddingTop: i === 0 ? 0 : 14, marginTop: i === 0 ? 0 : 14, borderTop: i === 0 ? "none" : `0.5px solid ${C.border}` }}>
+                  <div style={{ fontFamily: F.mono, fontSize: 10, color: C.slate, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 5 }}>{label}</div>
+                  {href ? (
+                    <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" style={{ fontFamily: F.body, fontSize: 15, color: C.navy, fontWeight: 600, textDecoration: "none" }}>{value}</a>
+                  ) : (
+                    <div style={{ fontFamily: F.body, fontSize: 15, color: C.navy, fontWeight: 600 }}>{value}</div>
+                  )}
+                </div>
+              ))}
+            </div>
+            <h2 style={{ fontFamily: F.head, fontWeight: 600, fontSize: 20, color: C.navy, margin: "0 0 16px", paddingBottom: 16, borderBottom: `0.5px solid ${C.border}` }}>
               ¿Prefieres WhatsApp?
             </h2>
             <div style={{ paddingBottom: 24, borderBottom: `0.5px solid ${C.border}`, marginBottom: 24 }}>

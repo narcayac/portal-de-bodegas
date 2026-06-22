@@ -1,23 +1,29 @@
 import "./globals.css";
-import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { MobileStickyCTA } from "../components/AvailTable";
 import GoogleAnalytics from "../components/GoogleAnalytics";
 import { SITE } from "../lib/data";
 
-const jakarta = Plus_Jakarta_Sans({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
-  variable: "--font-jakarta",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   variable: "--font-inter",
+  display: "swap",
+});
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -71,12 +77,11 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es-CL" className={`${jakarta.variable} ${inter.variable}`}>
+    <html lang="es-CL" className={`${fraunces.variable} ${inter.variable} ${mono.variable}`}>
       <body style={{ backgroundColor: "white", minHeight: "100vh" }}>
         <Navbar />
         <main>{children}</main>
         <Footer />
-        <MobileStickyCTA />
         <Analytics />
         <SpeedInsights />
         <GoogleAnalytics />

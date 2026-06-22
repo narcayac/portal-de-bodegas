@@ -24,6 +24,17 @@ button, select, textarea, input {
   font-family: inherit;
 }
 
+/* WhatsApp pill: full label on desktop, icon-only circle on mobile */
+.wa-pill { padding: 9px 16px; }
+@media (max-width: 768px) {
+  .wa-pill { padding: 9px; }
+  .wa-pill .wa-label { display: none; }
+}
+
+/* Hide scrollbar on the mobile nav strip */
+.nav-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+.nav-scroll::-webkit-scrollbar { display: none; }
+
 /* Collapse two-column layouts on mobile (project page + contact page) */
 @media (max-width: 768px) {
   .pdp-grid,

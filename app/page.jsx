@@ -59,35 +59,54 @@ export default function HomePage() {
       <JsonLd data={websiteSchema} />
       <JsonLd data={faqSchema(FAQ_GENERAL)} />
 
-      {/* ── HERO ── */}
-      <section style={{
-        minHeight: "92vh", paddingTop: 62, display: "flex", alignItems: "center",
-        backgroundColor: C.navy,
-        backgroundImage: [
-          "repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(255,255,255,0.022) 59px,rgba(255,255,255,0.022) 60px)",
-          "repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(255,255,255,0.022) 59px,rgba(255,255,255,0.022) 60px)",
-        ].join(","),
-      }}>
-        <div style={{ ...W, padding: "72px 40px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 28 }}>
-            <div style={{ width: 4, height: 4, borderRadius: "50%", backgroundColor: C.blue }} />
-            <span style={{ fontFamily: F.mono, fontSize: 11, color: C.slateLight, letterSpacing: "0.14em", textTransform: "uppercase" }}>
-              Sector Sur · Región Metropolitana · San Bernardo
-            </span>
-          </div>
-          <h1 style={{
-            fontFamily: F.head, fontWeight: 600,
-            fontSize: "clamp(38px, 5vw, 64px)",
-            lineHeight: 1.04, color: "white",
-            maxWidth: 720, marginBottom: 22, letterSpacing: "-0.015em",
-          }}>
-            Encuentra la bodega ideal para tu empresa
-          </h1>
-          <p style={{ fontFamily: F.body, fontSize: 17, color: C.slateLight, maxWidth: 520, lineHeight: 1.75, marginBottom: 40 }}>
-            Distintas alternativas de tamaño disponibles en el sector sur de Santiago. Trato directo y sin intermediarios.
-          </p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
+      {/* ── HERO ── white, two-column with illustration ── */}
+      <section style={{ backgroundColor: "white", paddingTop: 64 }}>
+        <div className="hero-grid" style={{ ...W, display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: 56, alignItems: "center", padding: "56px 40px 64px" }}>
+          {/* Left: copy + CTA */}
+          <div>
+            <div style={{ fontFamily: F.mono, fontSize: 12, color: C.blue, textTransform: "uppercase", letterSpacing: "0.16em", marginBottom: 22 }}>
+              Bodegas industriales · San Bernardo, RM
+            </div>
+            <h1 style={{
+              fontFamily: F.display, fontWeight: 800,
+              fontSize: "clamp(38px, 4.6vw, 60px)",
+              lineHeight: 1.02, color: C.navy,
+              maxWidth: 560, marginBottom: 22, letterSpacing: "-0.025em",
+            }}>
+              Encuentra la bodega ideal para tu empresa
+            </h1>
+            <p style={{ fontFamily: F.body, fontSize: 17, color: C.slate, maxWidth: 480, lineHeight: 1.7, marginBottom: 34 }}>
+              Distintas alternativas de tamaño disponibles en el sector sur de Santiago. Trato directo y sin intermediarios.
+            </p>
             <BtnWA msg="Hola, quiero contactar a Portal de Bodegas">Contactar por WhatsApp</BtnWA>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 26px", marginTop: 34, paddingTop: 24, borderTop: `0.5px solid ${C.border}` }}>
+              {["180 – 1.900 m² disponibles", "Seguridad 24/7", "Acceso para camiones"].map((t) => (
+                <span key={t} style={{ fontFamily: F.mono, fontSize: 12, color: C.slate, letterSpacing: "0.03em" }}>{t}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: warehouse illustration card */}
+          <div style={{
+            position: "relative", borderRadius: 16, overflow: "hidden", minHeight: 400,
+            background: "linear-gradient(135deg, #eef2f8 0%, #dde6f2 100%)",
+            backgroundImage: [
+              "linear-gradient(135deg, #eef2f8 0%, #dde6f2 100%)",
+              "repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(1,25,67,0.04) 39px,rgba(1,25,67,0.04) 40px)",
+              "repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(1,25,67,0.04) 39px,rgba(1,25,67,0.04) 40px)",
+            ].join(","),
+            display: "flex", alignItems: "center", justifyContent: "center",
+          }}>
+            <svg width="64%" viewBox="0 0 200 150" fill="none" aria-hidden="true" style={{ maxWidth: 360, opacity: 0.6 }}>
+              <path d="M16 74 100 24 184 74 184 134 16 134Z" stroke="#8ea4c4" strokeWidth="2" strokeLinejoin="round" />
+              <path d="M16 74 100 24 184 74" stroke="#8ea4c4" strokeWidth="2" strokeLinejoin="round" />
+              <rect x="82" y="96" width="36" height="38" stroke="#8ea4c4" strokeWidth="2" />
+              <path d="M8 134h184" stroke="#8ea4c4" strokeWidth="2" />
+            </svg>
+            <div style={{ position: "absolute", top: 18, left: 18, display: "inline-flex", alignItems: "center", gap: 7, backgroundColor: "white", padding: "7px 13px", borderRadius: 999, boxShadow: "0 2px 10px rgba(1,25,67,0.08)" }}>
+              <span style={{ width: 7, height: 7, borderRadius: "50%", backgroundColor: "#16a34a", display: "inline-block" }} />
+              <span style={{ fontFamily: F.body, fontSize: 13, color: C.navy, fontWeight: 600 }}>5 proyectos disponibles</span>
+            </div>
           </div>
         </div>
       </section>

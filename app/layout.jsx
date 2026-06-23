@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Fraunces, Inter, IBM_Plex_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Navbar from "../components/Navbar";
@@ -24,6 +24,12 @@ const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-mono",
+  display: "swap",
+});
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  variable: "--font-jakarta",
   display: "swap",
 });
 
@@ -77,7 +83,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es-CL" className={`${fraunces.variable} ${inter.variable} ${mono.variable}`}>
+    <html lang="es-CL" className={`${fraunces.variable} ${inter.variable} ${mono.variable} ${jakarta.variable}`}>
       <body style={{ backgroundColor: "white", minHeight: "100vh" }}>
         <Navbar />
         <main>{children}</main>

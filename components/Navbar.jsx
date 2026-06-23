@@ -30,7 +30,8 @@ export default function Navbar() {
   const path = pathname === "/" ? "/" : pathname.replace(/\/$/, "") + "/";
   const isHome = path === "/";
   const isBodegas = path.startsWith("/bodegas");
-  const light = isHome && !scrolled;
+  // Navbar is always solid white now (the hero is light), so no transparent mode.
+  const light = false;
 
   // WhatsApp appears on scroll (always visible on inner pages)
   const waVisible = scrolled || !isHome;

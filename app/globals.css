@@ -37,6 +37,13 @@ button, select, textarea, input {
 
 /* Collapse two-column layouts on mobile (project page + contact page) */
 @media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .hero-grid > div:last-child {
+    min-height: 280px !important;
+  }
   .pdp-grid,
   .contact-grid {
     grid-template-columns: 1fr !important;

@@ -14,16 +14,11 @@ export function LogoMark({ light = false }) {
   const ink = light ? "white" : C.navy;
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
-      {/* Brand emblem: navy circle, "R"-warehouse monogram, blue door */}
-      <svg width="40" height="40" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-        <circle cx="50" cy="50" r="48" fill="#13243f" stroke={light ? "rgba(255,255,255,0.22)" : "none"} strokeWidth="1.5" />
-        <g fill="none" stroke="#ffffff" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M37 26 V74" />
-          <path d="M37 26 H51 a13 13 0 0 1 0 26 H37" />
-          <path d="M50 52 Q63 60 65 74" />
-          <path d="M37 56 L49 46 L61 56" />
-        </g>
-        <rect x="43" y="58" width="13" height="16" rx="1.2" fill="#2f7fe6" />
+      {/* Navy circle with white house + blue window */}
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+        <circle cx="20" cy="20" r="20" fill={C.navy} stroke={light ? "rgba(255,255,255,0.25)" : "none"} strokeWidth="1" />
+        <path d="M11 20.5 20 12 29 20.5 29 29.5 11 29.5Z" fill="none" stroke="#f3f4f5" strokeWidth="2.1" strokeLinejoin="round" />
+        <rect x="17" y="23" width="6" height="6.5" fill={C.blue} />
       </svg>
       {/* Wordmark — single line "portal de bodegas" */}
       <div className="logo-word" style={{ fontFamily: F.display, fontWeight: 800, fontSize: 19, letterSpacing: "-0.015em", lineHeight: 1 }}>

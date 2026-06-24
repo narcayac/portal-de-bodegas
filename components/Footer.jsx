@@ -3,7 +3,7 @@ import { C, F, W, waUrl, HREF, SITE, PROJECTS } from "../lib/data";
 import { LogoMark } from "./ui";
 
 export default function Footer() {
-  const navItems = [["Inicio", HREF.home], ["Bodegas", HREF.bodegas], ["Disponibilidad", HREF.disponibilidad], ["Contacto", HREF.contacto]];
+  const navItems = [["Inicio", HREF.home], ["Bodegas", HREF.bodegas], ["Contacto", HREF.contacto]];
   return (
     <footer style={{ borderTop: `1px solid ${C.navy}`, backgroundColor: "white" }}>
       <div style={{ ...W, padding: "40px 40px 28px" }}>
@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
         </div>
         <div style={{ borderTop: `0.5px solid ${C.border}`, paddingTop: 20, display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
-          <p style={{ fontFamily: F.body, fontSize: 12, color: C.slateLight }}>© 2025 Portal de Bodegas · portaldebodegas.cl</p>
+          <p style={{ fontFamily: F.body, fontSize: 12, color: C.slateLight }}>© 2026 Portal de Bodegas · portaldebodegas.cl</p>
           <div style={{ display: "flex", gap: 20 }}>
             <Link href={HREF.privacidad} style={{ fontFamily: F.body, fontSize: 12, color: C.slateLight, textDecoration: "underline" }}>Política de Privacidad</Link>
           </div>

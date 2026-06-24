@@ -14,27 +14,17 @@ export function LogoMark({ light = false }) {
   const ink = light ? "white" : C.navy;
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
-      {/* Hexagon emblem with warehouse glyph */}
-      <svg width="38" height="40" viewBox="0 0 38 40" aria-hidden="true" focusable="false">
-        <path
-          d="M19 1.5 36 11v18L19 38.5 2 29V11z"
-          fill={C.navy}
-          stroke={light ? "rgba(255,255,255,0.25)" : "none"}
-          strokeWidth="1"
-          strokeLinejoin="round"
-        />
-        {/* warehouse / house outline */}
-        <path d="M11 22 19 15.5 27 22v7H11z" fill="none" stroke="#f3f4f5" strokeWidth="1.6" strokeLinejoin="round" />
-        <rect x="16.5" y="24.5" width="5" height="4.5" fill={C.blue} />
+      {/* Navy circle with white house + blue window */}
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+        <circle cx="20" cy="20" r="20" fill={C.navy} stroke={light ? "rgba(255,255,255,0.25)" : "none"} strokeWidth="1" />
+        <path d="M11 20.5 20 12 29 20.5 29 29.5 11 29.5Z" fill="none" stroke="#f3f4f5" strokeWidth="2.1" strokeLinejoin="round" />
+        <rect x="17" y="23" width="6" height="6.5" fill={C.blue} />
       </svg>
-      {/* Wordmark — "portal de bodegas" */}
-      <div style={{ lineHeight: 1.02 }}>
-        <div style={{ fontFamily: F.body, fontWeight: 700, fontSize: 16, color: ink, letterSpacing: "-0.01em" }}>
-          portal <span style={{ color: C.blue }}>de</span>
-        </div>
-        <div style={{ fontFamily: F.body, fontWeight: 700, fontSize: 16, color: ink, letterSpacing: "-0.01em" }}>
-          bodegas
-        </div>
+      {/* Wordmark — single line "portal de bodegas" */}
+      <div style={{ fontFamily: F.display, fontWeight: 800, fontSize: 19, letterSpacing: "-0.015em", lineHeight: 1 }}>
+        <span style={{ color: ink }}>portal </span>
+        <span style={{ color: C.blue }}>de </span>
+        <span style={{ color: ink }}>bodegas</span>
       </div>
     </div>
   );
@@ -92,7 +82,7 @@ export function Img({ height = 240, shade = 0, alt = "", status = "Disponible" }
       {/* Availability pill */}
       <div style={{ position: "absolute", top: 12, left: 12, display: "inline-flex", alignItems: "center", gap: 6, backgroundColor: "rgba(255,255,255,0.85)", padding: "4px 9px", borderRadius: 3 }}>
         <span style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: status === "Disponible" ? "#16a34a" : C.slate, display: "inline-block" }} />
-        <span style={{ fontFamily: F.mono, fontSize: 9.5, color: status === "Disponible" ? "#15803d" : C.slate, letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 500 }}>
+        <span style={{ fontFamily: F.mono, fontSize: 9.5, color: status === "Disponible" ? "#15803d" : C.slate, letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 500, whiteSpace: "nowrap" }}>
           {status}
         </span>
       </div>

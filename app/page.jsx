@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { C, F, W, waUrl, HREF, SITE, PROJECTS, m2, FAQ_GENERAL, WHY_US } from "../lib/data";
-import { Img, SectionLabel, JsonLd, FaqSection, faqSchema } from "../components/ui";
-import { AvailTable } from "../components/AvailTable";
-import { BtnPrimary, BtnWA } from "../components/Buttons";
+import { C, F, W, HREF, SITE, PROJECTS, m2, FAQ_GENERAL, WHY_US } from "../lib/data";
+import { SectionLabel, JsonLd, faqSchema } from "../components/ui";
+import { ProjectImage } from "../components/ProjectImage";
+import FaqAccordion from "../components/Faq";
+import { BtnWA } from "../components/Buttons";
 import { pageMeta } from "../lib/seo";
 
 export const metadata = pageMeta({
@@ -65,7 +66,7 @@ export default function HomePage() {
           {/* Left: copy + CTA */}
           <div>
             <div style={{ fontFamily: F.mono, fontSize: 12, color: C.blue, textTransform: "uppercase", letterSpacing: "0.16em", marginBottom: 22 }}>
-              Bodegas industriales · San Bernardo, RM
+              Arriendo directo, sin intermediarios
             </div>
             <h1 style={{
               fontFamily: F.display, fontWeight: 800,
@@ -79,31 +80,19 @@ export default function HomePage() {
               Distintas alternativas de tamaño disponibles en el sector sur de Santiago. Trato directo y sin intermediarios.
             </p>
             <BtnWA msg="Hola, quiero contactar a Portal de Bodegas">Contactar por WhatsApp</BtnWA>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 26px", marginTop: 34, paddingTop: 24, borderTop: `0.5px solid ${C.border}` }}>
-              {["180 – 1.900 m² disponibles", "Seguridad 24/7", "Acceso para camiones"].map((t) => (
-                <span key={t} style={{ fontFamily: F.mono, fontSize: 12, color: C.slate, letterSpacing: "0.03em" }}>{t}</span>
-              ))}
-            </div>
           </div>
 
-          {/* Right: warehouse illustration card */}
+          {/* Right: facility photo */}
           <div style={{
-            position: "relative", borderRadius: 16, overflow: "hidden", minHeight: 400,
-            background: "linear-gradient(135deg, #eef2f8 0%, #dde6f2 100%)",
-            backgroundImage: [
-              "linear-gradient(135deg, #eef2f8 0%, #dde6f2 100%)",
-              "repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(1,25,67,0.04) 39px,rgba(1,25,67,0.04) 40px)",
-              "repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(1,25,67,0.04) 39px,rgba(1,25,67,0.04) 40px)",
-            ].join(","),
-            display: "flex", alignItems: "center", justifyContent: "center",
+            position: "relative", borderRadius: 16, overflow: "hidden", minHeight: 440,
+            backgroundColor: "#e4e9f2",
           }}>
-            <svg width="64%" viewBox="0 0 200 150" fill="none" aria-hidden="true" style={{ maxWidth: 360, opacity: 0.6 }}>
-              <path d="M16 74 100 24 184 74 184 134 16 134Z" stroke="#8ea4c4" strokeWidth="2" strokeLinejoin="round" />
-              <path d="M16 74 100 24 184 74" stroke="#8ea4c4" strokeWidth="2" strokeLinejoin="round" />
-              <rect x="82" y="96" width="36" height="38" stroke="#8ea4c4" strokeWidth="2" />
-              <path d="M8 134h184" stroke="#8ea4c4" strokeWidth="2" />
-            </svg>
-            <div style={{ position: "absolute", top: 18, left: 18, display: "inline-flex", alignItems: "center", gap: 7, backgroundColor: "white", padding: "7px 13px", borderRadius: 999, boxShadow: "0 2px 10px rgba(1,25,67,0.08)" }}>
+            <img
+              src="/photos/home/hero.webp"
+              alt="Bodegas industriales en arriendo en San Bernardo"
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
+            <div style={{ position: "absolute", top: 18, left: 18, display: "inline-flex", alignItems: "center", gap: 7, backgroundColor: "white", padding: "7px 13px", borderRadius: 999, boxShadow: "0 2px 10px rgba(1,25,67,0.12)" }}>
               <span style={{ width: 7, height: 7, borderRadius: "50%", backgroundColor: "#16a34a", display: "inline-block" }} />
               <span style={{ fontFamily: F.body, fontSize: 13, color: C.navy, fontWeight: 600 }}>5 proyectos disponibles</span>
             </div>
@@ -132,8 +121,8 @@ export default function HomePage() {
       <section style={{ padding: "64px 0 0" }}>
         <div style={{ ...W }}>
           <SectionLabel>Por qué elegirnos</SectionLabel>
-          <h2 style={{ fontFamily: F.head, fontWeight: 800, fontSize: 28, color: C.navy, marginBottom: 32, lineHeight: 1.15, maxWidth: 560 }}>
-            Una plataforma directa para arrendar bodegas industriales
+          <h2 style={{ fontFamily: F.head, fontWeight: 600, fontSize: 30, color: C.navy, marginBottom: 32, lineHeight: 1.15, maxWidth: 600, letterSpacing: "-0.01em" }}>
+            Bodegas para empresas de todos los tamaños
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4" style={{ borderTop: `1px solid ${C.navy}`, borderLeft: `0.5px solid ${C.border}` }}>
             {WHY_US.map(([t, d], i) => (
@@ -161,7 +150,7 @@ export default function HomePage() {
           <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", border: `0.5px solid ${C.border}` }}>
             {/* Featured project */}
             <Link href={HREF.proyecto(PROJECTS[0].id)} style={{ borderRight: `0.5px solid ${C.border}`, textDecoration: "none", display: "block" }}>
-              <Img height={260} shade={0} alt={PROJECTS[0].alt} />
+              <ProjectImage projectId={PROJECTS[0].id} height={260} alt={PROJECTS[0].alt} />
               <div style={{ padding: "20px 24px 24px", borderTop: `0.5px solid ${C.border}` }}>
                 <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 20, color: C.navy, marginBottom: 4 }}>{PROJECTS[0].name}</div>
                 <div style={{ fontFamily: F.body, fontSize: 12, color: C.slate, marginBottom: 14 }}>San Bernardo · Región Metropolitana</div>
@@ -182,7 +171,7 @@ export default function HomePage() {
                 <Link key={p.id} href={HREF.proyecto(p.id)}
                   style={{ display: "flex", borderBottom: i < 3 ? `0.5px solid ${C.border}` : "none", textDecoration: "none" }}>
                   <div style={{ flexShrink: 0, width: 88 }}>
-                    <Img height={88} shade={i + 1} alt={p.alt} />
+                    <ProjectImage projectId={p.id} height={88} alt={p.alt} />
                   </div>
                   <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, minWidth: 0 }}>
                     <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 14, color: C.navy, marginBottom: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.name}</div>
@@ -198,42 +187,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── AVAILABILITY TABLE ── */}
-      <section style={{ padding: "64px 0 0" }}>
-        <div style={{ ...W }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 20 }}>
-            <SectionLabel>Disponibilidad actual</SectionLabel>
-            <span style={{ fontFamily: F.body, fontSize: 11, color: C.slate }}>Actualizado regularmente</span>
-          </div>
-          <AvailTable />
-          <div style={{ marginTop: 24 }}>
-            <BtnPrimary href={HREF.disponibilidad}>Ver disponibilidad completa</BtnPrimary>
-          </div>
-        </div>
-      </section>
-
       {/* ── FAQ ── */}
-      <section style={{ padding: "64px 0 0" }}>
+      <section style={{ padding: "72px 0 0" }}>
         <div style={{ ...W }}>
-          <FaqSection items={FAQ_GENERAL} />
+          <FaqAccordion items={FAQ_GENERAL} />
         </div>
       </section>
 
       {/* ── CTA STRIP ── */}
-      <section style={{ padding: "80px 0 72px" }}>
+      <section style={{ padding: "80px 0 80px" }}>
         <div style={{ maxWidth: 600, margin: "0 auto", padding: "0 40px", textAlign: "center" }}>
-          <div style={{ fontFamily: F.body, fontSize: 10, color: C.slate, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
-            Disponibilidad · Trato directo · San Bernardo
+          <div style={{ fontFamily: F.mono, fontSize: 11, color: C.slate, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 16 }}>
+            Trato directo · San Bernardo
           </div>
-          <h2 style={{ fontFamily: F.head, fontWeight: 800, fontSize: 32, color: C.navy, marginBottom: 28, lineHeight: 1.1 }}>
+          <h2 style={{ fontFamily: F.head, fontWeight: 600, fontSize: 34, color: C.navy, marginBottom: 28, lineHeight: 1.1, letterSpacing: "-0.01em" }}>
             ¿Necesitas una bodega para tu empresa?
           </h2>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 32, flexWrap: "wrap" }}>
-            <BtnPrimary href={HREF.disponibilidad}>Solicitar disponibilidad</BtnPrimary>
-            <a href={waUrl("Hola, quiero cotizar una bodega para mi empresa")} target="_blank" rel="noopener noreferrer"
-              style={{ fontFamily: F.body, fontSize: 14, color: C.wa, fontWeight: 600, textDecoration: "none", borderBottom: `1.5px solid ${C.wa}`, paddingBottom: 2 }}>
-              WhatsApp →
-            </a>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <BtnWA msg="Hola, quiero arrendar una bodega para mi empresa">Escríbenos ahora</BtnWA>
           </div>
         </div>
       </section>

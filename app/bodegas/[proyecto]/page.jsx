@@ -2,11 +2,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import {
-  C, F, W, HREF, SITE, PROJECTS, getProject, m2,
-  PROJECT_SPECS, EQUIP_LIST,
+  C, F, W, HREF, SITE, PROJECTS, getProject, m2, PROJECT_SPECS,
 } from "../../../lib/data";
-import { Img, SectionLabel, JsonLd, breadcrumbSchema } from "../../../components/ui";
-import { BtnPrimary, BtnWA } from "../../../components/Buttons";
+import { SectionLabel, JsonLd, breadcrumbSchema } from "../../../components/ui";
+import { ProjectImage } from "../../../components/ProjectImage";
+import { BtnWA } from "../../../components/Buttons";
 import { pageMeta } from "../../../lib/seo";
 
 export function generateStaticParams() {
@@ -73,7 +73,7 @@ export default function ProjectPage({ params }) {
       </div>
 
       {/* Hero photo — full bleed, no border-radius */}
-      <Img height={360} shade={idx} alt={project.alt} />
+      <ProjectImage projectId={project.id} height={360} alt={project.alt} />
 
       {/* Project header: H1 left, m² right */}
       <div style={{ borderBottom: `0.5px solid ${C.border}`, borderTop: `0.5px solid ${C.border}` }}>
@@ -99,8 +99,8 @@ export default function ProjectPage({ params }) {
       <div className="pdp-grid" style={{ ...W, display: "grid", gridTemplateColumns: "1fr 300px", alignItems: "start", padding: "0 40px" }}>
         {/* Left: data sheet */}
         <div style={{ padding: "40px 40px 40px 0", borderRight: `0.5px solid ${C.border}` }}>
-          <h2 style={{ fontFamily: F.head, fontWeight: 800, fontSize: 22, color: C.navy, margin: "0 0 4px" }}>Disponibilidad en {project.name}</h2>
-          <div style={{ fontFamily: F.body, fontSize: 13, color: C.slate, marginBottom: 24 }}>Ficha del proyecto y superficie vigente.</div>
+          <h2 style={{ fontFamily: F.head, fontWeight: 600, fontSize: 24, color: C.navy, margin: "0 0 4px", letterSpacing: "-0.01em" }}>Equipamiento del proyecto</h2>
+          <div style={{ fontFamily: F.body, fontSize: 13, color: C.slate, marginBottom: 24 }}>Ficha técnica y superficie disponible.</div>
 
           {PROJECT_SPECS.map(([key, val]) => (
             <div key={key} style={{ display: "grid", gridTemplateColumns: "160px 1fr", padding: "13px 0", borderBottom: `0.5px solid ${C.border}` }}>
@@ -109,26 +109,13 @@ export default function ProjectPage({ params }) {
             </div>
           ))}
           <div style={{ display: "grid", gridTemplateColumns: "160px 1fr", padding: "13px 0", borderBottom: `1px solid ${C.navy}` }}>
-            <span style={{ fontFamily: F.body, fontSize: 12, color: C.slate, textTransform: "uppercase", letterSpacing: "0.07em", paddingTop: 1 }}>Disponibilidad</span>
+            <span style={{ fontFamily: F.body, fontSize: 12, color: C.slate, textTransform: "uppercase", letterSpacing: "0.07em", paddingTop: 1 }}>Superficie</span>
             <span style={{ fontFamily: F.head, fontSize: 15, color: C.blue, fontWeight: 700 }}>{surface}</span>
           </div>
 
-          {/* Equipment as text list */}
-          <div style={{ marginTop: 36 }}>
-            <h2 style={{ fontFamily: F.head, fontWeight: 800, fontSize: 22, color: C.navy, margin: "0 0 18px" }}>Equipamiento del proyecto</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 32px" }}>
-              {EQUIP_LIST.map((t) => (
-                <div key={t} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <div style={{ color: C.blue, fontSize: 15, lineHeight: 1, flexShrink: 0 }}>—</div>
-                  <span style={{ fontFamily: F.body, fontSize: 13.5, color: C.slate }}>{t}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* Location strip */}
-          <div style={{ marginTop: 36 }}>
-            <h2 style={{ fontFamily: F.head, fontWeight: 800, fontSize: 22, color: C.navy, margin: "0 0 18px" }}>Ubicación y accesos</h2>
+          <div style={{ marginTop: 40 }}>
+            <h2 style={{ fontFamily: F.head, fontWeight: 600, fontSize: 24, color: C.navy, margin: "0 0 18px", letterSpacing: "-0.01em" }}>Ubicación y accesos</h2>
             <div style={{ padding: "20px", backgroundColor: C.bgAlt, borderTop: `1px solid ${C.navy}` }}>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 24px" }}>
                 {["Acceso a Ruta 5 Sur", "Acceso a Ruta 78", "San Bernardo · Sector sur de Santiago"].map((t) => (
@@ -149,8 +136,7 @@ export default function ProjectPage({ params }) {
             <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 22, color: C.blue }}>{surface}</div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 28 }}>
-            <BtnPrimary href={HREF.contacto} full>Solicitar disponibilidad</BtnPrimary>
-            <BtnWA msg={project.wa} full>WhatsApp</BtnWA>
+            <BtnWA msg={project.wa} full>Contáctanos ahora</BtnWA>
           </div>
           <div style={{ borderTop: `0.5px solid ${C.border}`, paddingTop: 20 }}>
             {["Trato directo · sin intermediarios", "Respuesta en menos de 24 horas", "Sin compromiso en la primera consulta"].map((t) => (
@@ -172,7 +158,7 @@ export default function ProjectPage({ params }) {
               const shade = PROJECTS.findIndex((x) => x.id === p.id);
               return (
                 <Link key={p.id} href={HREF.proyecto(p.id)} style={{ textDecoration: "none", borderRight: i < 2 ? `0.5px solid ${C.border}` : "none", display: "block" }}>
-                  <Img height={100} shade={shade} alt={p.alt} />
+                  <ProjectImage projectId={p.id} height={100} alt={p.alt} />
                   <div style={{ padding: "14px 16px", borderTop: `0.5px solid ${C.border}` }}>
                     <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 14, color: C.navy, marginBottom: 3 }}>{p.name}</div>
                     <div style={{ fontFamily: F.head, fontWeight: 600, fontSize: 13, color: C.blue, marginBottom: 8 }}>

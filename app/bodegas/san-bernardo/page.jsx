@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { C, F, W, HREF, SITE, PROJECTS, m2 } from "../../../lib/data";
-import { Img, SectionLabel, JsonLd, breadcrumbSchema, EquipGrid } from "../../../components/ui";
-import { AvailTable } from "../../../components/AvailTable";
-import { BtnPrimary, BtnWA } from "../../../components/Buttons";
+import { SectionLabel, JsonLd, breadcrumbSchema, EquipGrid } from "../../../components/ui";
+import { ProjectImage } from "../../../components/ProjectImage";
+import { BtnWA } from "../../../components/Buttons";
 import { pageMeta } from "../../../lib/seo";
 
 export const metadata = pageMeta({
@@ -41,11 +41,11 @@ export default function SanBernardoPage() {
             <span style={{ color: C.slate, fontSize: 12 }}>›</span>
             <span style={{ fontFamily: F.body, fontSize: 12, color: "white" }}>San Bernardo</span>
           </div>
-          <h1 style={{ fontFamily: F.head, fontWeight: 800, fontSize: "clamp(28px,4vw,48px)", color: "white", letterSpacing: "-0.01em", margin: "0 0 16px" }}>
+          <h1 style={{ fontFamily: F.head, fontWeight: 600, fontSize: "clamp(30px,4.2vw,50px)", color: "white", letterSpacing: "-0.015em", margin: "0 0 16px", lineHeight: 1.05 }}>
             Bodegas en Arriendo en San Bernardo
           </h1>
           <p style={{ fontFamily: F.body, fontSize: 16, color: C.slateLight, maxWidth: 560, lineHeight: 1.7, margin: 0 }}>
-            Cinco proyectos industriales desde 180 m² hasta 1.900 m², con estándar industrial y trato directo.
+            Cinco proyectos con espacios desde 180 m² hasta 1.900 m², equipados y con trato directo.
           </p>
         </div>
       </div>
@@ -57,7 +57,7 @@ export default function SanBernardoPage() {
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ border: `0.5px solid ${C.border}`, marginBottom: 56 }}>
             {PROJECTS.map((p, i) => (
               <Link key={p.id} href={HREF.proyecto(p.id)} style={{ textDecoration: "none", borderRight: i % 2 === 0 ? `0.5px solid ${C.border}` : "none", borderBottom: `0.5px solid ${C.border}`, display: "block" }}>
-                <Img height={190} shade={i} alt={p.alt} />
+                <ProjectImage projectId={p.id} height={190} alt={p.alt} />
                 <div style={{ padding: "20px 22px 22px", borderTop: `0.5px solid ${C.border}` }}>
                   <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 18, color: C.navy, marginBottom: 3 }}>{p.name}</div>
                   <div style={{ fontFamily: F.body, fontSize: 12, color: C.slate, marginBottom: 12 }}>San Bernardo · Región Metropolitana</div>
@@ -71,15 +71,6 @@ export default function SanBernardoPage() {
               </Link>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Sizes table */}
-      <section>
-        <div style={{ ...W }}>
-          <SectionLabel>Tamaños disponibles</SectionLabel>
-          <AvailTable />
-          <div style={{ height: 56 }} />
         </div>
       </section>
 
@@ -104,8 +95,7 @@ export default function SanBernardoPage() {
             ))}
           </div>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-            <BtnPrimary href={HREF.contacto}>Solicitar disponibilidad</BtnPrimary>
-            <BtnWA msg="Hola, quiero cotizar una bodega en San Bernardo">WhatsApp</BtnWA>
+            <BtnWA msg="Hola, quiero cotizar una bodega en San Bernardo">Escríbenos ahora</BtnWA>
           </div>
         </div>
       </section>

@@ -1,22 +1,17 @@
 import Link from "next/link";
-import { C, F, W, HREF, SITE, PROJECTS, m2, FAQ_GENERAL, WHY_US } from "../../lib/data";
-import { Img, SectionLabel, JsonLd, FaqSection, faqSchema, breadcrumbSchema, EquipGrid } from "../../components/ui";
-import { AvailTable } from "../../components/AvailTable";
-import { BtnPrimary } from "../../components/Buttons";
+import { C, F, W, HREF, SITE, PROJECTS, m2, FAQ_GENERAL } from "../../lib/data";
+import { SectionLabel, JsonLd, faqSchema, breadcrumbSchema, EquipGrid } from "../../components/ui";
+import { ProjectImage } from "../../components/ProjectImage";
+import FaqAccordion from "../../components/Faq";
+import { BtnWA } from "../../components/Buttons";
 import { pageMeta } from "../../lib/seo";
 
 export const metadata = pageMeta({
   title: "Bodegas en Arriendo | Arriendo de Bodegas para Empresas",
   description:
-    "Explora bodegas en arriendo por ubicación, tamaño y tipo de uso. Varias alternativas disponibles, trato directo y respuesta rápida.",
+    "Conoce nuestras bodegas en arriendo en San Bernardo: distintos tamaños, trato directo y respuesta rápida. Encuentra el espacio ideal para tu empresa.",
   path: "/bodegas/",
 });
-
-const SIZES = [
-  ["Hasta 500 m²", "Pymes y empresas en crecimiento", "Alto Las Acacias · Bosque Catemito · Inversiones Duramet"],
-  ["500 – 1.000 m²", "Operaciones medianas de logística y almacenaje", "El Barrancón · Bosque Catemito · Inversiones Duramet"],
-  ["Más de 1.000 m²", "Distribución y manufactura liviana de gran escala", "El Barrancón · Bosque Catemito · Acacias Seis · Inversiones Duramet"],
-];
 
 export default function BodegasHub() {
   return (
@@ -34,62 +29,30 @@ export default function BodegasHub() {
         padding: "72px 40px 56px",
       }}>
         <div style={{ ...W, padding: 0 }}>
-          {/* Breadcrumb */}
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 18 }}>
             <Link href={HREF.home} style={{ fontFamily: F.body, fontSize: 12, color: C.slateLight, textDecoration: "none" }}>Inicio</Link>
             <span style={{ color: C.slate, fontSize: 12 }}>›</span>
             <span style={{ fontFamily: F.body, fontSize: 12, color: "white" }}>Bodegas</span>
           </div>
-          <h1 style={{ fontFamily: F.head, fontWeight: 800, fontSize: "clamp(30px,4vw,50px)", color: "white", letterSpacing: "-0.01em", margin: 0 }}>
+          <h1 style={{ fontFamily: F.head, fontWeight: 600, fontSize: "clamp(32px,4.2vw,52px)", color: "white", letterSpacing: "-0.015em", margin: "0 0 16px", lineHeight: 1.05 }}>
             Bodegas en Arriendo
           </h1>
+          <p style={{ fontFamily: F.body, fontSize: 16, color: C.slateLight, maxWidth: 560, lineHeight: 1.7, margin: 0 }}>
+            Cinco proyectos en San Bernardo, con espacios desde 180 m² hasta 1.900 m². Elige el que mejor se adapte a tu operación y conversemos directo.
+          </p>
         </div>
       </div>
 
-      {/* Why us */}
+      {/* All projects grid */}
       <section style={{ padding: "56px 0 0" }}>
         <div style={{ ...W }}>
-          <SectionLabel>Por qué Portal de Bodegas</SectionLabel>
-          <div className="grid grid-cols-1 md:grid-cols-4" style={{ borderTop: `1px solid ${C.navy}`, borderLeft: `0.5px solid ${C.border}`, marginBottom: 56 }}>
-            {WHY_US.map(([t, d], i) => (
-              <div key={t} style={{ padding: "24px 24px 28px", borderRight: `0.5px solid ${C.border}`, borderBottom: `0.5px solid ${C.border}` }}>
-                <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 15, color: C.blue, marginBottom: 10 }}>0{i + 1}</div>
-                <h3 style={{ fontFamily: F.head, fontWeight: 700, fontSize: 16, color: C.navy, marginBottom: 8 }}>{t}</h3>
-                <p style={{ fontFamily: F.body, fontSize: 13, color: C.slate, lineHeight: 1.6, margin: 0 }}>{d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Explore by location */}
-      <section>
-        <div style={{ ...W }}>
-          <SectionLabel>Explora por ubicación</SectionLabel>
-          <Link href={HREF.sanBernardo} style={{
-            display: "flex", alignItems: "center", justifyContent: "space-between",
-            border: `0.5px solid ${C.border}`, borderTop: `1px solid ${C.navy}`,
-            padding: "24px 28px", textDecoration: "none", marginBottom: 56,
-          }}>
-            <div>
-              <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 20, color: C.navy, marginBottom: 4 }}>San Bernardo</div>
-              <div style={{ fontFamily: F.body, fontSize: 13, color: C.slate }}>Región Metropolitana · 5 proyectos disponibles</div>
-            </div>
-            <span style={{ fontFamily: F.body, fontSize: 13, color: C.blue, fontWeight: 600 }}>Ver proyectos →</span>
-          </Link>
-        </div>
-      </section>
-
-      {/* All projects grid */}
-      <section>
-        <div style={{ ...W }}>
-          <SectionLabel>Todos los proyectos</SectionLabel>
-          <div className="grid grid-cols-1 md:grid-cols-2" style={{ border: `0.5px solid ${C.border}`, marginBottom: 56 }}>
+          <SectionLabel>Nuestros proyectos</SectionLabel>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{ border: `0.5px solid ${C.border}`, marginBottom: 64 }}>
             {PROJECTS.map((p, i) => (
               <Link key={p.id} href={HREF.proyecto(p.id)} style={{ textDecoration: "none", borderRight: i % 2 === 0 ? `0.5px solid ${C.border}` : "none", borderBottom: `0.5px solid ${C.border}`, display: "block" }}>
-                <Img height={190} shade={i} alt={p.alt} />
+                <ProjectImage projectId={p.id} height={210} alt={p.alt} />
                 <div style={{ padding: "20px 22px 22px", borderTop: `0.5px solid ${C.border}` }}>
-                  <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 18, color: C.navy, marginBottom: 3 }}>{p.name}</div>
+                  <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 19, color: C.navy, marginBottom: 3 }}>{p.name}</div>
                   <div style={{ fontFamily: F.body, fontSize: 12, color: C.slate, marginBottom: 12 }}>San Bernardo · Región Metropolitana</div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 18, color: C.blue }}>
@@ -104,44 +67,30 @@ export default function BodegasHub() {
         </div>
       </section>
 
-      {/* Explore by size */}
-      <section>
-        <div style={{ ...W }}>
-          <SectionLabel>Explora por tamaño</SectionLabel>
-          <div className="grid grid-cols-1 md:grid-cols-3" style={{ borderTop: `1px solid ${C.navy}`, borderLeft: `0.5px solid ${C.border}`, marginBottom: 56 }}>
-            {SIZES.map(([range, use, projs]) => (
-              <div key={range} style={{ padding: "24px 24px 28px", borderRight: `0.5px solid ${C.border}`, borderBottom: `0.5px solid ${C.border}` }}>
-                <div style={{ fontFamily: F.head, fontWeight: 800, fontSize: 20, color: C.blue, marginBottom: 8 }}>{range}</div>
-                <p style={{ fontFamily: F.body, fontSize: 13.5, color: C.navy, fontWeight: 500, marginBottom: 10 }}>{use}</p>
-                <p style={{ fontFamily: F.body, fontSize: 12, color: C.slate, lineHeight: 1.6, margin: 0 }}>{projs}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Equipment */}
       <section>
-        <div style={{ ...W, marginBottom: 56 }}>
+        <div style={{ ...W, marginBottom: 64 }}>
           <EquipGrid />
         </div>
       </section>
 
-      {/* Availability */}
+      {/* FAQ */}
       <section>
         <div style={{ ...W }}>
-          <SectionLabel>Disponibilidad actual</SectionLabel>
-          <AvailTable />
-          <div style={{ marginTop: 24, marginBottom: 64 }}>
-            <BtnPrimary href={HREF.disponibilidad}>Ver disponibilidad detallada</BtnPrimary>
-          </div>
+          <FaqAccordion items={FAQ_GENERAL} />
         </div>
       </section>
 
-      {/* FAQ */}
-      <section style={{ paddingBottom: 80 }}>
+      {/* CTA */}
+      <section style={{ padding: "64px 0 80px" }}>
         <div style={{ ...W }}>
-          <FaqSection items={FAQ_GENERAL} />
+          <div style={{ borderTop: `1px solid ${C.navy}`, paddingTop: 36, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
+            <div>
+              <h2 style={{ fontFamily: F.head, fontWeight: 600, fontSize: 24, color: C.navy, margin: "0 0 6px" }}>¿Te interesa alguna bodega?</h2>
+              <p style={{ fontFamily: F.body, fontSize: 15, color: C.slate, margin: 0 }}>Escríbenos y te enviamos disponibilidad y una propuesta a tu medida.</p>
+            </div>
+            <BtnWA msg="Hola, quiero información sobre las bodegas disponibles">Escríbenos ahora</BtnWA>
+          </div>
         </div>
       </section>
     </>

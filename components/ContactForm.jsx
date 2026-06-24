@@ -45,6 +45,8 @@ export default function ContactForm() {
   });
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -70,12 +72,43 @@ export default function ContactForm() {
     return e;
   };
 
-  const handleSubmit = (ev) => {
+  const handleSubmit = async (ev) => {
     ev.preventDefault();
+    setSubmitError("");
     const e = validate();
     if (Object.keys(e).length > 0) { setErrors(e); return; }
-    // Hook real submission here (e.g. POST to /api or form service). Payload: { ...form, ...utm }
-    setSent(true);
+
+    // Web3Forms access key (public by design). Delivers leads to the configured email.
+    const key = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "cd3a41fe-d3d0-424f-b18c-a7b11daf0f36";
+    if (!key) { setSent(true); return; }
+
+    setSending(true);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: key,
+          subject: `Nueva consulta de ${form.empresa || form.nombre} — Portal de Bodegas`,
+          from_name: "Portal de Bodegas",
+          Nombre: form.nombre,
+          Empresa: form.empresa,
+          Teléfono: form.telefono,
+          Correo: form.correo,
+          "Metraje requerido": form.metraje,
+          "Proyecto de interés": form.proyecto || "Sin preferencia",
+          Comentarios: form.comentarios,
+          ...utm,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) setSent(true);
+      else setSubmitError("No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.");
+    } catch {
+      setSubmitError("No pudimos enviar tu solicitud. Revisa tu conexión o escríbenos por WhatsApp.");
+    } finally {
+      setSending(false);
+    }
   };
 
   if (sent) {
@@ -178,15 +211,16 @@ export default function ContactForm() {
         </div>
 
         <div style={{ paddingTop: 8 }}>
-          <button type="submit" style={{
-            backgroundColor: C.blue, color: "white", border: "none", borderRadius: 4,
+          <button type="submit" disabled={sending} style={{
+            backgroundColor: sending ? C.slate : C.blue, color: "white", border: "none", borderRadius: 4,
             padding: "14px 32px", fontSize: 14, fontWeight: 600, fontFamily: F.body,
-            cursor: "pointer", letterSpacing: "0.01em",
+            cursor: sending ? "default" : "pointer", letterSpacing: "0.01em",
           }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = C.blueDark)}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = C.blue)}>
-            Enviar solicitud
+            onMouseEnter={(e) => { if (!sending) e.currentTarget.style.backgroundColor = C.blueDark; }}
+            onMouseLeave={(e) => { if (!sending) e.currentTarget.style.backgroundColor = C.blue; }}>
+            {sending ? "Enviando…" : "Enviar solicitud"}
           </button>
+          {submitError && <p style={{ fontFamily: F.body, fontSize: 13, color: "#ef4444", marginTop: 12 }}>{submitError}</p>}
         </div>
       </div>
     </form>

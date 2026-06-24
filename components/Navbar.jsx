@@ -11,7 +11,6 @@ const W = { maxWidth: 1280, margin: "0 auto", padding: "0 40px" };
 const NAV = [
   ["Inicio", HREF.home],
   ["Bodegas", HREF.bodegas],
-  ["Disponibilidad", HREF.disponibilidad],
   ["Contacto", HREF.contacto],
 ];
 
@@ -67,7 +66,7 @@ export default function Navbar() {
         {/* Desktop nav (centered) */}
         <div className="hidden md:flex" style={{ flex: 1, alignItems: "center", justifyContent: "center", gap: 2 }}>
           <NavLink label="Inicio" href={HREF.home} />
-          <div style={{ position: "relative" }}
+          <div style={{ position: "relative", paddingBottom: 10, marginBottom: -10 }}
             onMouseEnter={() => setDropOpen(true)} onMouseLeave={() => setDropOpen(false)}>
             <Link href={HREF.bodegas} style={{
               fontFamily: F.body, fontSize: 13.5, fontWeight: isBodegas ? 600 : 400, textDecoration: "none",
@@ -78,7 +77,7 @@ export default function Navbar() {
             </Link>
             {dropOpen && (
               <div style={{
-                position: "absolute", top: "calc(100% + 6px)", left: -8,
+                position: "absolute", top: "100%", left: -8,
                 backgroundColor: "white", border: `0.5px solid ${C.border}`,
                 boxShadow: "0 8px 28px rgba(1,25,67,0.12)", minWidth: 224, padding: "6px 0", zIndex: 300,
               }}>
@@ -96,7 +95,6 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          <NavLink label="Disponibilidad" href={HREF.disponibilidad} />
           <NavLink label="Contacto" href={HREF.contacto} />
         </div>
 

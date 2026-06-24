@@ -1,5 +1,6 @@
 import { C, F, W, waUrl, SITE, FAQ_CONTACTO } from "../../lib/data";
-import { JsonLd, FaqSection, faqSchema, SectionLabel } from "../../components/ui";
+import { JsonLd, faqSchema } from "../../components/ui";
+import FaqAccordion from "../../components/Faq";
 import { BtnWA } from "../../components/Buttons";
 import ContactForm from "../../components/ContactForm";
 import { pageMeta } from "../../lib/seo";
@@ -71,15 +72,7 @@ export default function ContactoPage() {
               <p style={{ fontFamily: F.body, fontSize: 14.5, color: C.slate, lineHeight: 1.7, marginBottom: 18 }}>
                 Si prefieres una respuesta inmediata, escríbenos directamente por WhatsApp.
               </p>
-              <BtnWA msg="Hola, quiero solicitar disponibilidad de bodegas" full>Escribir por WhatsApp</BtnWA>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 28 }}>
-              {["Respuesta en menos de 24 horas hábiles", "Trato directo, sin corredores", "Sin compromiso en la primera consulta", "Disponibilidad sujeta a confirmación al momento del contacto"].map((t) => (
-                <div key={t} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-                  <div style={{ color: C.blue, fontSize: 14, lineHeight: 1.6, flexShrink: 0 }}>—</div>
-                  <span style={{ fontFamily: F.body, fontSize: 13, color: C.slate, lineHeight: 1.6 }}>{t}</span>
-                </div>
-              ))}
+              <BtnWA msg="Hola, quiero contactar a Portal de Bodegas" full>Escribir por WhatsApp</BtnWA>
             </div>
             <div style={{ borderTop: `0.5px solid ${C.border}`, paddingTop: 20 }}>
               <div style={{ fontFamily: F.body, fontSize: 10, color: C.slate, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 }}>Datos protegidos</div>
@@ -94,7 +87,7 @@ export default function ContactoPage() {
       {/* FAQ */}
       <section style={{ paddingBottom: 80 }}>
         <div style={{ ...W }}>
-          <FaqSection items={FAQ_CONTACTO} />
+          <FaqAccordion items={FAQ_CONTACTO} />
         </div>
       </section>
     </>

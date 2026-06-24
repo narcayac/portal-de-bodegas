@@ -46,7 +46,7 @@ export default function PrivacidadPage() {
             </div>
           ))}
           <p style={{ fontFamily: F.body, fontSize: 12.5, color: C.slateLight, marginTop: 24 }}>
-            Última actualización: 2025.
+            Última actualización: 2026.
           </p>
         </div>
       </section>

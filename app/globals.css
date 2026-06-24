@@ -9,6 +9,11 @@
 
 html {
   scroll-behavior: smooth;
+  --gutter: 40px;
+}
+@media (max-width: 768px) {
+  html { --gutter: 20px; }
+  .logo-word { display: none; }
 }
 
 body {

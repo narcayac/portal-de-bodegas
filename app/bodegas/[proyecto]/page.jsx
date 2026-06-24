@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import {
-  C, F, W, HREF, SITE, PROJECTS, getProject, m2, PROJECT_SPECS,
+  C, F, W, HREF, SITE, PROJECTS, getProject, m2, PROJECT_SPECS, ADDRESSES, mapEmbed,
 } from "../../../lib/data";
 import { SectionLabel, JsonLd, breadcrumbSchema } from "../../../components/ui";
 import { ProjectImage } from "../../../components/ProjectImage";
@@ -30,6 +30,7 @@ export default function ProjectPage({ params }) {
   const idx = PROJECTS.findIndex((p) => p.id === project.id);
   const related = PROJECTS.filter((p) => p.id !== project.id).slice(0, 3);
   const surface = project.min === project.max ? m2(project.min) : `${m2(project.min)} – ${m2(project.max)}`;
+  const address = ADDRESSES[project.id];
 
   const placeSchema = {
     "@context": "https://schema.org",
@@ -39,6 +40,7 @@ export default function ProjectPage({ params }) {
     description: project.description,
     address: {
       "@type": "PostalAddress",
+      streetAddress: ADDRESSES[project.id],
       addressLocality: SITE.locality,
       addressRegion: SITE.region,
       addressCountry: SITE.country,
@@ -113,18 +115,26 @@ export default function ProjectPage({ params }) {
             <span style={{ fontFamily: F.head, fontSize: 15, color: C.blue, fontWeight: 700 }}>{surface}</span>
           </div>
 
-          {/* Location strip */}
+          {/* Location + map */}
           <div style={{ marginTop: 40 }}>
-            <h2 style={{ fontFamily: F.head, fontWeight: 600, fontSize: 24, color: C.navy, margin: "0 0 18px", letterSpacing: "-0.01em" }}>Ubicación y accesos</h2>
-            <div style={{ padding: "20px", backgroundColor: C.bgAlt, borderTop: `1px solid ${C.navy}` }}>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 24px" }}>
-                {["Acceso a Ruta 5 Sur", "Acceso a Ruta 78", "San Bernardo · Sector sur de Santiago"].map((t) => (
-                  <span key={t} style={{ fontFamily: F.body, fontSize: 13, color: C.slate, display: "flex", alignItems: "center", gap: 6 }}>
-                    <span style={{ color: C.blue }}>→</span>{t}
-                  </span>
-                ))}
-              </div>
+            <h2 style={{ fontFamily: F.head, fontWeight: 600, fontSize: 24, color: C.navy, margin: "0 0 14px", letterSpacing: "-0.01em" }}>Ubicación y accesos</h2>
+            <div style={{ fontFamily: F.body, fontSize: 15, color: C.navy, fontWeight: 500 }}>{address}</div>
+            <div style={{ fontFamily: F.body, fontSize: 13, color: C.slate, marginBottom: 16 }}>San Bernardo · Región Metropolitana</div>
+            <div style={{ border: `0.5px solid ${C.border}`, overflow: "hidden" }}>
+              <iframe
+                title={`Mapa de ${project.name}`}
+                src={mapEmbed(address)}
+                width="100%" height="320"
+                style={{ border: 0, display: "block" }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
+            <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${address}, San Bernardo, Región Metropolitana, Chile`)}`}
+              target="_blank" rel="noopener noreferrer"
+              style={{ display: "inline-block", marginTop: 12, fontFamily: F.body, fontSize: 13, color: C.blue, fontWeight: 600, textDecoration: "none" }}>
+              Ver en Google Maps →
+            </a>
           </div>
         </div>
 
@@ -158,7 +168,7 @@ export default function ProjectPage({ params }) {
               const shade = PROJECTS.findIndex((x) => x.id === p.id);
               return (
                 <Link key={p.id} href={HREF.proyecto(p.id)} style={{ textDecoration: "none", borderRight: i < 2 ? `0.5px solid ${C.border}` : "none", display: "block" }}>
-                  <ProjectImage projectId={p.id} height={100} alt={p.alt} />
+                  <ProjectImage projectId={p.id} height={100} alt={p.alt} showStatus={false} />
                   <div style={{ padding: "14px 16px", borderTop: `0.5px solid ${C.border}` }}>
                     <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 14, color: C.navy, marginBottom: 3 }}>{p.name}</div>
                     <div style={{ fontFamily: F.head, fontWeight: 600, fontSize: 13, color: C.blue, marginBottom: 8 }}>

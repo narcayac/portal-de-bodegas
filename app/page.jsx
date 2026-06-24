@@ -146,7 +146,8 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <div style={{ ...W }}>
+        {/* Desktop: editorial featured + list */}
+        <div className="hidden md:block" style={{ ...W }}>
           <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", border: `0.5px solid ${C.border}` }}>
             {/* Featured project */}
             <Link href={HREF.proyecto(PROJECTS[0].id)} style={{ borderRight: `0.5px solid ${C.border}`, textDecoration: "none", display: "block" }}>
@@ -171,7 +172,7 @@ export default function HomePage() {
                 <Link key={p.id} href={HREF.proyecto(p.id)}
                   style={{ display: "flex", borderBottom: i < 3 ? `0.5px solid ${C.border}` : "none", textDecoration: "none" }}>
                   <div style={{ flexShrink: 0, width: 88 }}>
-                    <ProjectImage projectId={p.id} height={88} alt={p.alt} />
+                    <ProjectImage projectId={p.id} height={88} alt={p.alt} showStatus={false} />
                   </div>
                   <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", justifyContent: "center", flex: 1, minWidth: 0 }}>
                     <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 14, color: C.navy, marginBottom: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.name}</div>
@@ -184,6 +185,28 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Mobile: swipeable carousel */}
+        <div className="md:hidden nav-scroll" style={{ display: "flex", gap: 14, overflowX: "auto", scrollSnapType: "x mandatory", padding: "0 20px 6px", WebkitOverflowScrolling: "touch" }}>
+          {PROJECTS.map((p) => (
+            <Link key={p.id} href={HREF.proyecto(p.id)} style={{ flex: "0 0 80%", scrollSnapAlign: "start", border: `0.5px solid ${C.border}`, textDecoration: "none", display: "block", backgroundColor: "white" }}>
+              <ProjectImage projectId={p.id} height={180} alt={p.alt} />
+              <div style={{ padding: "16px 18px 18px", borderTop: `0.5px solid ${C.border}` }}>
+                <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 18, color: C.navy, marginBottom: 3 }}>{p.name}</div>
+                <div style={{ fontFamily: F.body, fontSize: 12, color: C.slate, marginBottom: 10 }}>San Bernardo, RM</div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 17, color: C.blue }}>
+                    {p.min === p.max ? m2(p.min) : `${m2(p.min)} – ${m2(p.max)}`}
+                  </div>
+                  <span style={{ fontFamily: F.body, fontSize: 12, color: C.navy, borderBottom: `1px solid ${C.navy}`, paddingBottom: 1 }}>Ver →</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className="md:hidden" style={{ ...W, marginTop: 14 }}>
+          <span style={{ fontFamily: F.mono, fontSize: 10.5, color: C.slate, letterSpacing: "0.06em" }}>← Desliza para ver los 5 proyectos →</span>
         </div>
       </section>
 

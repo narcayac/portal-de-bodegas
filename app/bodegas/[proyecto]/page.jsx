@@ -6,6 +6,7 @@ import {
 } from "../../../lib/data";
 import { SectionLabel, JsonLd, breadcrumbSchema } from "../../../components/ui";
 import { ProjectImage } from "../../../components/ProjectImage";
+import { ProjectGallery } from "../../../components/ProjectGallery";
 import { BtnWA } from "../../../components/Buttons";
 import { pageMeta } from "../../../lib/seo";
 
@@ -74,8 +75,10 @@ export default function ProjectPage({ params }) {
         </div>
       </div>
 
-      {/* Hero photo — full bleed, no border-radius */}
-      <ProjectImage projectId={project.id} height={360} alt={project.alt} />
+      {/* Photo gallery (interiors + exteriors) */}
+      <div style={{ ...W, paddingTop: 24, paddingBottom: 8 }}>
+        <ProjectGallery projectId={project.id} alt={project.alt} count={project.photos || 3} />
+      </div>
 
       {/* Project header: H1 left, m² right */}
       <div style={{ borderBottom: `0.5px solid ${C.border}`, borderTop: `0.5px solid ${C.border}` }}>
@@ -110,10 +113,18 @@ export default function ProjectPage({ params }) {
               <span style={{ fontFamily: F.body, fontSize: 14, color: C.navy, fontWeight: 500 }}>{val}</span>
             </div>
           ))}
-          <div style={{ display: "grid", gridTemplateColumns: "160px 1fr", padding: "13px 0", borderBottom: `1px solid ${C.navy}` }}>
-            <span style={{ fontFamily: F.body, fontSize: 12, color: C.slate, textTransform: "uppercase", letterSpacing: "0.07em", paddingTop: 1 }}>Superficie</span>
+          <div style={{ display: "grid", gridTemplateColumns: "160px 1fr", padding: "13px 0", borderBottom: project.totalM2 ? `0.5px solid ${C.border}` : `1px solid ${C.navy}` }}>
+            <span style={{ fontFamily: F.body, fontSize: 12, color: C.slate, textTransform: "uppercase", letterSpacing: "0.07em", paddingTop: 1 }}>Disponible</span>
             <span style={{ fontFamily: F.head, fontSize: 15, color: C.blue, fontWeight: 700 }}>{surface}</span>
           </div>
+          {project.totalM2 && (
+            <div style={{ display: "grid", gridTemplateColumns: "160px 1fr", padding: "13px 0", borderBottom: `1px solid ${C.navy}` }}>
+              <span style={{ fontFamily: F.body, fontSize: 12, color: C.slate, textTransform: "uppercase", letterSpacing: "0.07em", paddingTop: 1 }}>Superficie total</span>
+              <span style={{ fontFamily: F.body, fontSize: 14, color: C.navy, fontWeight: 500 }}>
+                {m2(project.totalM2)} construidos{project.expandM2 ? ` · ampliable a ${m2(project.expandM2)}` : ""}
+              </span>
+            </div>
+          )}
 
           {/* Location + map */}
           <div style={{ marginTop: 40 }}>
@@ -149,7 +160,7 @@ export default function ProjectPage({ params }) {
             <BtnWA msg={project.wa} full>Contáctanos ahora</BtnWA>
           </div>
           <div style={{ borderTop: `0.5px solid ${C.border}`, paddingTop: 20 }}>
-            {["Trato directo · sin intermediarios", "Respuesta en menos de 24 horas", "Sin compromiso en la primera consulta"].map((t) => (
+            {["Trato directo · sin intermediarios", "Respuesta casi al instante por WhatsApp", "Sin compromiso en la primera consulta"].map((t) => (
               <div key={t} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
                 <div style={{ color: C.blue, fontSize: 15, lineHeight: 1 }}>—</div>
                 <span style={{ fontFamily: F.body, fontSize: 12.5, color: C.slate, lineHeight: 1.5 }}>{t}</span>

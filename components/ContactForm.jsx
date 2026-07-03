@@ -119,7 +119,7 @@ export default function ContactForm() {
         </div>
         <h3 style={{ fontFamily: F.head, fontWeight: 700, fontSize: 22, color: C.navy, marginBottom: 10 }}>Solicitud recibida</h3>
         <p style={{ fontFamily: F.body, fontSize: 15, color: C.slate, lineHeight: 1.7 }}>
-          Te contactaremos en menos de 24 horas hábiles con la disponibilidad vigente.
+          Te contactaremos muy pronto con la disponibilidad vigente. Si quieres respuesta al instante, escríbenos por WhatsApp.
         </p>
       </div>
     );
@@ -129,7 +129,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} noValidate style={{ padding: "0 48px 0 0", borderRight: `0.5px solid ${C.border}` }}>
       <h2 style={{ fontFamily: F.head, fontWeight: 800, fontSize: 22, color: C.navy, marginBottom: 8 }}>Completa el formulario</h2>
       <div style={{ fontFamily: F.body, fontSize: 10, color: C.slate, textTransform: "uppercase", letterSpacing: "0.10em", marginBottom: 28, paddingBottom: 16, borderBottom: `0.5px solid ${C.border}` }}>
-        Respuesta en menos de 24 horas hábiles
+        Respuesta rápida · sin compromiso
       </div>
 
       {/* Hidden UTM / tracking fields */}

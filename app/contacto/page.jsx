@@ -8,7 +8,7 @@ import { pageMeta } from "../../lib/seo";
 export const metadata = pageMeta({
   title: "Contacto y Cotización | Portal de Bodegas",
   description:
-    "Conversemos sobre la bodega ideal para tu empresa. Escríbenos por WhatsApp o completa el formulario y te contactamos en menos de 24 horas.",
+    "Conversemos sobre la bodega ideal para tu empresa. Escríbenos por WhatsApp y te respondemos casi al instante, o completa el formulario y te contactamos muy pronto.",
   path: "/contacto/",
 });
 
@@ -32,7 +32,7 @@ export default function ContactoPage() {
       }}>
         <div style={{ ...W, padding: 0 }}>
           <div style={{ fontFamily: F.mono, fontSize: 11, color: C.slateLight, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 14 }}>
-            Contacto · Respuesta en 24 horas
+            Contacto · Respuesta rápida por WhatsApp
           </div>
           <h1 style={{ fontFamily: F.head, fontWeight: 600, fontSize: "clamp(30px,4.4vw,50px)", color: "white", letterSpacing: "-0.015em", margin: 0, lineHeight: 1.05 }}>
             Hablemos de tu próxima bodega

@@ -107,7 +107,7 @@ export default function HomePage() {
             ["5 proyectos", "Disponibles en San Bernardo"],
             ["180 – 1.900 m²", "Superficie por proyecto"],
             ["Trato directo", "Sin intermediarios ni comisiones"],
-            ["< 24 horas", "Tiempo de respuesta"],
+            ["Al instante", "Respuesta por WhatsApp"],
           ].map(([val, lab], i) => (
             <div key={lab} style={{ flex: 1, minWidth: 150, padding: "28px 32px", borderLeft: i > 0 ? `0.5px solid ${C.border}` : "none" }}>
               <div style={{ fontFamily: F.head, fontWeight: 800, fontSize: 22, color: C.navy, lineHeight: 1, marginBottom: 6 }}>{val}</div>

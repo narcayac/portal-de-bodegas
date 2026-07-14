@@ -38,7 +38,7 @@ export default function BodegasHub() {
             Bodegas en Arriendo
           </h1>
           <p style={{ fontFamily: F.body, fontSize: 16, color: C.slateLight, maxWidth: 560, lineHeight: 1.7, margin: 0 }}>
-            Cinco proyectos en San Bernardo, con espacios desde 180 m² hasta 1.900 m². Elige el que mejor se adapte a tu operación y conversemos directo.
+            Cinco proyectos en San Bernardo, con espacios desde 180 m² hasta grandes superficies de 14.000 m². Elige el que mejor se adapte a tu operación y conversemos directo.
           </p>
         </div>
       </div>

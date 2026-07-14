@@ -113,16 +113,20 @@ export default function ProjectPage({ params }) {
               <span style={{ fontFamily: F.body, fontSize: 14, color: C.navy, fontWeight: 500 }}>{val}</span>
             </div>
           ))}
-          <div style={{ display: "grid", gridTemplateColumns: "160px 1fr", padding: "13px 0", borderBottom: project.totalM2 ? `0.5px solid ${C.border}` : `1px solid ${C.navy}` }}>
+          <div style={{ display: "grid", gridTemplateColumns: "160px 1fr", padding: "13px 0", borderBottom: (project.flexible || project.expandM2) ? `0.5px solid ${C.border}` : `1px solid ${C.navy}` }}>
             <span style={{ fontFamily: F.body, fontSize: 12, color: C.slate, textTransform: "uppercase", letterSpacing: "0.07em", paddingTop: 1 }}>Disponible</span>
             <span style={{ fontFamily: F.head, fontSize: 15, color: C.blue, fontWeight: 700 }}>{surface}</span>
           </div>
-          {project.totalM2 && (
+          {project.flexible && (
+            <div style={{ display: "grid", gridTemplateColumns: "160px 1fr", padding: "13px 0", borderBottom: project.expandM2 ? `0.5px solid ${C.border}` : `1px solid ${C.navy}` }}>
+              <span style={{ fontFamily: F.body, fontSize: 12, color: C.slate, textTransform: "uppercase", letterSpacing: "0.07em", paddingTop: 1 }}>Modalidad</span>
+              <span style={{ fontFamily: F.body, fontSize: 14, color: C.navy, fontWeight: 500 }}>En módulos o como gran superficie</span>
+            </div>
+          )}
+          {project.expandM2 && (
             <div style={{ display: "grid", gridTemplateColumns: "160px 1fr", padding: "13px 0", borderBottom: `1px solid ${C.navy}` }}>
-              <span style={{ fontFamily: F.body, fontSize: 12, color: C.slate, textTransform: "uppercase", letterSpacing: "0.07em", paddingTop: 1 }}>Superficie total</span>
-              <span style={{ fontFamily: F.body, fontSize: 14, color: C.navy, fontWeight: 500 }}>
-                {m2(project.totalM2)} construidos{project.expandM2 ? ` · ampliable a ${m2(project.expandM2)}` : ""}
-              </span>
+              <span style={{ fontFamily: F.body, fontSize: 12, color: C.slate, textTransform: "uppercase", letterSpacing: "0.07em", paddingTop: 1 }}>Ampliable</span>
+              <span style={{ fontFamily: F.body, fontSize: 14, color: C.navy, fontWeight: 500 }}>hasta {m2(project.expandM2)} construibles</span>
             </div>
           )}
 

@@ -8,7 +8,7 @@ import { pageMeta } from "../../../lib/seo";
 export const metadata = pageMeta({
   title: "Bodegas en Arriendo en San Bernardo | 5 Proyectos Disponibles",
   description:
-    "Arrienda bodegas en San Bernardo desde 180 m² hasta 1.900 m². Seguridad 24/7, energía trifásica y acceso para camiones. Trato directo.",
+    "Arrienda bodegas en San Bernardo desde 180 m² hasta grandes superficies de 14.000 m². Seguridad 24/7, energía trifásica y acceso para camiones. Trato directo.",
   path: "/bodegas/san-bernardo/",
 });
 
@@ -45,7 +45,7 @@ export default function SanBernardoPage() {
             Bodegas en Arriendo en San Bernardo
           </h1>
           <p style={{ fontFamily: F.body, fontSize: 16, color: C.slateLight, maxWidth: 560, lineHeight: 1.7, margin: 0 }}>
-            Cinco proyectos con espacios desde 180 m² hasta 1.900 m², equipados y con trato directo.
+            Cinco proyectos con espacios desde 180 m² hasta grandes superficies de 14.000 m², equipados y con trato directo.
           </p>
         </div>
       </div>

@@ -77,7 +77,7 @@ export default function HomePage() {
               Encuentra la bodega ideal para tu empresa
             </h1>
             <p style={{ fontFamily: F.body, fontSize: 17, color: C.slate, maxWidth: 480, lineHeight: 1.7, marginBottom: 34 }}>
-              Distintas alternativas de tamaño disponibles en el sector sur de Santiago. Trato directo y sin intermediarios.
+              Desde 180 m² hasta grandes superficies de 14.000 m², en el sector sur de Santiago. Trato directo y sin intermediarios.
             </p>
             <BtnWA msg="Hola, quiero contactar a Portal de Bodegas">Contactar por WhatsApp</BtnWA>
           </div>
@@ -105,7 +105,7 @@ export default function HomePage() {
         <div style={{ ...W, display: "flex", flexWrap: "wrap" }}>
           {[
             ["5 proyectos", "Disponibles en San Bernardo"],
-            ["180 – 1.900 m²", "Superficie por proyecto"],
+            ["180 – 14.000 m²", "Superficie disponible"],
             ["Trato directo", "Sin intermediarios ni comisiones"],
             ["Al instante", "Respuesta por WhatsApp"],
           ].map(([val, lab], i) => (

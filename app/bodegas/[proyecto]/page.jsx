@@ -164,7 +164,7 @@ export default function ProjectPage({ params }) {
             <BtnWA msg={project.wa} full>Contáctanos ahora</BtnWA>
           </div>
           <div style={{ borderTop: `0.5px solid ${C.border}`, paddingTop: 20 }}>
-            {["Trato directo · sin intermediarios", "Respuesta casi al instante por WhatsApp", "Sin compromiso en la primera consulta"].map((t) => (
+            {["Trato directo · sin intermediarios", "Respuesta casi al instante por WhatsApp", "Consulta sin compromiso"].map((t) => (
               <div key={t} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
                 <div style={{ color: C.blue, fontSize: 15, lineHeight: 1 }}>—</div>
                 <span style={{ fontFamily: F.body, fontSize: 12.5, color: C.slate, lineHeight: 1.5 }}>{t}</span>

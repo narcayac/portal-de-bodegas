@@ -95,7 +95,7 @@ export default function ContactForm() {
           Empresa: form.empresa,
           Teléfono: form.telefono,
           Correo: form.correo,
-          "Metraje requerido": form.metraje,
+          "Superficie sugerida": form.metraje,
           "Proyecto de interés": form.proyecto || "Sin preferencia",
           Comentarios: form.comentarios,
           ...utm,
@@ -148,7 +148,7 @@ export default function ContactForm() {
         {/* Metraje select */}
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           <label htmlFor="metraje" style={{ fontFamily: F.body, fontSize: 11, color: C.slate, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-            Metraje requerido <span style={{ color: C.blue }}>*</span>
+            Superficie sugerida <span style={{ color: C.blue }}>*</span>
           </label>
           <select id="metraje" name="metraje" value={form.metraje} onChange={(e) => upd("metraje", e.target.value)} required style={{
             border: "none", borderBottom: `1.5px solid ${errors.metraje ? "#ef4444" : C.navy}`,

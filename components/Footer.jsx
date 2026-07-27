@@ -3,7 +3,7 @@ import { C, F, W, waUrl, HREF, SITE, PROJECTS } from "../lib/data";
 import { LogoMark } from "./ui";
 
 export default function Footer() {
-  const navItems = [["Inicio", HREF.home], ["Bodegas", HREF.bodegas], ["Contacto", HREF.contacto]];
+  const navItems = [["Inicio", HREF.home], ["Bodegas", HREF.bodegas], ["Guías", HREF.guias], ["Contacto", HREF.contacto]];
   return (
     <footer style={{ borderTop: `1px solid ${C.navy}`, backgroundColor: "white" }}>
       <div style={{ ...W, padding: "40px 40px 28px" }}>

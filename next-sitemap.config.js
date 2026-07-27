@@ -22,5 +22,8 @@ module.exports = {
     policies: [
       { userAgent: "*", allow: "/", disallow: ["/api/"] },
     ],
+    // Do NOT list the main sitemap here — next-sitemap already adds it to
+    // robots.txt automatically. Re-adding it made the sitemap index reference
+    // itself, which Google flags as "nested sitemap index".
   },
 };

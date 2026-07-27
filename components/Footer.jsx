@@ -11,7 +11,7 @@ export default function Footer() {
           <div>
             <LogoMark />
             <p style={{ fontFamily: F.body, fontSize: 13, color: C.slate, marginTop: 16, lineHeight: 1.7 }}>
-              Plataforma especializada en arriendo de bodegas para empresas en el sector sur de Santiago.
+              Plataforma especializada en arriendo de bodegas y galpones industriales para empresas en el sector sur de Santiago.
             </p>
           </div>
           <div>

@@ -11,6 +11,7 @@ const W = { maxWidth: 1280, margin: "0 auto", padding: "0 40px" };
 const NAV = [
   ["Inicio", HREF.home],
   ["Bodegas", HREF.bodegas],
+  ["Guías", HREF.guias],
   ["Contacto", HREF.contacto],
 ];
 
@@ -95,6 +96,7 @@ export default function Navbar() {
               </div>
             )}
           </div>
+          <NavLink label="Guías" href={HREF.guias} />
           <NavLink label="Contacto" href={HREF.contacto} />
         </div>
 

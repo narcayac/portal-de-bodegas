@@ -39,7 +39,7 @@ export default function GuiasPage() {
             Guías para arrendar tu bodega
           </h1>
           <p style={{ fontFamily: F.body, fontSize: 16, color: C.slateLight, maxWidth: 620, lineHeight: 1.7, margin: 0 }}>
-            Lo que hay que saber antes de firmar: precios, checklist técnica y ubicación. Escritas para pymes y para operaciones medianas y grandes.
+            Lo que hay que saber antes de arrendar: precios, checklist técnica y ubicación. Ya sea que busques 180 o 14.000 m².
           </p>
         </div>
       </div>

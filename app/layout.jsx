@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import GoogleAnalytics from "../components/GoogleAnalytics";
+import TrackingEvents from "../components/TrackingEvents";
 import { SITE } from "../lib/data";
 
 const fraunces = Fraunces({
@@ -91,6 +92,7 @@ export default function RootLayout({ children }) {
         <Analytics />
         <SpeedInsights />
         <GoogleAnalytics />
+        <TrackingEvents />
       </body>
     </html>
   );

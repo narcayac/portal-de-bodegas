@@ -41,7 +41,7 @@ export default function ContactForm() {
   });
   // Hidden UTM / tracking fields (Ley 19.628: privacy checkbox is NOT pre-checked)
   const [utm, setUtm] = useState({
-    utm_source: "", utm_medium: "", utm_campaign: "", utm_content: "", page_url: "",
+    utm_source: "", utm_medium: "", utm_campaign: "", utm_content: "", gclid: "", page_url: "",
   });
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
@@ -50,11 +50,17 @@ export default function ContactForm() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    // gclid: Google Ads click ID — ties each lead back to the keyword/ad that
+    // brought it. Persisted in sessionStorage so it survives navigation
+    // between the landing page and /contacto/.
+    const gclid = params.get("gclid") || window.sessionStorage.getItem("gclid") || "";
+    if (params.get("gclid")) window.sessionStorage.setItem("gclid", params.get("gclid"));
     setUtm({
       utm_source: params.get("utm_source") || "",
       utm_medium: params.get("utm_medium") || "",
       utm_campaign: params.get("utm_campaign") || "",
       utm_content: params.get("utm_content") || "",
+      gclid,
       page_url: window.location.href,
     });
   }, []);
@@ -102,8 +108,12 @@ export default function ContactForm() {
         }),
       });
       const data = await res.json();
-      if (data.success) setSent(true);
-      else setSubmitError("No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.");
+      if (data.success) {
+        // Redirect to the thank-you page (fires the Ads conversion there).
+        window.location.assign("/gracias/");
+        return;
+      }
+      setSubmitError("No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.");
     } catch {
       setSubmitError("No pudimos enviar tu solicitud. Revisa tu conexión o escríbenos por WhatsApp.");
     } finally {

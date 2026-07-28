@@ -9,6 +9,8 @@ module.exports = {
   exclude: [
     "/politica-de-privacidad",
     "/politica-de-privacidad/",
+    "/gracias",
+    "/gracias/",
     "/icon.svg",
     "/icon.svg/",
     "/opengraph-image",

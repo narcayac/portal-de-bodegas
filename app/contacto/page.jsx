@@ -51,7 +51,7 @@ export default function ContactoPage() {
             {/* Contact card */}
             <div style={{ border: `0.5px solid ${C.border}`, borderTop: `2px solid ${C.navy}`, padding: "22px 24px", marginBottom: 28 }}>
               {[
-                ["Teléfono", SITE.phoneDisplay, waUrl("Hola, quiero contactar a Portal de Bodegas")],
+                ["Teléfono", SITE.phoneDisplay, waUrl("Hola, quisiera más información sobre una bodega")],
                 ["Email", SITE.email, `mailto:${SITE.email}`],
                 ["Ubicación", "San Bernardo, Región Metropolitana", null],
               ].map(([label, value, href], i) => (
@@ -72,7 +72,7 @@ export default function ContactoPage() {
               <p style={{ fontFamily: F.body, fontSize: 14.5, color: C.slate, lineHeight: 1.7, marginBottom: 18 }}>
                 Si prefieres una respuesta inmediata, escríbenos directamente por WhatsApp.
               </p>
-              <BtnWA msg="Hola, quiero contactar a Portal de Bodegas" full>Escribir por WhatsApp</BtnWA>
+              <BtnWA msg="Hola, quisiera más información sobre una bodega" full>Escribir por WhatsApp</BtnWA>
             </div>
             <div style={{ borderTop: `0.5px solid ${C.border}`, paddingTop: 20 }}>
               <div style={{ fontFamily: F.body, fontSize: 10, color: C.slate, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 }}>Datos protegidos</div>

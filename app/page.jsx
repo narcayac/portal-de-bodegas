@@ -79,7 +79,7 @@ export default function HomePage() {
             <p style={{ fontFamily: F.body, fontSize: 17, color: C.slate, maxWidth: 480, lineHeight: 1.7, marginBottom: 34 }}>
               Desde 180 m² hasta grandes superficies de 14.000 m², en el sector sur de Santiago. Trato directo y sin intermediarios.
             </p>
-            <BtnWA msg="Hola, quiero contactar a Portal de Bodegas">Contactar por WhatsApp</BtnWA>
+            <BtnWA msg="Hola, quisiera más información sobre una bodega">Contactar por WhatsApp</BtnWA>
           </div>
 
           {/* Right: facility photo */}

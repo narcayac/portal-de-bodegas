@@ -118,7 +118,7 @@ export default function Navbar() {
 
         {/* WhatsApp — appears on scroll */}
         <div style={{ flexShrink: 0, opacity: waVisible ? 1 : 0, transform: waVisible ? "translateY(0)" : "translateY(-6px)", pointerEvents: waVisible ? "auto" : "none", transition: "opacity .25s ease, transform .25s ease" }}>
-          <a href={waUrl("Hola, quiero contactar a Portal de Bodegas")} target="_blank" rel="noopener noreferrer"
+          <a href={waUrl("Hola, quisiera más información sobre una bodega")} target="_blank" rel="noopener noreferrer"
             aria-label="Contactar por WhatsApp"
             className="wa-pill"
             style={{

@@ -27,37 +27,29 @@ export default function SanBernardoPage() {
         { name: "San Bernardo", item: `${SITE.url}/bodegas/san-bernardo/` },
       ])} />
 
-      {/* Dark page header */}
-      <div style={{
-        paddingTop: 62, backgroundColor: C.navy,
-        backgroundImage: "repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(255,255,255,0.022) 79px,rgba(255,255,255,0.022) 80px)",
-        padding: "72px 40px 56px",
-      }}>
-        <div style={{ ...W, padding: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 18, flexWrap: "wrap" }}>
-            <Link href={HREF.home} style={{ fontFamily: F.body, fontSize: 12, color: C.slateLight, textDecoration: "none" }}>Inicio</Link>
+      {/* White page header — same style as the home hero (navy bar / white content) */}
+      <div style={{ paddingTop: 62, backgroundColor: "white" }}>
+        <div style={{ ...W, padding: "52px var(--gutter, 40px) 0" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
+            <Link href={HREF.home} style={{ fontFamily: F.body, fontSize: 12, color: C.slate, textDecoration: "none" }}>Inicio</Link>
             <span style={{ color: C.slate, fontSize: 12 }}>›</span>
-            <Link href={HREF.bodegas} style={{ fontFamily: F.body, fontSize: 12, color: C.slateLight, textDecoration: "none" }}>Bodegas</Link>
+            <Link href={HREF.bodegas} style={{ fontFamily: F.body, fontSize: 12, color: C.slate, textDecoration: "none" }}>Bodegas</Link>
             <span style={{ color: C.slate, fontSize: 12 }}>›</span>
-            <span style={{ fontFamily: F.body, fontSize: 12, color: "white" }}>San Bernardo</span>
+            <span style={{ fontFamily: F.body, fontSize: 12, color: C.navy, fontWeight: 500 }}>San Bernardo</span>
           </div>
-          <h1 style={{ fontFamily: F.head, fontWeight: 600, fontSize: "clamp(30px,4.2vw,50px)", color: "white", letterSpacing: "-0.015em", margin: "0 0 16px", lineHeight: 1.05 }}>
+          <h1 style={{ fontFamily: F.display, fontWeight: 800, fontSize: "clamp(32px,4.4vw,52px)", color: C.navy, letterSpacing: "-0.025em", margin: "0 0 16px", lineHeight: 1.05, maxWidth: 640 }}>
             Bodegas en Arriendo en San Bernardo
           </h1>
-          <p style={{ fontFamily: F.body, fontSize: 16, color: C.slateLight, maxWidth: 560, lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontFamily: F.body, fontSize: 16, color: C.slate, maxWidth: 560, lineHeight: 1.7, margin: 0 }}>
             Cinco proyectos con espacios desde 180 m² hasta grandes superficies de 14.000 m², equipados y con trato directo.
           </p>
-        </div>
-      </div>
-
-      {/* Price + CTA strip — outside the navy header so it keeps its original compact look */}
-      <div style={{ backgroundColor: C.bgAlt, borderBottom: `0.5px solid ${C.border}` }}>
-        <div style={{ ...W, padding: "18px var(--gutter, 40px)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 18, flexWrap: "wrap" }}>
-          <div>
-            <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 19, color: C.navy, lineHeight: 1.2 }}>Desde 0,13 UF/m² al mes</div>
-            <div style={{ fontFamily: F.body, fontSize: 12.5, color: C.slate, marginTop: 2 }}>Trato directo, sin comisión de corretaje</div>
+          <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
+            <BtnWA msg="Hola, quiero cotizar una bodega en San Bernardo">Cotiza por WhatsApp</BtnWA>
+            <div>
+              <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 19, color: C.navy, lineHeight: 1.2 }}>Desde 0,13 UF/m² al mes</div>
+              <div style={{ fontFamily: F.body, fontSize: 12.5, color: C.slate, marginTop: 2 }}>Trato directo, sin comisión de corretaje</div>
+            </div>
           </div>
-          <BtnWA msg="Hola, quiero cotizar una bodega en San Bernardo">Cotiza por WhatsApp</BtnWA>
         </div>
       </div>
 

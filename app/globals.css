@@ -36,6 +36,12 @@ button, select, textarea, input {
   .wa-pill .wa-label { display: none; }
 }
 
+/* Floating WhatsApp button: mobile only (navbar pill covers desktop) */
+.wa-float { display: none; }
+@media (max-width: 768px) {
+  .wa-float { display: flex; }
+}
+
 /* Hide scrollbar on the mobile nav strip */
 .nav-scroll { scrollbar-width: none; -ms-overflow-style: none; }
 .nav-scroll::-webkit-scrollbar { display: none; }

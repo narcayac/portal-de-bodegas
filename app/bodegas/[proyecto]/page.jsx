@@ -130,6 +130,22 @@ export default function ProjectPage({ params }) {
             </div>
           )}
 
+          {/* Open-air storage yard (projects with openYard, e.g. Bosque Catemito) */}
+          {project.openYard && (
+            <div style={{ marginTop: 36, padding: "22px 24px", backgroundColor: C.bgAlt, borderLeft: `3px solid ${C.blue}` }}>
+              <div style={{ fontFamily: F.body, fontSize: 11, color: C.slate, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 8 }}>
+                También disponible en este proyecto
+              </div>
+              <h2 style={{ fontFamily: F.head, fontWeight: 700, fontSize: 20, color: C.navy, margin: "0 0 10px", letterSpacing: "-0.01em" }}>
+                {project.openYard.title}
+              </h2>
+              <p style={{ fontFamily: F.body, fontSize: 14, color: C.slate, lineHeight: 1.65, margin: "0 0 16px", maxWidth: 620 }}>
+                {project.openYard.desc}
+              </p>
+              <BtnWA msg={project.openYard.wa}>Consultar por terreno</BtnWA>
+            </div>
+          )}
+
           {/* Location + map */}
           <div style={{ marginTop: 40 }}>
             <h2 style={{ fontFamily: F.head, fontWeight: 600, fontSize: 24, color: C.navy, margin: "0 0 14px", letterSpacing: "-0.01em" }}>Ubicación y accesos</h2>

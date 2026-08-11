@@ -71,6 +71,9 @@ export default function SanBernardoPage() {
                     <span style={{ fontFamily: F.body, fontSize: 12, color: C.navy, borderBottom: `1px solid ${C.navy}`, paddingBottom: 1 }}>Ver →</span>
                   </div>
                   <div style={{ fontFamily: F.body, fontSize: 12, color: C.slate, marginTop: 6 }}>Arriendo desde 0,13 UF/m² al mes</div>
+                  {p.openYard && (
+                    <div style={{ fontFamily: F.body, fontSize: 12, color: C.blue, fontWeight: 600, marginTop: 4 }}>+ Terreno para acopio al aire libre</div>
+                  )}
                 </div>
               </Link>
             ))}

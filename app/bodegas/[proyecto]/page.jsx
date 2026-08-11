@@ -104,6 +104,11 @@ export default function ProjectPage({ params }) {
       <div className="pdp-grid" style={{ ...W, display: "grid", gridTemplateColumns: "1fr 300px", alignItems: "start", padding: "0 40px" }}>
         {/* Left: data sheet */}
         <div style={{ padding: "40px 40px 40px 0", borderRight: `0.5px solid ${C.border}` }}>
+          {project.about && (
+            <p style={{ fontFamily: F.body, fontSize: 15, color: C.slate, lineHeight: 1.75, margin: "0 0 36px", maxWidth: 680 }}>
+              {project.about}
+            </p>
+          )}
           <h2 style={{ fontFamily: F.head, fontWeight: 600, fontSize: 24, color: C.navy, margin: "0 0 4px", letterSpacing: "-0.01em" }}>Equipamiento del proyecto</h2>
           <div style={{ fontFamily: F.body, fontSize: 13, color: C.slate, marginBottom: 24 }}>Ficha técnica y superficie disponible.</div>
 

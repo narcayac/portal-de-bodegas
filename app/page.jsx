@@ -188,7 +188,8 @@ export default function HomePage() {
         </div>
 
         {/* Mobile: swipeable carousel */}
-        <div className="md:hidden nav-scroll" style={{ display: "flex", gap: 14, overflowX: "auto", scrollSnapType: "x mandatory", padding: "0 20px 6px", WebkitOverflowScrolling: "touch" }}>
+        {/* display lives in .home-carousel (globals.css) so the desktop media query can hide it */}
+        <div className="home-carousel nav-scroll" style={{ gap: 14, overflowX: "auto", scrollSnapType: "x mandatory", padding: "0 20px 6px", WebkitOverflowScrolling: "touch" }}>
           {PROJECTS.map((p) => (
             <Link key={p.id} href={HREF.proyecto(p.id)} style={{ flex: "0 0 80%", scrollSnapAlign: "start", border: `0.5px solid ${C.border}`, textDecoration: "none", display: "block", backgroundColor: "white" }}>
               <ProjectImage projectId={p.id} height={180} alt={p.alt} />

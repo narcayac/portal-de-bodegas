@@ -42,6 +42,13 @@ button, select, textarea, input {
   .wa-float { display: flex; }
 }
 
+/* Home project carousel: mobile only — desktop shows the featured+list block.
+   Display lives here (not inline) so the media query can hide it. */
+.home-carousel { display: none; }
+@media (max-width: 768px) {
+  .home-carousel { display: flex; }
+}
+
 /* Hide scrollbar on the mobile nav strip */
 .nav-scroll { scrollbar-width: none; -ms-overflow-style: none; }
 .nav-scroll::-webkit-scrollbar { display: none; }

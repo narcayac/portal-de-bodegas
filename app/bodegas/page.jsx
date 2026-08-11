@@ -7,7 +7,7 @@ import { BtnWA } from "../../components/Buttons";
 import { pageMeta } from "../../lib/seo";
 
 export const metadata = pageMeta({
-  title: "Bodegas en Arriendo | Bodegas y Galpones para Empresas",
+  title: "Bodegas y Galpones en Arriendo para Empresas",
   description:
     "Conoce nuestras bodegas y galpones en arriendo en San Bernardo: distintos tamaños, trato directo y respuesta rápida. Encuentra el espacio ideal para tu empresa.",
   path: "/bodegas/",

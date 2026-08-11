@@ -6,7 +6,7 @@ import { BtnWA } from "../../../components/Buttons";
 import { pageMeta } from "../../../lib/seo";
 
 export const metadata = pageMeta({
-  title: "Bodegas en Arriendo en San Bernardo | 5 Proyectos Disponibles",
+  title: "Bodegas en Arriendo en San Bernardo",
   description:
     "Arrienda bodegas y galpones en San Bernardo desde 180 m² hasta grandes superficies de 14.000 m². Seguridad 24/7, energía trifásica y acceso para camiones. Trato directo.",
   path: "/bodegas/san-bernardo/",

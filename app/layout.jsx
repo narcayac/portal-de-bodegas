@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import WhatsAppFloat from "../components/WhatsAppFloat";
 import GoogleAnalytics from "../components/GoogleAnalytics";
 import TrackingEvents from "../components/TrackingEvents";
 import { SITE } from "../lib/data";
@@ -89,6 +90,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <WhatsAppFloat />
         <Analytics />
         <SpeedInsights />
         <GoogleAnalytics />

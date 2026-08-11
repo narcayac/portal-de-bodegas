@@ -33,8 +33,9 @@ export default function Navbar() {
   // Navy navbar with white text/logo (contrasts with the white page).
   const light = true;
 
-  // WhatsApp appears on scroll (always visible on inner pages)
-  const waVisible = scrolled || !isHome;
+  // WhatsApp pill appears only on scroll — at the top of every page the hero
+  // already shows a WhatsApp button, so this avoids showing two at once.
+  const waVisible = scrolled;
 
   const linkColor = (active) =>
     light ? (active ? "white" : "rgba(255,255,255,0.7)") : (active ? C.navy : C.slate);
@@ -122,7 +123,7 @@ export default function Navbar() {
             aria-label="Contactar por WhatsApp"
             className="wa-pill"
             style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
+              alignItems: "center", gap: 8,
               backgroundColor: C.wa, color: "white", textDecoration: "none",
               borderRadius: 999, fontFamily: F.body, fontSize: 13.5, fontWeight: 600,
               boxShadow: "0 2px 10px rgba(37,211,102,0.32)",

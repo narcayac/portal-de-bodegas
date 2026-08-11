@@ -29,11 +29,17 @@ button, select, textarea, input {
   font-family: inherit;
 }
 
-/* WhatsApp pill: full label on desktop, icon-only circle on mobile */
-.wa-pill { padding: 9px 16px; }
+/* WhatsApp pill: desktop only — on mobile the floating button takes its place.
+   Display lives here (not inline) so the media query can hide it. */
+.wa-pill { display: inline-flex; padding: 9px 16px; }
 @media (max-width: 768px) {
-  .wa-pill { padding: 9px; }
-  .wa-pill .wa-label { display: none; }
+  .wa-pill { display: none; }
+}
+
+/* Floating WhatsApp button: mobile only (navbar pill covers desktop) */
+.wa-float { display: none; }
+@media (max-width: 768px) {
+  .wa-float { display: flex; }
 }
 
 /* Hide scrollbar on the mobile nav strip */

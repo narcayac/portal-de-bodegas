@@ -40,13 +40,17 @@ export default function BodegasHub() {
           <p style={{ fontFamily: F.body, fontSize: 16, color: C.slateLight, maxWidth: 560, lineHeight: 1.7, margin: 0 }}>
             Cinco proyectos en San Bernardo, con espacios desde 180 m² hasta grandes superficies de 14.000 m². Elige el que mejor se adapte a tu operación y conversemos directo.
           </p>
-          <div style={{ marginTop: 28, display: "flex", alignItems: "center", gap: 22, flexWrap: "wrap" }}>
-            <BtnWA msg="Hola, quiero información sobre las bodegas disponibles">Cotiza por WhatsApp</BtnWA>
-            <div>
-              <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 21, color: "white", lineHeight: 1.2 }}>Desde 0,13 UF/m² al mes</div>
-              <div style={{ fontFamily: F.body, fontSize: 12.5, color: C.slateLight, marginTop: 2 }}>Trato directo, sin comisión de corretaje</div>
-            </div>
+        </div>
+      </div>
+
+      {/* Price + CTA strip — outside the navy header so it keeps its original compact look */}
+      <div style={{ backgroundColor: C.bgAlt, borderBottom: `0.5px solid ${C.border}` }}>
+        <div style={{ ...W, padding: "18px var(--gutter, 40px)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 18, flexWrap: "wrap" }}>
+          <div>
+            <div style={{ fontFamily: F.head, fontWeight: 700, fontSize: 19, color: C.navy, lineHeight: 1.2 }}>Desde 0,13 UF/m² al mes</div>
+            <div style={{ fontFamily: F.body, fontSize: 12.5, color: C.slate, marginTop: 2 }}>Trato directo, sin comisión de corretaje</div>
           </div>
+          <BtnWA msg="Hola, quiero información sobre las bodegas disponibles">Cotiza por WhatsApp</BtnWA>
         </div>
       </div>
 

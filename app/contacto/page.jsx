@@ -6,7 +6,7 @@ import ContactForm from "../../components/ContactForm";
 import { pageMeta } from "../../lib/seo";
 
 export const metadata = pageMeta({
-  title: "Contacto y Cotización | Portal de Bodegas",
+  title: "Contacto y Cotización",
   description:
     "Conversemos sobre la bodega ideal para tu empresa. Escríbenos por WhatsApp y te respondemos casi al instante, o completa el formulario y te contactamos muy pronto.",
   path: "/contacto/",

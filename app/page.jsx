@@ -6,12 +6,16 @@ import FaqAccordion from "../components/Faq";
 import { BtnWA } from "../components/Buttons";
 import { pageMeta } from "../lib/seo";
 
-export const metadata = pageMeta({
-  title: "Portal de Bodegas | Arriendo de Bodegas para Empresas",
-  description:
-    "Encuentra la bodega ideal para tu empresa. Varias alternativas disponibles en el sector sur de Santiago, distintos tamaños y trato directo, sin intermediarios.",
-  path: "/",
-});
+export const metadata = {
+  ...pageMeta({
+    title: "Portal de Bodegas | Arriendo de Bodegas para Empresas",
+    description:
+      "Encuentra la bodega ideal para tu empresa. Varias alternativas disponibles en el sector sur de Santiago, distintos tamaños y trato directo, sin intermediarios.",
+    path: "/",
+  }),
+  // Absolute: the brand leads this title, so the layout template must not re-append it.
+  title: { absolute: "Portal de Bodegas | Arriendo de Bodegas para Empresas" },
+};
 
 const orgSchema = {
   "@context": "https://schema.org",
@@ -33,6 +37,10 @@ const orgSchema = {
   geo: { "@type": "GeoCoordinates", latitude: SITE.geo.lat, longitude: SITE.geo.lng },
   telephone: SITE.phone,
   priceRange: "$$",
+  sameAs: [
+    "https://g.page/r/CS-UB1e529J6EBM",
+    "https://www.instagram.com/portaldebodegas/",
+  ],
   knowsLanguage: "es-CL",
   contactPoint: {
     "@type": "ContactPoint",
@@ -90,6 +98,9 @@ export default function HomePage() {
             <img
               src="/photos/home/hero.webp"
               alt="Bodegas industriales en arriendo en San Bernardo"
+              width="1200"
+              height="900"
+              fetchPriority="high"
               style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
             <div style={{ position: "absolute", top: 18, left: 18, display: "inline-flex", alignItems: "center", gap: 7, backgroundColor: "white", padding: "7px 13px", borderRadius: 999, boxShadow: "0 2px 10px rgba(1,25,67,0.12)" }}>
@@ -222,7 +233,7 @@ export default function HomePage() {
       <section style={{ padding: "80px 0 80px" }}>
         <div style={{ maxWidth: 600, margin: "0 auto", padding: "0 40px", textAlign: "center" }}>
           <div style={{ fontFamily: F.mono, fontSize: 11, color: C.slate, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 16 }}>
-            Trato directo · San Bernardo
+            Trato directo · <Link href={HREF.sanBernardo} style={{ color: C.slate, textDecoration: "underline" }}>San Bernardo</Link>
           </div>
           <h2 style={{ fontFamily: F.head, fontWeight: 600, fontSize: 34, color: C.navy, marginBottom: 28, lineHeight: 1.1, letterSpacing: "-0.01em" }}>
             ¿Necesitas una bodega para tu empresa?

@@ -1,9 +1,21 @@
 import Link from "next/link";
-import { C, F, W, HREF, SITE, PROJECTS, m2 } from "../../../lib/data";
-import { SectionLabel, JsonLd, breadcrumbSchema, EquipGrid } from "../../../components/ui";
+import { C, F, W, HREF, SITE, PROJECTS, m2, FAQ_GENERAL } from "../../../lib/data";
+import { SectionLabel, JsonLd, breadcrumbSchema, faqSchema, EquipGrid } from "../../../components/ui";
 import { ProjectImage } from "../../../components/ProjectImage";
+import FaqAccordion from "../../../components/Faq";
 import { BtnWA } from "../../../components/Buttons";
 import { pageMeta } from "../../../lib/seo";
+
+// Subset of the general FAQ relevant to this landing (galpones + acopio + geo).
+const SB_FAQS = FAQ_GENERAL.filter((f) =>
+  [
+    "¿Arriendan galpones industriales?",
+    "¿Arriendan terreno o patio para acopio al aire libre?",
+    "¿En qué comunas tienen bodegas disponibles?",
+    "¿El trato es directo o trabajan con corredores?",
+    "¿Cuánto cuesta arrendar una bodega?",
+  ].includes(f.q)
+);
 
 export const metadata = pageMeta({
   title: "Bodegas en Arriendo en San Bernardo",
@@ -26,6 +38,7 @@ export default function SanBernardoPage() {
         { name: "Bodegas", item: `${SITE.url}/bodegas/` },
         { name: "San Bernardo", item: `${SITE.url}/bodegas/san-bernardo/` },
       ])} />
+      <JsonLd data={faqSchema(SB_FAQS)} />
 
       {/* White page header — same style as the home hero (navy bar / white content) */}
       <div style={{ paddingTop: 62, backgroundColor: "white" }}>
@@ -37,11 +50,11 @@ export default function SanBernardoPage() {
             <span style={{ color: C.slate, fontSize: 12 }}>›</span>
             <span style={{ fontFamily: F.body, fontSize: 12, color: C.navy, fontWeight: 500 }}>San Bernardo</span>
           </div>
-          <h1 style={{ fontFamily: F.display, fontWeight: 800, fontSize: "clamp(32px,4.4vw,52px)", color: C.navy, letterSpacing: "-0.025em", margin: "0 0 16px", lineHeight: 1.05, maxWidth: 640 }}>
-            Bodegas en Arriendo en San Bernardo
+          <h1 style={{ fontFamily: F.display, fontWeight: 800, fontSize: "clamp(32px,4.4vw,52px)", color: C.navy, letterSpacing: "-0.025em", margin: "0 0 16px", lineHeight: 1.05, maxWidth: 720 }}>
+            Bodegas y Galpones en Arriendo en San Bernardo
           </h1>
-          <p style={{ fontFamily: F.body, fontSize: 16, color: C.slate, maxWidth: 560, lineHeight: 1.7, margin: 0 }}>
-            Cinco proyectos con espacios desde 180 m² hasta grandes superficies de 14.000 m², equipados y con trato directo.
+          <p style={{ fontFamily: F.body, fontSize: 16, color: C.slate, maxWidth: 600, lineHeight: 1.7, margin: 0 }}>
+            Cinco proyectos con bodegas y galpones industriales desde 180 m² hasta grandes superficies de 14.000 m², equipados y con trato directo. Si dudas qué revisar antes de firmar, mira nuestra <Link href="/guias/galpon-en-arriendo-san-bernardo/" style={{ color: C.blue, textDecoration: "underline" }}>guía de galpones en arriendo</Link>.
           </p>
           <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
             <BtnWA msg="Hola, quiero cotizar una bodega en San Bernardo">Cotiza por WhatsApp</BtnWA>
@@ -85,6 +98,13 @@ export default function SanBernardoPage() {
       <section>
         <div style={{ ...W, marginBottom: 56 }}>
           <EquipGrid title="Equipamiento estándar" />
+        </div>
+      </section>
+
+      {/* FAQ (subset relevant to this landing) */}
+      <section>
+        <div style={{ ...W, marginBottom: 56 }}>
+          <FaqAccordion items={SB_FAQS} />
         </div>
       </section>
 

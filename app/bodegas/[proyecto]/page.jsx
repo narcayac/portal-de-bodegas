@@ -46,7 +46,7 @@ export default function ProjectPage({ params }) {
       addressRegion: SITE.region,
       addressCountry: SITE.country,
     },
-    geo: { "@type": "GeoCoordinates", latitude: SITE.geo.lat, longitude: SITE.geo.lng },
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${ADDRESSES[project.id]}, San Bernardo, Región Metropolitana, Chile`)}`,
     parentOrganization: {
       "@type": "Organization",
       name: "Portal de Bodegas",
@@ -88,7 +88,9 @@ export default function ProjectPage({ params }) {
               San Bernardo · Región Metropolitana
             </div>
             <h1 style={{ fontFamily: F.head, fontWeight: 800, fontSize: "clamp(28px,3.5vw,44px)", color: C.navy, margin: 0, letterSpacing: "-0.01em" }}>
-              {project.name} – Bodegas en Arriendo en San Bernardo
+              {project.min === project.max
+                ? `${project.name}: bodega de ${m2(project.min)} en San Bernardo`
+                : `${project.name}: bodegas de ${project.min.toLocaleString("es-CL")} a ${m2(project.max)} en San Bernardo`}
             </h1>
           </div>
           <div style={{ textAlign: "right" }}>
@@ -190,6 +192,17 @@ export default function ProjectPage({ params }) {
                 <div style={{ color: C.blue, fontSize: 15, lineHeight: 1 }}>—</div>
                 <span style={{ fontFamily: F.body, fontSize: 12.5, color: C.slate, lineHeight: 1.5 }}>{t}</span>
               </div>
+            ))}
+          </div>
+          {/* Guides for deciding — internal links from money pages to guides */}
+          <div style={{ borderTop: `0.5px solid ${C.border}`, paddingTop: 20, marginTop: 10 }}>
+            <div style={{ fontFamily: F.body, fontSize: 11, color: C.slate, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 10 }}>Guías para decidir</div>
+            {[
+              ["¿Cuánto cuesta arrendar una bodega?", "/guias/precio-arriendo-bodega-san-bernardo/"],
+              ["¿Cuántos m² necesitas?", "/guias/cuantos-metros-cuadrados-necesita-tu-bodega/"],
+              ["Checklist antes de firmar", "/guias/checklist-arrendar-bodega-industrial/"],
+            ].map(([t, href]) => (
+              <Link key={href} href={href} style={{ display: "block", fontFamily: F.body, fontSize: 12.5, color: C.blue, textDecoration: "none", padding: "3px 0" }}>{t} →</Link>
             ))}
           </div>
         </div>

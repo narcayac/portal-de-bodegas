@@ -20,7 +20,6 @@ export default function BodegasHub() {
         { name: "Inicio", item: `${SITE.url}/` },
         { name: "Bodegas", item: `${SITE.url}/bodegas/` },
       ])} />
-      <JsonLd data={faqSchema(FAQ_GENERAL)} />
 
       {/* White page header — same style as the home hero (navy bar / white content) */}
       <div style={{ paddingTop: 62, backgroundColor: "white" }}>
@@ -30,11 +29,11 @@ export default function BodegasHub() {
             <span style={{ color: C.slate, fontSize: 12 }}>›</span>
             <span style={{ fontFamily: F.body, fontSize: 12, color: C.navy, fontWeight: 500 }}>Bodegas</span>
           </div>
-          <h1 style={{ fontFamily: F.display, fontWeight: 800, fontSize: "clamp(34px,4.4vw,54px)", color: C.navy, letterSpacing: "-0.025em", margin: "0 0 16px", lineHeight: 1.05, maxWidth: 640 }}>
-            Bodegas en Arriendo
+          <h1 style={{ fontFamily: F.display, fontWeight: 800, fontSize: "clamp(34px,4.4vw,54px)", color: C.navy, letterSpacing: "-0.025em", margin: "0 0 16px", lineHeight: 1.05, maxWidth: 720 }}>
+            Bodegas y Galpones en Arriendo para Empresas
           </h1>
-          <p style={{ fontFamily: F.body, fontSize: 16, color: C.slate, maxWidth: 560, lineHeight: 1.7, margin: 0 }}>
-            Cinco proyectos en San Bernardo, con espacios desde 180 m² hasta grandes superficies de 14.000 m². Elige el que mejor se adapte a tu operación y conversemos directo.
+          <p style={{ fontFamily: F.body, fontSize: 16, color: C.slate, maxWidth: 600, lineHeight: 1.7, margin: 0 }}>
+            Cinco proyectos de <Link href={HREF.sanBernardo} style={{ color: C.blue, textDecoration: "underline" }}>bodegas en arriendo en San Bernardo</Link>, con espacios desde 180 m² hasta grandes superficies de 14.000 m². Elige el que mejor se adapte a tu operación y conversemos directo.
           </p>
           <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
             <BtnWA msg="Hola, quiero información sobre las bodegas disponibles">Cotiza por WhatsApp</BtnWA>

@@ -6,7 +6,7 @@ import { BtnWA } from "../../components/Buttons";
 import { pageMeta } from "../../lib/seo";
 
 export const metadata = pageMeta({
-  title: "Guías para Arrendar Bodegas Industriales | Portal de Bodegas",
+  title: "Guías para Arrendar Bodegas Industriales",
   description:
     "Precios por m², checklist antes de firmar y por qué San Bernardo es el hub logístico del sur de Santiago. Guías prácticas para pymes y grandes empresas.",
   path: "/guias/",

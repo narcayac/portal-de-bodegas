@@ -27,7 +27,7 @@ export const metadata = pageMeta({
 const STEPS = [
   ["Elige un proyecto", "Revisa los cinco proyectos disponibles y su superficie."],
   ["Indica tu metraje", "Cuéntanos cuánto espacio necesitas y para qué uso."],
-  ["Recibe tu propuesta", "Te respondemos casi al instante por WhatsApp con una cotización a tu medida."],
+  ["Recibe tu propuesta", "Te respondemos al instante por WhatsApp con una cotización a tu medida."],
 ];
 
 export default function SanBernardoPage() {

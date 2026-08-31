@@ -5,7 +5,8 @@ import { F } from "../lib/data";
 import { Img } from "./ui";
 
 /**
- * Shows the real project photo at /photos/<projectId>/fachada-01.webp.
+ * Shows the real project photo at /photos/<projectId>/foto-01.webp (same
+ * shot used as the first gallery photo — kept as one file, not a duplicate).
  * If the file isn't uploaded yet (or fails to load), it falls back to the
  * line-art placeholder automatically — no code change needed when photos arrive.
  */
@@ -19,7 +20,7 @@ export function ProjectImage({ projectId, height = 240, alt = "", status = "Disp
   return (
     <div style={{ height, position: "relative", overflow: "hidden" }}>
       <img
-        src={`/photos/${projectId}/fachada-01.webp`}
+        src={`/photos/${projectId}/foto-01.webp`}
         alt={alt}
         loading="lazy"
         onError={() => setErr(true)}

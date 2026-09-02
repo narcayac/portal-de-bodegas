@@ -49,3 +49,6 @@ Thumbs.db
 
 # scratch
 srv.log
+
+# Fuentes incrustadas del generador de carruseles (se regeneran con marketing/recorrido/fuentes.sh)
+marketing/recorrido/fonts.css

@@ -28,13 +28,33 @@ npm i playwright                # solo la primera vez
 ./fuentes.sh                    # genera fonts.css (no versionado)
 node build.js                   # renderiza TODOS los proyectos definidos
 node build.js acacias-seis      # renderiza solo uno, por id
+
+node pdf.js acacias-seis        # arma el PDF para LinkedIn desde los slide-0N.png ya generados
 ```
 
-Si Chromium está en otra ruta: `CHROME_PATH=/ruta/al/chrome node build.js`.
+Si Chromium está en otra ruta: `CHROME_PATH=/ruta/al/chrome node build.js` (o `pdf.js`).
 
 Para el siguiente proyecto se agrega un objeto nuevo en `build.js` (fotos,
 titulares, ficha) siguiendo el patrón de `BOSQUE` / `ACACIAS_SEIS`, y se
 suma a `ALL_PROJECTS`.
+
+## Por plataforma
+
+Instagram publica el carrusel como imágenes nativas (los `slide-0N.png`).
+LinkedIn no tiene carrusel nativo: se publica como documento adjunto, por
+eso `pdf.js` empaqueta las mismas imágenes ya renderizadas en un PDF de
+6 páginas — no vuelve a dibujar texto, así queda pixel-idéntico al
+carrusel de Instagram.
+
+Cada proyecto en `salida/<id>/` lleva:
+- `slide-0N.png` — carrusel para Instagram
+- `recorrido-<id>.pdf` — documento para LinkedIn
+- `instagram-caption.txt` — copy corto, hashtags de alcance
+- `linkedin-caption.txt` — copy más largo, tono institucional B2B, sin hashtags de alcance masivo
+
+El caption cambia de tono por plataforma pero comparte las reglas duras
+de la sección siguiente (sin precio en el copy de redes, sin promesas,
+sin emojis).
 
 ## Reglas al escribir los textos
 

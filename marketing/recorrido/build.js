@@ -218,18 +218,62 @@ const BOSQUE = {
   ctaSub: "Cotiza directo con el propietario.<br>Sin corredora y sin comisi&oacute;n.",
 };
 
-// ── Render ────────────────────────────────────────────────────────────────────
-(async () => {
-  const proj = BOSQUE;
-  const outDir = path.join(__dirname, "salida", proj.id);
-  fs.mkdirSync(outDir, { recursive: true });
+// ── Proyecto: Acacias Seis ───────────────────────────────────────────────────
+const ACACIAS_SEIS = {
+  id: "acacias-seis",
+  num: "04",
+  name: "Acacias Seis",
+  range: "1.551 m&sup2;",
+  price: "desde 0,13 UF/m&sup2; al mes",
+  titleSize: 86,
+  fichaTitleSize: 82,
+  cover: { src: photo("acacias-seis", 1), pos: "50% 42%" },
+  features: [
+    {
+      src: photo("acacias-seis", 4),
+      pos: "50% 44%",
+      head: "Acceso directo<br>para camiones",
+      sub: "Patio amplio para maniobrar y cargar sin restricciones.",
+    },
+    {
+      src: photo("acacias-seis", 2),
+      pos: "50% 50%",
+      head: "Una sola nave,<br>planta libre",
+      sub: "1.551&nbsp;m&sup2; contiguos, sin columnas que interrumpan tu operaci&oacute;n.",
+    },
+    {
+      src: photo("acacias-seis", 3),
+      pos: "50% 44%",
+      head: "Radier industrial<br>y energ&iacute;a trif&aacute;sica",
+      sub: "Lista para operar: distribuci&oacute;n, almacenaje o manufactura liviana.",
+    },
+  ],
+  specs: [
+    "Nave &uacute;nica y contigua de 1.551 m&sup2;",
+    "Planta libre sin columnas intermedias",
+    "Radier industrial y energ&iacute;a trif&aacute;sica",
+    "Acceso directo para camiones y patio de maniobras",
+    "Seguridad 24/7, cerco el&eacute;ctrico y control de acceso",
+  ],
+  ctaHead: "&iquest;Te sirve<br>Acacias Seis?",
+  ctaSub: "Cotiza directo con el propietario.<br>Sin corredora y sin comisi&oacute;n.",
+};
 
-  const pages = [
-    slideCover(proj),
-    ...proj.features.map((f, i) => slideFeature(proj, f, i + 2)),
-    slideFicha(proj),
-    slideCta(proj),
-  ];
+// ── Render ────────────────────────────────────────────────────────────────────
+// Por defecto renderiza todos los proyectos definidos abajo.
+// Para uno solo: node build.js acacias-seis
+const ALL_PROJECTS = [BOSQUE, ACACIAS_SEIS];
+
+(async () => {
+  const filter = process.argv[2];
+  const targets = filter
+    ? ALL_PROJECTS.filter((p) => p.id === filter)
+    : ALL_PROJECTS;
+
+  if (filter && targets.length === 0) {
+    console.error(`Proyecto desconocido: "${filter}". Disponibles: ${ALL_PROJECTS.map((p) => p.id).join(", ")}`);
+    process.exit(1);
+  }
 
   const browser = await chromium.launch({ executablePath: CHROME });
   const page = await browser.newPage({
@@ -237,13 +281,26 @@ const BOSQUE = {
     deviceScaleFactor: 1,
   });
 
-  for (let i = 0; i < pages.length; i++) {
-    await page.setContent(pages[i], { waitUntil: "load" });
-    await page.evaluate(() => document.fonts.ready);
-    await page.waitForTimeout(400);
-    const file = path.join(outDir, `slide-${String(i + 1).padStart(2, "0")}.png`);
-    await page.screenshot({ path: file });
-    console.log("✓", path.basename(file));
+  for (const proj of targets) {
+    const outDir = path.join(__dirname, "salida", proj.id);
+    fs.mkdirSync(outDir, { recursive: true });
+
+    const pages = [
+      slideCover(proj),
+      ...proj.features.map((f, i) => slideFeature(proj, f, i + 2)),
+      slideFicha(proj),
+      slideCta(proj),
+    ];
+
+    console.log(`\n${proj.name} (${proj.id})`);
+    for (let i = 0; i < pages.length; i++) {
+      await page.setContent(pages[i], { waitUntil: "load" });
+      await page.evaluate(() => document.fonts.ready);
+      await page.waitForTimeout(400);
+      const file = path.join(outDir, `slide-${String(i + 1).padStart(2, "0")}.png`);
+      await page.screenshot({ path: file });
+      console.log("✓", path.basename(file));
+    }
   }
   await browser.close();
 })();

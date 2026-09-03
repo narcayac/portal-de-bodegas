@@ -7,9 +7,9 @@ color y grilla.
 | Nº | Proyecto | Estado |
 |---|---|---|
 | 01 | El Barrancón | publicado (hecho antes de este generador) |
-| 02 | Bosque Catemito | `salida/bosque-catemito/` |
-| 03 | Alto Las Acacias | pendiente |
-| 04 | Acacias Seis | pendiente |
+| 02 | Bosque Catemito | publicado — `salida/bosque-catemito/` |
+| 03 | Alto Las Acacias | publicado (hecho fuera de este generador) |
+| 04 | Acacias Seis | publicado — `salida/acacias-seis/` |
 | 05 | Inversiones Duramet | pendiente |
 
 ## Estructura del carrusel
@@ -24,15 +24,17 @@ color y grilla.
 ## Cómo generar
 
 ```bash
-npm i playwright          # solo la primera vez
-./fuentes.sh              # genera fonts.css (no versionado)
-node build.js             # escribe salida/<proyecto>/slide-0N.png
+npm i playwright                # solo la primera vez
+./fuentes.sh                    # genera fonts.css (no versionado)
+node build.js                   # renderiza TODOS los proyectos definidos
+node build.js acacias-seis      # renderiza solo uno, por id
 ```
 
 Si Chromium está en otra ruta: `CHROME_PATH=/ruta/al/chrome node build.js`.
 
-Para el siguiente proyecto se edita el objeto de proyecto al final de
-`build.js` (fotos, titulares, ficha) y se vuelve a correr.
+Para el siguiente proyecto se agrega un objeto nuevo en `build.js` (fotos,
+titulares, ficha) siguiendo el patrón de `BOSQUE` / `ACACIAS_SEIS`, y se
+suma a `ALL_PROJECTS`.
 
 ## Reglas al escribir los textos
 
@@ -49,3 +51,6 @@ Se toman de `public/photos/<proyecto>/`. Antes de elegir hay que mirarlas:
 en Bosque Catemito, `foto-02` y `foto-06` traen la marca de agua
 "ID 3547413" de un portal y quedaron fuera; `foto-07` tiene una franja
 negra en el tercio inferior. Se usaron 04 (portada), 01, 05 y 03.
+
+En Acacias Seis las 5 fotos estaban limpias (sin marcas de agua ni
+defectos): se usaron todas — 01 (portada), 04, 02 y 03 (atributos).

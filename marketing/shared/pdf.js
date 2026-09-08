@@ -1,8 +1,11 @@
-// Arma el PDF de un carrusel para LinkedIn (publica documentos, no carruseles nativos)
-// a partir de los slide-0N.png ya renderizados por build.js. No vuelve a dibujar
-// texto: empaqueta las imágenes tal cual, así queda pixel-idéntico al carrusel de IG.
+// Empaqueta un carrusel ya renderizado (slide-0N.png) en un PDF de una página
+// por slide — LinkedIn no tiene carrusel nativo, publica documentos. No vuelve
+// a dibujar texto: usa las imágenes tal cual, así queda pixel-idéntico al
+// carrusel de Instagram.
 //
-//   node pdf.js <project-id>    → escribe salida/<project-id>/recorrido-<project-id>.pdf
+//   node pdf.js <carpeta-de-slides> [nombre-salida.pdf]
+//   node pdf.js ../recorrido/salida/acacias-seis
+//   node pdf.js ../guias/salida/built-to-suit
 const fs = require("fs");
 const path = require("path");
 const { chromium } = require("playwright");
@@ -14,22 +17,24 @@ const CHROME =
 const WIDTH_PX = 1080;
 const HEIGHT_PX = 1350;
 
-const projectId = process.argv[2];
-if (!projectId) {
-  console.error("Uso: node pdf.js <project-id>");
+const dirArg = process.argv[2];
+if (!dirArg) {
+  console.error("Uso: node pdf.js <carpeta-de-slides> [nombre-salida.pdf]");
   process.exit(1);
 }
 
-const dir = path.join(__dirname, "salida", projectId);
+const dir = path.resolve(process.cwd(), dirArg);
 const files = fs
   .readdirSync(dir)
   .filter((f) => /^slide-\d+\.png$/.test(f))
   .sort();
 
 if (!files.length) {
-  console.error("No hay slides en", dir, "— corre primero: node build.js", projectId);
+  console.error("No hay slide-0N.png en", dir);
   process.exit(1);
 }
+
+const outName = process.argv[3] || `${path.basename(dir)}.pdf`;
 
 const pages = files
   .map((f) => {
@@ -51,7 +56,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><style>
   const page = await browser.newPage();
   await page.setContent(html, { waitUntil: "load" });
 
-  const outFile = path.join(dir, `recorrido-${projectId}.pdf`);
+  const outFile = path.join(dir, outName);
   await page.pdf({
     path: outFile,
     printBackground: true,

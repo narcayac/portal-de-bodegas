@@ -11,11 +11,16 @@ const CHROME =
   "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
 
 // ── Slides ────────────────────────────────────────────────────────────────────
+// f.zoom (opcional) permite reencuadrar la misma foto en otro slide sin que
+// se vea repetida: aplica un transform:scale() centrado en object-position.
+const bgStyle = (f) =>
+  `object-position:${f.pos}${f.zoom ? `;transform:scale(${f.zoom})` : ""}`;
+
 // 1 — Portada
 const slideCover = (p) =>
   shell(`
 <div class="slide">
-  <img class="bg" src="${p.cover.src}" style="object-position:${p.cover.pos}">
+  <img class="bg" src="${p.cover.src}" style="${bgStyle(p.cover)}">
   <div class="scrim"></div>
   <div class="badge">Desliza &rarr;</div>
   <div class="content" style="bottom:250px">
@@ -31,7 +36,7 @@ const slideCover = (p) =>
 const slideFeature = (p, f, i) =>
   shell(`
 <div class="slide">
-  <img class="bg" src="${f.src}" style="object-position:${f.pos}">
+  <img class="bg" src="${f.src}" style="${bgStyle(f)}">
   <div class="scrim"></div>
   <div class="badge">${i} / 6</div>
   <div class="content">
@@ -180,10 +185,58 @@ const ACACIAS_SEIS = {
   ctaSub: "Cotiza directo con el propietario.<br>Sin corredora y sin comisi&oacute;n.",
 };
 
+// ── Proyecto: Inversiones Duramet ────────────────────────────────────────────
+// Solo 3 de las 6 fotos sirven para marketing institucional: foto-01 muestra
+// un camión con branding de un tercero (Ballerina) imposible de recortar sin
+// eliminar el contenido útil de la imagen (el logo ocupa ~mitad del ancho);
+// foto-03 y foto-05 muestran a un trabajador sin polera y manchas de humedad
+// en el revestimiento. Por eso foto-02 se reutiliza (con zoom distinto) para
+// completar los 3 atributos.
+const DURAMET = {
+  id: "inversiones-duramet",
+  num: "05",
+  name: "Inversiones Duramet",
+  range: "450 &ndash; 1.900 m&sup2;",
+  price: "desde 0,13 UF/m&sup2; al mes",
+  titleSize: 72,
+  fichaTitleSize: 68,
+  cover: { src: photo("inversiones-duramet", 2), pos: "40% 55%" },
+  features: [
+    {
+      src: photo("inversiones-duramet", 4),
+      pos: "50% 45%",
+      head: "V&iacute;as de circulaci&oacute;n<br>despejadas",
+      sub: "Acceso directo para camiones dentro de un recinto ordenado.",
+    },
+    {
+      src: photo("inversiones-duramet", 6),
+      pos: "60% 55%",
+      head: "Recinto con seguridad<br>perimetral completa",
+      sub: "Cerco perimetral, CCTV y control de acceso en todo el recinto.",
+    },
+    {
+      src: photo("inversiones-duramet", 2),
+      pos: "85% 60%",
+      zoom: 1.6,
+      head: "Portones amplios<br>y patio de maniobras",
+      sub: "Radier industrial y energ&iacute;a trif&aacute;sica, lista para operar.",
+    },
+  ],
+  specs: [
+    "Superficies desde 450 m&sup2; hasta 1.900 m&sup2;",
+    "Radier industrial y energ&iacute;a trif&aacute;sica",
+    "Patio de maniobras y acceso para camiones",
+    "Seguridad perimetral completa, CCTV y control de acceso",
+    "Ideal para empresas medianas o crecimiento por etapas",
+  ],
+  ctaHead: "&iquest;Te sirve<br>Inversiones Duramet?",
+  ctaSub: "Cotiza directo con el propietario.<br>Sin corredora y sin comisi&oacute;n.",
+};
+
 // ── Render ────────────────────────────────────────────────────────────────────
 // Por defecto renderiza todos los proyectos definidos abajo.
 // Para uno solo: node build.js acacias-seis
-const ALL_PROJECTS = [BOSQUE, ACACIAS_SEIS];
+const ALL_PROJECTS = [BOSQUE, ACACIAS_SEIS, DURAMET];
 
 (async () => {
   const filter = process.argv[2];

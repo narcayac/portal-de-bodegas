@@ -10,7 +10,11 @@ color y grilla.
 | 02 | Bosque Catemito | publicado — `salida/bosque-catemito/` |
 | 03 | Alto Las Acacias | publicado (hecho fuera de este generador) |
 | 04 | Acacias Seis | publicado — `salida/acacias-seis/` |
-| 05 | Inversiones Duramet | pendiente |
+| 05 | Inversiones Duramet | publicado — `salida/inversiones-duramet/` |
+
+Vuelta completa: los 5 proyectos de la red ya tienen su carrusel. La
+próxima ronda (cuando corresponda repetir) puede variar el ángulo por
+proyecto en vez de repetir la misma estructura de atributos.
 
 ## Estructura del carrusel
 
@@ -39,8 +43,11 @@ node ../shared/pdf.js salida/acacias-seis acacias-seis.pdf   # PDF para LinkedIn
 Si Chromium está en otra ruta: `CHROME_PATH=/ruta/al/chrome node build.js`.
 
 Para el siguiente proyecto se agrega un objeto nuevo en `build.js` (fotos,
-titulares, ficha) siguiendo el patrón de `BOSQUE` / `ACACIAS_SEIS`, y se
-suma a `ALL_PROJECTS`.
+titulares, ficha) siguiendo el patrón de `BOSQUE` / `ACACIAS_SEIS` /
+`DURAMET`, y se suma a `ALL_PROJECTS`. Un feature puede llevar `zoom`
+(número, ej. `1.6`) para reencuadrar una foto ya usada en otro slide sin
+que se vea repetida — útil cuando el proyecto no tiene fotos limpias de
+sobra (ver Inversiones Duramet).
 
 ## Por plataforma
 
@@ -78,3 +85,16 @@ negra en el tercio inferior. Se usaron 04 (portada), 01, 05 y 03.
 
 En Acacias Seis las 5 fotos estaban limpias (sin marcas de agua ni
 defectos): se usaron todas — 01 (portada), 04, 02 y 03 (atributos).
+
+En Inversiones Duramet, de 6 fotos solo 3 sirven: `foto-01` muestra un
+camión con branding de un tercero ("Ballerina") que ocupa cerca de la
+mitad del ancho del encuadre — se probó matemáticamente que ningún
+recorte vía `object-position` lo excluye sin perder el resto del
+contenido útil, así que se descartó. `foto-03` y `foto-05` muestran a un
+trabajador sin polera y manchas de humedad en el revestimiento. Con solo
+`foto-02`, `foto-04` y `foto-06` limpias, `foto-02` se reutiliza dos
+veces (portada + un atributo) con `zoom` y una región de encuadre
+distinta cada vez — cuidado al elegir la región: un primer intento de
+zoom sobre `foto-02` (zona inferior izquierda) reveló a un segundo
+trabajador sin polera que no era visible en el encuadre ancho de la
+portada. Vale la pena pedir fotos nuevas de este proyecto.

@@ -13,11 +13,12 @@ series se ven como una sola familia visual.
 | Guía | Estado |
 |---|---|
 | Built-to-suit (construcción a medida) | publicado — `salida/built-to-suit/` |
+| Mercado de bodegas — Septiembre 2026 | publicado — `salida/mercado-bodegas-santiago-septiembre-2026/` |
 
 El resto de las guías en `lib/guias.js` (precio de arriendo, checklist
 técnica, hub logístico San Bernardo, galpón vs. bodega, contrato de
-arriendo, cálculo de m², informe de mercado, terreno de acopio, bodega
-industrial vs. self-storage) todavía no tienen versión en carrusel.
+arriendo, cálculo de m², informe de mercado de agosto, terreno de acopio,
+bodega industrial vs. self-storage) todavía no tienen versión en carrusel.
 
 ## Estructura del carrusel
 
@@ -46,10 +47,14 @@ node ../shared/pdf.js salida/built-to-suit built-to-suit.pdf   # PDF para Linked
 Si Chromium está en otra ruta: `CHROME_PATH=/ruta/al/chrome node build.js`.
 
 Para la siguiente guía se agrega un objeto nuevo en `build.js` siguiendo
-el patrón de `BUILT_TO_SUIT` (portada, un concepto de apertura, una
-lista, unos pasos, un concepto de cierre con foto) y se suma a
-`ALL_GUIDES`. El contenido debe salir de la guía real en `lib/guias.js`
-— condensado para la pantalla, no inventado.
+el patrón de `BUILT_TO_SUIT` / `MERCADO_SEPTIEMBRE` (portada, un concepto
+de apertura, una lista, unos pasos, un concepto de cierre con foto) y se
+suma a `ALL_GUIDES`. El contenido debe salir de la guía real en
+`lib/guias.js` — condensado para la pantalla, no inventado.
+
+Por defecto la portada dice "Guía" — si el contenido es un informe de
+mercado (o cualquier cosa que no sea una guía explicativa clásica), se
+puede sobrescribir con `kicker: "Informe de mercado"` en el objeto.
 
 ## Por plataforma
 
@@ -82,3 +87,9 @@ represente el concepto de la guía, no necesariamente el que la guía cita
 como ejemplo textual. En Built-to-suit se usó Bosque Catemito completo
 (cover, definición, capacidad) porque es el único proyecto con terreno
 para construir a medida.
+
+En el informe de mercado de septiembre, la portada probó primero con
+Inversiones Duramet (portón + persona caminando) y se cambió a la aérea
+de Bosque Catemito: para un informe de mercado (no el recorrido de un
+proyecto puntual) una vista de conjunto se lee más "institucional" que
+una foto de un portón específico con alguien caminando al frente.

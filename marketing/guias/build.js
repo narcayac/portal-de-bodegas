@@ -20,7 +20,7 @@ const slideCover = (g) =>
   <div class="scrim"></div>
   <div class="badge">Desliza &rarr;</div>
   <div class="content" style="bottom:250px">
-    <div class="eyebrow">Gu&iacute;a</div>
+    <div class="eyebrow">${g.kicker || "Gu&iacute;a"}</div>
     <div class="rule"></div>
     <h1 style="font-size:${g.titleSize}px">${g.name}</h1>
     <div class="sub" style="font-weight:400;font-size:33px;color:rgba(255,255,255,.92)">${g.tagline}</div>
@@ -101,7 +101,7 @@ const slideCta = (g) =>
   <div style="position:absolute;inset:0;background:
     radial-gradient(120% 80% at 50% 0%, #0d2444 0%, ${C.navy} 62%)"></div>
   <div style="position:absolute;left:72px;right:72px;top:380px">
-    <div class="eyebrow">Gu&iacute;a &middot; ${g.name}</div>
+    <div class="eyebrow">${g.kicker || "Gu&iacute;a"} &middot; ${g.name}</div>
     <div class="rule"></div>
     <h1 style="font-size:72px">${g.ctaHead}</h1>
     <div class="sub" style="margin-top:34px">${g.ctaSub}</div>
@@ -163,10 +163,63 @@ const BUILT_TO_SUIT = {
   ctaSub: "Cu&eacute;ntanos qu&eacute; necesitas &mdash; superficie, altura, plazos &mdash;<br>y vemos qu&eacute; conviene.",
 };
 
+// ── Guía: Mercado de bodegas — Septiembre 2026 ───────────────────────────────
+// Cifras corregidas tras research de verificación: son del 2T 2026
+// (abril-junio), no del 3T como decía un borrador inicial — el 3T recién
+// cierra el 30 de septiembre. Sin cita atribuida a Ariel Benzaquen (dejó el
+// cargo de Country Manager en julio 2025); la mención a Rosario Meneses va
+// sin comillas de cita textual, porque no se pudo verificar la redacción
+// exacta contra la fuente primaria. Ver lib/guias.js para el detalle completo.
+const MERCADO_SEPTIEMBRE = {
+  id: "mercado-bodegas-santiago-septiembre-2026",
+  kicker: "Informe de mercado",
+  name: "Mercado de bodegas",
+  tagline: "Vacancia, precios y tendencias &mdash; Septiembre 2026",
+  titleSize: 76,
+  cover: { src: photo("bosque-catemito", 4), pos: "56% 42%" },
+  concepts: [
+    {
+      src: photo("acacias-seis", 3),
+      pos: "50% 50%",
+      label: "Vacancia &middot; 2&ordm; trimestre 2026",
+      head: "3,83% de vacancia<br>0,29% en clase A",
+      sub: "El nivel m&aacute;s bajo en dos a&ntilde;os. La clase A pr&aacute;cticamente no tiene disponibilidad.",
+    },
+  ],
+  list: {
+    kicker: "Qu&eacute; significa esto",
+    heading: "Si est&aacute;s buscando<br>bodega en septiembre",
+    items: [
+      "Clase A casi sin disponibilidad: cotiza ahora",
+      "Los precios todav&iacute;a no reflejan la presi&oacute;n de vacancia",
+      "El built-to-suit ya no es una alternativa marginal",
+      "El sur combina demanda y valor",
+    ],
+  },
+  steps: {
+    kicker: "El giro del trimestre",
+    heading: "Menos especulaci&oacute;n,<br>m&aacute;s contratos firmados",
+    steps: [
+      "681.932 m&sup2; en construcci&oacute;n en la Regi&oacute;n Metropolitana",
+      "61,5% (419.632 m&sup2;) ya prearrendado antes de terminarse",
+      "0,148 UF/m&sup2;/mes, precio promedio estable",
+    ],
+  },
+  capacity: {
+    src: photo("inversiones-duramet", 6),
+    pos: "60% 55%",
+    label: "San Bernardo",
+    head: "El sur concentra<br>la demanda de clase A",
+    sub: "Junto al poniente/noroeste, es de los submercados m&aacute;s buscados &mdash; con valores m&aacute;s competitivos que el norte.",
+  },
+  ctaHead: "&iquest;Buscas bodega<br>en un mercado m&aacute;s ajustado?",
+  ctaSub: "Cu&eacute;ntanos superficie y uso,<br>y te cotizamos hoy mismo.",
+};
+
 // ── Render ────────────────────────────────────────────────────────────────────
 // Por defecto renderiza todas las guías definidas abajo.
 // Para una sola: node build.js built-to-suit
-const ALL_GUIDES = [BUILT_TO_SUIT];
+const ALL_GUIDES = [BUILT_TO_SUIT, MERCADO_SEPTIEMBRE];
 
 (async () => {
   const filter = process.argv[2];

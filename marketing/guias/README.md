@@ -14,6 +14,7 @@ series se ven como una sola familia visual.
 |---|---|
 | Built-to-suit (construcción a medida) | publicado — `salida/built-to-suit/` |
 | Mercado de bodegas — Septiembre 2026 | publicado — `salida/mercado-bodegas-santiago-septiembre-2026/` |
+| Cuánto cobra un corredor (y por qué acá no) | publicado — `salida/cuanto-cobra-un-corredor/` |
 
 El resto de las guías en `lib/guias.js` (precio de arriendo, checklist
 técnica, hub logístico San Bernardo, galpón vs. bodega, contrato de
@@ -93,3 +94,18 @@ Inversiones Duramet (portón + persona caminando) y se cambió a la aérea
 de Bosque Catemito: para un informe de mercado (no el recorrido de un
 proyecto puntual) una vista de conjunto se lee más "institucional" que
 una foto de un portón específico con alguien caminando al frente.
+
+En "Cuánto cobra un corredor" se usó El Barrancón (fotos 01, 03 y 04),
+el único de los 5 proyectos que no se había revisado todavía en esta
+serie — las 4 fotos del proyecto son limpias, sin marcas de agua ni
+gente sin polera.
+
+## Contenido que no viene de una guía completa
+
+No todo carrusel necesita una guía dedicada en `lib/guias.js`. "Cuánto
+cobra un corredor" toma un solo dato ya publicado — la comisión de
+corretaje (medio a un mes de arriendo) y el ejemplo de 500 m² a
+0,13 UF/m² = 65 UF, ambos de `precio-arriendo-bodega-san-bernardo` — y
+le dedica el carrusel completo. Es válido siempre que el dato exista y
+esté publicado en el sitio; no se inventa nada nuevo solo para tener
+contenido.

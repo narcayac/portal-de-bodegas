@@ -216,10 +216,60 @@ const MERCADO_SEPTIEMBRE = {
   ctaSub: "Cu&eacute;ntanos superficie y uso,<br>y te cotizamos hoy mismo.",
 };
 
+// ── Guía: Cuánto cobra un corredor ───────────────────────────────────────────
+// El dato de la comisión (medio a un mes de arriendo) y el ejemplo de 500 m²
+// a 0,13 UF/m² = 65 UF ya están publicados en la guía de precios
+// (precio-arriendo-bodega-san-bernardo) — acá solo se condensan y se les
+// dedica el carrusel completo. No se inventa ningún dato nuevo.
+const CORREDOR = {
+  id: "cuanto-cobra-un-corredor",
+  name: "Comisi&oacute;n de corretaje",
+  tagline: "Cu&aacute;nto cobra un corredor &mdash; y por qu&eacute; ac&aacute; no",
+  titleSize: 62,
+  cover: { src: photo("el-barrancon", 1), pos: "50% 45%" },
+  concepts: [
+    {
+      src: photo("el-barrancon", 3),
+      pos: "50% 45%",
+      label: "Qu&eacute; cobra una corredora",
+      head: "Medio mes a un mes<br>de arriendo, de comisi&oacute;n",
+      sub: "Un costo extra sobre el canon mensual &mdash; y a veces con un recargo implícito adicional.",
+    },
+  ],
+  list: {
+    kicker: "Con trato directo",
+    heading: "Esto desaparece<br>de tu cotizaci&oacute;n",
+    items: [
+      "Comisi&oacute;n de arriendo: medio mes a un mes de canon",
+      "Recargo impl&iacute;cito sobre el valor pedido",
+      "Intermediarios entre t&uacute; y el propietario",
+      "Tiempos de espera por ida y vuelta con un tercero",
+    ],
+  },
+  steps: {
+    kicker: "El costo real, en n&uacute;meros",
+    heading: "Bodega de 500 m&sup2;<br>a 0,13 UF/m&sup2;",
+    steps: [
+      "65 UF: canon mensual de la bodega",
+      "32,5 a 65 UF: comisi&oacute;n t&iacute;pica de una corredora",
+      "0 UF: lo que pagas de comisi&oacute;n en Portal de Bodegas",
+    ],
+  },
+  capacity: {
+    src: photo("el-barrancon", 4),
+    pos: "50% 42%",
+    label: "Portal de Bodegas",
+    head: "Trato directo<br>con el propietario",
+    sub: "Sin corredora, sin comisi&oacute;n, sin recargos. Cotiza por WhatsApp y te respondemos el mismo d&iacute;a.",
+  },
+  ctaHead: "&iquest;Vale la pena pagar<br>comisi&oacute;n de corretaje?",
+  ctaSub: "Cotiza directo con nosotros.<br>Sin comisi&oacute;n, sin intermediarios.",
+};
+
 // ── Render ────────────────────────────────────────────────────────────────────
 // Por defecto renderiza todas las guías definidas abajo.
 // Para una sola: node build.js built-to-suit
-const ALL_GUIDES = [BUILT_TO_SUIT, MERCADO_SEPTIEMBRE];
+const ALL_GUIDES = [BUILT_TO_SUIT, MERCADO_SEPTIEMBRE, CORREDOR];
 
 (async () => {
   const filter = process.argv[2];

@@ -57,6 +57,13 @@ Por defecto la portada dice "Guía" — si el contenido es un informe de
 mercado (o cualquier cosa que no sea una guía explicativa clásica), se
 puede sobrescribir con `kicker: "Informe de mercado"` en el objeto.
 
+Por defecto las slides 1, 2 y 5 llevan foto de fondo. Si el tema no se
+presta a foto (una comparación de números, por ejemplo) o ya hay
+demasiados carruseles seguidos con la misma fórmula visual, se puede
+agregar `noPhoto: true` al objeto de la guía: renderiza esas tres slides
+con fondo navy degradado y texto más grande en vez de foto + scrim. En
+ese caso `cover`, `concepts[]` y `capacity` no necesitan `src`/`pos`.
+
 ## Por plataforma
 
 Mismo criterio que en `../recorrido/`: Instagram publica los
@@ -95,10 +102,12 @@ de Bosque Catemito: para un informe de mercado (no el recorrido de un
 proyecto puntual) una vista de conjunto se lee más "institucional" que
 una foto de un portón específico con alguien caminando al frente.
 
-En "Cuánto cobra un corredor" se usó El Barrancón (fotos 01, 03 y 04),
-el único de los 5 proyectos que no se había revisado todavía en esta
-serie — las 4 fotos del proyecto son limpias, sin marcas de agua ni
-gente sin polera.
+"Cuánto cobra un corredor" se rediseñó sin fotos: es el sexto carrusel
+seguido con fórmula "foto + texto encima" (los 5 de Recorrido, más
+Built-to-suit y Mercado Septiembre) y para un tema de números/comparación
+tiene más sentido un formato 100% tipográfico — fondo navy con degradado,
+sin `<img>`. Ver `slideCoverText` / `slideConceptText` en `build.js` y el
+flag `noPhoto: true` en el objeto de la guía.
 
 ## Contenido que no viene de una guía completa
 

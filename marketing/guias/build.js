@@ -28,6 +28,22 @@ const slideCover = (g) =>
   ${brandRow(true, "1 / 6")}
 </div>`);
 
+// 1 (variante sin foto) — Portada tipográfica, fondo navy con degradado
+const slideCoverText = (g) =>
+  shell(`
+<div class="slide">
+  <div style="position:absolute;inset:0;background:
+    radial-gradient(120% 80% at 50% 0%, #0d2444 0%, ${C.navy} 62%)"></div>
+  <div class="badge">Desliza &rarr;</div>
+  <div style="position:absolute;left:72px;right:72px;top:560px">
+    <div class="eyebrow">${g.kicker || "Gu&iacute;a"}</div>
+    <div class="rule"></div>
+    <h1 style="font-size:${Math.round(g.titleSize * 1.18)}px">${g.name}</h1>
+    <div class="sub" style="font-weight:400;font-size:36px;color:rgba(255,255,255,.92);margin-top:28px">${g.tagline}</div>
+  </div>
+  ${brandRow(true, "1 / 6")}
+</div>`);
+
 // 2, 5 — Concepto sobre foto (definición / capacidad)
 const slideConcept = (g, c, i) =>
   shell(`
@@ -39,6 +55,21 @@ const slideConcept = (g, c, i) =>
     <div class="eyebrow" style="font-size:19px">${c.label}</div>
     <h2>${c.head}</h2>
     <div class="sub">${c.sub}</div>
+  </div>
+</div>`);
+
+// 2, 5 (variante sin foto) — Concepto tipográfico, fondo navy con degradado
+const slideConceptText = (g, c, i) =>
+  shell(`
+<div class="slide">
+  <div style="position:absolute;inset:0;background:
+    radial-gradient(120% 80% at 50% 0%, #0d2444 0%, ${C.navy} 62%)"></div>
+  <div class="badge">${i} / 6</div>
+  <div style="position:absolute;left:72px;right:72px;top:480px">
+    <div class="eyebrow" style="font-size:21px">${c.label}</div>
+    <div class="rule"></div>
+    <h2 style="font-size:78px">${c.head}</h2>
+    <div class="sub" style="font-size:35px;margin-top:30px">${c.sub}</div>
   </div>
 </div>`);
 
@@ -226,11 +257,11 @@ const CORREDOR = {
   name: "Comisi&oacute;n de corretaje",
   tagline: "Cu&aacute;nto cobra un corredor &mdash; y por qu&eacute; ac&aacute; no",
   titleSize: 62,
-  cover: { src: photo("el-barrancon", 1), pos: "50% 45%" },
+  // Sin fotos: es un tema de plata/comparación, no de un proyecto físico, y
+  // ya veníamos repitiendo mucho la fórmula foto+scrim en Recorrido/Guías.
+  noPhoto: true,
   concepts: [
     {
-      src: photo("el-barrancon", 3),
-      pos: "50% 45%",
       label: "Qu&eacute; cobra una corredora",
       head: "Medio mes a un mes<br>de arriendo, de comisi&oacute;n",
       sub: "Un costo extra sobre el canon mensual &mdash; y a veces con un recargo implícito adicional.",
@@ -256,8 +287,6 @@ const CORREDOR = {
     ],
   },
   capacity: {
-    src: photo("el-barrancon", 4),
-    pos: "50% 42%",
     label: "Portal de Bodegas",
     head: "Trato directo<br>con el propietario",
     sub: "Sin corredora, sin comisi&oacute;n, sin recargos. Cotiza por WhatsApp y te respondemos el mismo d&iacute;a.",
@@ -290,12 +319,14 @@ const ALL_GUIDES = [BUILT_TO_SUIT, MERCADO_SEPTIEMBRE, CORREDOR];
     const outDir = path.join(__dirname, "salida", g.id);
     fs.mkdirSync(outDir, { recursive: true });
 
+    const cover = g.noPhoto ? slideCoverText : slideCover;
+    const concept = g.noPhoto ? slideConceptText : slideConcept;
     const pages = [
-      slideCover(g),
-      slideConcept(g, g.concepts[0], 2),
+      cover(g),
+      concept(g, g.concepts[0], 2),
       slideList(g, g.list, 3),
       slideSteps(g, g.steps, 4),
-      slideConcept(g, g.capacity, 5),
+      concept(g, g.capacity, 5),
       slideCta(g),
     ];
 

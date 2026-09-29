@@ -76,6 +76,26 @@ Cada guía en `salida/<id>/` lleva:
 - `instagram-caption.txt` — copy corto, hashtags de alcance
 - `linkedin-caption.txt` — copy más largo, tono institucional B2B
 
+### Versión en video (Reel/feed)
+
+`../shared/video.js` arma un video a partir del mismo carrusel: zoom
+suave (Ken Burns) por slide, fundido corto entre cortes, y voz en off
+real grabada por el cliente — no se sintetiza voz. Requiere `ffmpeg`
+instalado en el sistema (`apt-get install ffmpeg`; el ffmpeg que trae
+Playwright es un build mínimo, sin códecs, y no sirve para esto).
+
+```bash
+node ../shared/video.js salida/cuanto-cobra-un-corredor                       # preview sin audio
+node ../shared/video.js salida/cuanto-cobra-un-corredor --audio voz.mp3       # con voz en off
+```
+
+La duración de cada slide sale de `salida/<id>/durations.json` (un
+array de segundos, uno por slide); si no existe, usa 4s parejo. El
+guion para grabar la voz va en `salida/<id>/guion-voz.txt`, con los
+tiempos por slide como referencia — no hace falta cronometrarlo al
+segundo, si la grabación queda más larga o corta se ajustan las
+duraciones y se vuelve a renderizar.
+
 ## Reglas al escribir los textos
 
 - El contenido sale de la guía correspondiente en `lib/guias.js`. Se

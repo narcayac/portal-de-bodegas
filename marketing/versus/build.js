@@ -28,8 +28,8 @@ const bottomScrim = () => `
 
 // Caja (self-storage): un box chico, cerrado — en contraste de tamaño y
 // forma con la bodega, para que cada lado se reconozca sin leer el label.
-const boxIcon = () => `
-<svg width="38" height="38" viewBox="0 0 48 48" fill="none" style="flex:none">
+const boxIcon = (size) => `
+<svg width="${size}" height="${size}" viewBox="0 0 48 48" fill="none" style="flex:none">
   <path d="M24 6 L42 16 L42 34 L24 44 L6 34 L6 16 Z" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
   <path d="M6 16 L24 26 L42 16" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
   <line x1="24" y1="26" x2="24" y2="44" stroke="#fff" stroke-width="2.5"/>
@@ -37,25 +37,25 @@ const boxIcon = () => `
 
 // Bodega industrial: mismo motivo de techo a dos aguas que el logo, pero
 // como nave grande con portón — más ancha y con acceso de carga.
-const warehouseIcon = () => `
-<svg width="50" height="42" viewBox="0 0 58 48" fill="none" style="flex:none">
+const warehouseIcon = (size) => `
+<svg width="${Math.round(size * 1.21)}" height="${size}" viewBox="0 0 58 48" fill="none" style="flex:none">
   <path d="M4 22 L29 6 L54 22 L54 42 L4 42 Z" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
   <rect x="21" y="26" width="16" height="16" stroke="#fff" stroke-width="2.5"/>
 </svg>`;
 
-// 1 — Portada: pantalla partida, la pregunta
+// 1 — Portada: pantalla partida, un ícono grande por lado como protagonista
 const slideHook = (v) =>
   shell(`
 <div class="slide">
   <div style="position:absolute;inset:0;left:0;width:540px;background:${C.slate}"></div>
   <div style="position:absolute;inset:0;left:540px;width:540px;background:${C.navy}"></div>
-  <div style="position:absolute;top:104px;left:60px;width:420px;display:flex;align-items:center;gap:18px">
-    ${boxIcon()}
-    <div class="eyebrow" style="color:rgba(255,255,255,.88);font-size:20px">${v.left.label}</div>
+  <div style="position:absolute;top:150px;left:0;width:540px;text-align:center">
+    <div style="display:flex;justify-content:center">${boxIcon(118)}</div>
+    <div class="eyebrow" style="color:rgba(255,255,255,.88);font-size:21px;margin-top:30px">${v.left.label}</div>
   </div>
-  <div style="position:absolute;top:104px;left:600px;width:420px;display:flex;align-items:center;gap:18px">
-    ${warehouseIcon()}
-    <div class="eyebrow" style="color:${C.blueLight};font-size:20px">${v.right.label}</div>
+  <div style="position:absolute;top:150px;left:540px;width:540px;text-align:center">
+    <div style="display:flex;justify-content:center">${warehouseIcon(118)}</div>
+    <div class="eyebrow" style="color:${C.blueLight};font-size:21px;margin-top:30px">${v.right.label}</div>
   </div>
   ${vsBadge()}
   <div style="position:absolute;left:72px;right:72px;top:830px;text-align:center">

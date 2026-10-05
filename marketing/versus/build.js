@@ -128,7 +128,7 @@ const SELF_STORAGE = {
   name: "Bodega industrial vs. self-storage",
   left: { label: "Self-storage" },
   right: { label: "Bodega industrial" },
-  question: "&iquest;Guardas cosas,<br>o operas un negocio?",
+  question: "&iquest;Guardas cosas,<br>u operas un negocio?",
   hook: "Se buscan casi con las mismas palabras &mdash; no resuelven el mismo problema.",
   rows: [
     { label: "Superficie", left: "1 a 30 m&sup2;", right: "Desde 180 m&sup2;" },

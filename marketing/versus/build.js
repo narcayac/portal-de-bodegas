@@ -14,23 +14,30 @@ const CHROME =
 
 const vsBadge = () => `
 <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:130px;height:130px;border-radius:50%;background:${C.blue};
-  display:flex;align-items:center;justify-content:center;border:6px solid #fff;z-index:2">
-  <span style="font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:38px;
+  width:148px;height:148px;border-radius:50%;z-index:2;
+  background:linear-gradient(135deg, ${C.blue} 0%, #049ae6 100%);
+  border:6px solid #fff;box-shadow:0 20px 44px rgba(1,25,67,.4);
+  display:flex;align-items:center;justify-content:center">
+  <span style="font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:40px;
     color:#fff;letter-spacing:.05em">VS</span>
 </div>`;
 
-// 1 — Portada: pantalla partida, la pregunta
+// 1 — Portada: pantalla partida en diagonal, con profundidad en cada mitad
 const slideHook = (v) =>
   shell(`
 <div class="slide">
-  <div style="position:absolute;inset:0;left:0;width:540px;background:${C.slate}"></div>
-  <div style="position:absolute;inset:0;left:540px;width:540px;background:${C.navy}"></div>
-  <div style="position:absolute;top:130px;left:60px;width:420px">
-    <div class="eyebrow" style="color:rgba(255,255,255,.8);font-size:19px">${v.left.label}</div>
+  <div style="position:absolute;inset:0;background:
+    radial-gradient(120% 90% at 75% 8%, #0d2444 0%, ${C.navy} 62%)"></div>
+  <div style="position:absolute;inset:0;
+    clip-path:polygon(0 0, 600px 0, 480px 1350px, 0 1350px);
+    background:linear-gradient(150deg, #8793a7 0%, ${C.slate} 72%)"></div>
+  <div style="position:absolute;top:110px;left:60px;width:420px">
+    <div class="eyebrow" style="color:rgba(255,255,255,.85);font-size:19px">${v.left.label}</div>
+    <div style="width:52px;height:3px;background:rgba(255,255,255,.65);margin-top:16px"></div>
   </div>
-  <div style="position:absolute;top:130px;left:600px;width:420px">
+  <div style="position:absolute;top:110px;left:600px;width:420px">
     <div class="eyebrow" style="color:${C.blueLight};font-size:19px">${v.right.label}</div>
+    <div style="width:52px;height:3px;background:${C.blue};margin-top:16px"></div>
   </div>
   ${vsBadge()}
   <div style="position:absolute;left:72px;right:72px;top:860px;text-align:center">
@@ -67,8 +74,10 @@ const slideCompare = (v) => {
     .join("");
   return shell(`
 <div class="slide">
-  <div style="position:absolute;inset:0;left:0;width:540px;background:${C.slate}"></div>
-  <div style="position:absolute;inset:0;left:540px;width:540px;background:${C.navy}"></div>
+  <div style="position:absolute;inset:0;left:0;width:540px;
+    background:linear-gradient(150deg, #8793a7 0%, ${C.slate} 72%)"></div>
+  <div style="position:absolute;inset:0;left:540px;width:540px;
+    background:radial-gradient(130% 90% at 85% 6%, #0d2444 0%, ${C.navy} 62%)"></div>
   <div style="position:absolute;left:72px;right:72px;top:60px;display:flex;justify-content:space-between">
     <div class="eyebrow" style="color:rgba(255,255,255,.8);font-size:19px">${v.left.label}</div>
     <div class="eyebrow" style="color:${C.blueLight};font-size:19px">${v.right.label}</div>

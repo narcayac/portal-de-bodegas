@@ -13,11 +13,13 @@ series se ven como una sola familia visual.
 | Guía | Estado |
 |---|---|
 | Built-to-suit (construcción a medida) | publicado — `salida/built-to-suit/` |
+| Mercado de bodegas — Septiembre 2026 | publicado — `salida/mercado-bodegas-santiago-septiembre-2026/` |
+| Cuánto cobra un corredor (y por qué acá no) | publicado — `salida/cuanto-cobra-un-corredor/` |
 
 El resto de las guías en `lib/guias.js` (precio de arriendo, checklist
 técnica, hub logístico San Bernardo, galpón vs. bodega, contrato de
-arriendo, cálculo de m², informe de mercado, terreno de acopio, bodega
-industrial vs. self-storage) todavía no tienen versión en carrusel.
+arriendo, cálculo de m², informe de mercado de agosto, terreno de acopio,
+bodega industrial vs. self-storage) todavía no tienen versión en carrusel.
 
 ## Estructura del carrusel
 
@@ -46,10 +48,21 @@ node ../shared/pdf.js salida/built-to-suit built-to-suit.pdf   # PDF para Linked
 Si Chromium está en otra ruta: `CHROME_PATH=/ruta/al/chrome node build.js`.
 
 Para la siguiente guía se agrega un objeto nuevo en `build.js` siguiendo
-el patrón de `BUILT_TO_SUIT` (portada, un concepto de apertura, una
-lista, unos pasos, un concepto de cierre con foto) y se suma a
-`ALL_GUIDES`. El contenido debe salir de la guía real en `lib/guias.js`
-— condensado para la pantalla, no inventado.
+el patrón de `BUILT_TO_SUIT` / `MERCADO_SEPTIEMBRE` (portada, un concepto
+de apertura, una lista, unos pasos, un concepto de cierre con foto) y se
+suma a `ALL_GUIDES`. El contenido debe salir de la guía real en
+`lib/guias.js` — condensado para la pantalla, no inventado.
+
+Por defecto la portada dice "Guía" — si el contenido es un informe de
+mercado (o cualquier cosa que no sea una guía explicativa clásica), se
+puede sobrescribir con `kicker: "Informe de mercado"` en el objeto.
+
+Por defecto las slides 1, 2 y 5 llevan foto de fondo. Si el tema no se
+presta a foto (una comparación de números, por ejemplo) o ya hay
+demasiados carruseles seguidos con la misma fórmula visual, se puede
+agregar `noPhoto: true` al objeto de la guía: renderiza esas tres slides
+con fondo navy degradado y texto más grande en vez de foto + scrim. En
+ese caso `cover`, `concepts[]` y `capacity` no necesitan `src`/`pos`.
 
 ## Por plataforma
 
@@ -62,6 +75,26 @@ Cada guía en `salida/<id>/` lleva:
 - `<id>.pdf` — documento para LinkedIn
 - `instagram-caption.txt` — copy corto, hashtags de alcance
 - `linkedin-caption.txt` — copy más largo, tono institucional B2B
+
+### Versión en video (Reel/feed)
+
+`../shared/video.js` arma un video a partir del mismo carrusel: zoom
+suave (Ken Burns) por slide, fundido corto entre cortes, y voz en off
+real grabada por el cliente — no se sintetiza voz. Requiere `ffmpeg`
+instalado en el sistema (`apt-get install ffmpeg`; el ffmpeg que trae
+Playwright es un build mínimo, sin códecs, y no sirve para esto).
+
+```bash
+node ../shared/video.js salida/cuanto-cobra-un-corredor                       # preview sin audio
+node ../shared/video.js salida/cuanto-cobra-un-corredor --audio voz.mp3       # con voz en off
+```
+
+La duración de cada slide sale de `salida/<id>/durations.json` (un
+array de segundos, uno por slide); si no existe, usa 4s parejo. El
+guion para grabar la voz va en `salida/<id>/guion-voz.txt`, con los
+tiempos por slide como referencia — no hace falta cronometrarlo al
+segundo, si la grabación queda más larga o corta se ajustan las
+duraciones y se vuelve a renderizar.
 
 ## Reglas al escribir los textos
 
@@ -82,3 +115,26 @@ represente el concepto de la guía, no necesariamente el que la guía cita
 como ejemplo textual. En Built-to-suit se usó Bosque Catemito completo
 (cover, definición, capacidad) porque es el único proyecto con terreno
 para construir a medida.
+
+En el informe de mercado de septiembre, la portada probó primero con
+Inversiones Duramet (portón + persona caminando) y se cambió a la aérea
+de Bosque Catemito: para un informe de mercado (no el recorrido de un
+proyecto puntual) una vista de conjunto se lee más "institucional" que
+una foto de un portón específico con alguien caminando al frente.
+
+"Cuánto cobra un corredor" se rediseñó sin fotos: es el sexto carrusel
+seguido con fórmula "foto + texto encima" (los 5 de Recorrido, más
+Built-to-suit y Mercado Septiembre) y para un tema de números/comparación
+tiene más sentido un formato 100% tipográfico — fondo navy con degradado,
+sin `<img>`. Ver `slideCoverText` / `slideConceptText` en `build.js` y el
+flag `noPhoto: true` en el objeto de la guía.
+
+## Contenido que no viene de una guía completa
+
+No todo carrusel necesita una guía dedicada en `lib/guias.js`. "Cuánto
+cobra un corredor" toma un solo dato ya publicado — la comisión de
+corretaje (medio a un mes de arriendo) y el ejemplo de 500 m² a
+0,13 UF/m² = 65 UF, ambos de `precio-arriendo-bodega-san-bernardo` — y
+le dedica el carrusel completo. Es válido siempre que el dato exista y
+esté publicado en el sitio; no se inventa nada nuevo solo para tener
+contenido.

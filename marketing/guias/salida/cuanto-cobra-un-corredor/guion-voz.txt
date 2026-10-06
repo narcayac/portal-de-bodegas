@@ -1,0 +1,32 @@
+Guion de voz en off — "Cuánto cobra un corredor (y por qué acá no)"
+Video vertical 4:5, 6 slides, ~39 segundos totales.
+
+Grábalo tal cual, con una pausa breve entre slide y slide (más o menos
+donde están las líneas en blanco). No hace falta cronometrar con
+precisión: los tiempos entre paréntesis son una referencia para que el
+video no te quede ni apurado ni con silencios largos. Si al grabar te
+queda más largo o corto, ajustamos las duraciones en durations.json y
+volvemos a renderizar — no hay que regrabar por unos segundos de más.
+
+[Slide 1 · portada — 4s]
+Cuánto cobra un corredor... y por qué acá no.
+
+[Slide 2 · qué cobra una corredora — 6s]
+Una corredora suele cobrar de medio mes a un mes de arriendo, de
+comisión. A veces, con un recargo implícito además.
+
+[Slide 3 · lista — 8s]
+Con trato directo, todo esto desaparece de tu cotización: la comisión,
+el recargo implícito, los intermediarios, los tiempos de espera.
+
+[Slide 4 · números — 10s]
+Por ejemplo: una bodega de 500 metros cuadrados a 0,13 UF el metro
+cuesta 65 UF al mes. La comisión puede ser de 32,5 a 65 UF más.
+Acá, cero.
+
+[Slide 5 · capacidad — 6s]
+En Portal de Bodegas cotizas directo con el propietario. Sin
+corredora, sin comisión, sin recargos.
+
+[Slide 6 · cierre — 5s]
+Escríbenos por WhatsApp y cotiza hoy mismo, sin comisión de corretaje.

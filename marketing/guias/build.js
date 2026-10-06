@@ -20,10 +20,26 @@ const slideCover = (g) =>
   <div class="scrim"></div>
   <div class="badge">Desliza &rarr;</div>
   <div class="content" style="bottom:250px">
-    <div class="eyebrow">Gu&iacute;a</div>
+    <div class="eyebrow">${g.kicker || "Gu&iacute;a"}</div>
     <div class="rule"></div>
     <h1 style="font-size:${g.titleSize}px">${g.name}</h1>
     <div class="sub" style="font-weight:400;font-size:33px;color:rgba(255,255,255,.92)">${g.tagline}</div>
+  </div>
+  ${brandRow(true, "1 / 6")}
+</div>`);
+
+// 1 (variante sin foto) — Portada tipográfica, fondo navy con degradado
+const slideCoverText = (g) =>
+  shell(`
+<div class="slide">
+  <div style="position:absolute;inset:0;background:
+    radial-gradient(120% 80% at 50% 0%, #0d2444 0%, ${C.navy} 62%)"></div>
+  <div class="badge">Desliza &rarr;</div>
+  <div style="position:absolute;left:72px;right:72px;top:560px">
+    <div class="eyebrow">${g.kicker || "Gu&iacute;a"}</div>
+    <div class="rule"></div>
+    <h1 style="font-size:${Math.round(g.titleSize * 1.18)}px">${g.name}</h1>
+    <div class="sub" style="font-weight:400;font-size:36px;color:rgba(255,255,255,.92);margin-top:28px">${g.tagline}</div>
   </div>
   ${brandRow(true, "1 / 6")}
 </div>`);
@@ -39,6 +55,21 @@ const slideConcept = (g, c, i) =>
     <div class="eyebrow" style="font-size:19px">${c.label}</div>
     <h2>${c.head}</h2>
     <div class="sub">${c.sub}</div>
+  </div>
+</div>`);
+
+// 2, 5 (variante sin foto) — Concepto tipográfico, fondo navy con degradado
+const slideConceptText = (g, c, i) =>
+  shell(`
+<div class="slide">
+  <div style="position:absolute;inset:0;background:
+    radial-gradient(120% 80% at 50% 0%, #0d2444 0%, ${C.navy} 62%)"></div>
+  <div class="badge">${i} / 6</div>
+  <div style="position:absolute;left:72px;right:72px;top:480px">
+    <div class="eyebrow" style="font-size:21px">${c.label}</div>
+    <div class="rule"></div>
+    <h2 style="font-size:78px">${c.head}</h2>
+    <div class="sub" style="font-size:35px;margin-top:30px">${c.sub}</div>
   </div>
 </div>`);
 
@@ -101,7 +132,7 @@ const slideCta = (g) =>
   <div style="position:absolute;inset:0;background:
     radial-gradient(120% 80% at 50% 0%, #0d2444 0%, ${C.navy} 62%)"></div>
   <div style="position:absolute;left:72px;right:72px;top:380px">
-    <div class="eyebrow">Gu&iacute;a &middot; ${g.name}</div>
+    <div class="eyebrow">${g.kicker || "Gu&iacute;a"} &middot; ${g.name}</div>
     <div class="rule"></div>
     <h1 style="font-size:72px">${g.ctaHead}</h1>
     <div class="sub" style="margin-top:34px">${g.ctaSub}</div>
@@ -163,10 +194,111 @@ const BUILT_TO_SUIT = {
   ctaSub: "Cu&eacute;ntanos qu&eacute; necesitas &mdash; superficie, altura, plazos &mdash;<br>y vemos qu&eacute; conviene.",
 };
 
+// ── Guía: Mercado de bodegas — Septiembre 2026 ───────────────────────────────
+// Cifras corregidas tras research de verificación: son del 2T 2026
+// (abril-junio), no del 3T como decía un borrador inicial — el 3T recién
+// cierra el 30 de septiembre. Sin cita atribuida a Ariel Benzaquen (dejó el
+// cargo de Country Manager en julio 2025); la mención a Rosario Meneses va
+// sin comillas de cita textual, porque no se pudo verificar la redacción
+// exacta contra la fuente primaria. Ver lib/guias.js para el detalle completo.
+const MERCADO_SEPTIEMBRE = {
+  id: "mercado-bodegas-santiago-septiembre-2026",
+  kicker: "Informe de mercado",
+  name: "Mercado de bodegas",
+  tagline: "Vacancia, precios y tendencias &mdash; Septiembre 2026",
+  titleSize: 76,
+  cover: { src: photo("bosque-catemito", 4), pos: "56% 42%" },
+  concepts: [
+    {
+      src: photo("acacias-seis", 3),
+      pos: "50% 50%",
+      label: "Vacancia &middot; 2&ordm; trimestre 2026",
+      head: "3,83% de vacancia<br>0,29% en clase A",
+      sub: "El nivel m&aacute;s bajo en dos a&ntilde;os. La clase A pr&aacute;cticamente no tiene disponibilidad.",
+    },
+  ],
+  list: {
+    kicker: "Qu&eacute; significa esto",
+    heading: "Si est&aacute;s buscando<br>bodega en septiembre",
+    items: [
+      "Clase A casi sin disponibilidad: cotiza ahora",
+      "Los precios todav&iacute;a no reflejan la presi&oacute;n de vacancia",
+      "El built-to-suit ya no es una alternativa marginal",
+      "El sur combina demanda y valor",
+    ],
+  },
+  steps: {
+    kicker: "El giro del trimestre",
+    heading: "Menos especulaci&oacute;n,<br>m&aacute;s contratos firmados",
+    steps: [
+      "681.932 m&sup2; en construcci&oacute;n en la Regi&oacute;n Metropolitana",
+      "61,5% (419.632 m&sup2;) ya prearrendado antes de terminarse",
+      "0,148 UF/m&sup2;/mes, precio promedio estable",
+    ],
+  },
+  capacity: {
+    src: photo("inversiones-duramet", 6),
+    pos: "60% 55%",
+    label: "San Bernardo",
+    head: "El sur concentra<br>la demanda de clase A",
+    sub: "Junto al poniente/noroeste, es de los submercados m&aacute;s buscados &mdash; con valores m&aacute;s competitivos que el norte.",
+  },
+  ctaHead: "&iquest;Buscas bodega<br>en un mercado m&aacute;s ajustado?",
+  ctaSub: "Cu&eacute;ntanos superficie y uso,<br>y te cotizamos hoy mismo.",
+};
+
+// ── Guía: Cuánto cobra un corredor ───────────────────────────────────────────
+// El dato de la comisión (medio a un mes de arriendo) y el ejemplo de 500 m²
+// a 0,13 UF/m² = 65 UF ya están publicados en la guía de precios
+// (precio-arriendo-bodega-san-bernardo) — acá solo se condensan y se les
+// dedica el carrusel completo. No se inventa ningún dato nuevo.
+const CORREDOR = {
+  id: "cuanto-cobra-un-corredor",
+  name: "Comisi&oacute;n de corretaje",
+  tagline: "Cu&aacute;nto cobra un corredor &mdash; y por qu&eacute; ac&aacute; no",
+  titleSize: 62,
+  // Sin fotos: es un tema de plata/comparación, no de un proyecto físico, y
+  // ya veníamos repitiendo mucho la fórmula foto+scrim en Recorrido/Guías.
+  noPhoto: true,
+  concepts: [
+    {
+      label: "Qu&eacute; cobra una corredora",
+      head: "Medio mes a un mes<br>de arriendo, de comisi&oacute;n",
+      sub: "Un costo extra sobre el canon mensual &mdash; y a veces con un recargo implícito adicional.",
+    },
+  ],
+  list: {
+    kicker: "Con trato directo",
+    heading: "Esto desaparece<br>de tu cotizaci&oacute;n",
+    items: [
+      "Comisi&oacute;n de arriendo: medio mes a un mes de canon",
+      "Recargo impl&iacute;cito sobre el valor pedido",
+      "Intermediarios entre t&uacute; y el propietario",
+      "Tiempos de espera por ida y vuelta con un tercero",
+    ],
+  },
+  steps: {
+    kicker: "El costo real, en n&uacute;meros",
+    heading: "Bodega de 500 m&sup2;<br>a 0,13 UF/m&sup2;",
+    steps: [
+      "65 UF: canon mensual de la bodega",
+      "32,5 a 65 UF: comisi&oacute;n t&iacute;pica de una corredora",
+      "0 UF: lo que pagas de comisi&oacute;n en Portal de Bodegas",
+    ],
+  },
+  capacity: {
+    label: "Portal de Bodegas",
+    head: "Trato directo<br>con el propietario",
+    sub: "Sin corredora, sin comisi&oacute;n, sin recargos. Cotiza por WhatsApp y te respondemos el mismo d&iacute;a.",
+  },
+  ctaHead: "&iquest;Vale la pena pagar<br>comisi&oacute;n de corretaje?",
+  ctaSub: "Cotiza directo con nosotros.<br>Sin comisi&oacute;n, sin intermediarios.",
+};
+
 // ── Render ────────────────────────────────────────────────────────────────────
 // Por defecto renderiza todas las guías definidas abajo.
 // Para una sola: node build.js built-to-suit
-const ALL_GUIDES = [BUILT_TO_SUIT];
+const ALL_GUIDES = [BUILT_TO_SUIT, MERCADO_SEPTIEMBRE, CORREDOR];
 
 (async () => {
   const filter = process.argv[2];
@@ -187,12 +319,14 @@ const ALL_GUIDES = [BUILT_TO_SUIT];
     const outDir = path.join(__dirname, "salida", g.id);
     fs.mkdirSync(outDir, { recursive: true });
 
+    const cover = g.noPhoto ? slideCoverText : slideCover;
+    const concept = g.noPhoto ? slideConceptText : slideConcept;
     const pages = [
-      slideCover(g),
-      slideConcept(g, g.concepts[0], 2),
+      cover(g),
+      concept(g, g.concepts[0], 2),
       slideList(g, g.list, 3),
       slideSteps(g, g.steps, 4),
-      slideConcept(g, g.capacity, 5),
+      concept(g, g.capacity, 5),
       slideCta(g),
     ];
 

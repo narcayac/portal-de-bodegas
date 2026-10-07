@@ -96,15 +96,15 @@ const slideCover = () => shell(`
     font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:19px;letter-spacing:.18em;
     padding:13px 24px">Desliza &rarr;</div>
 
-  <div style="position:absolute;left:72px;top:330px;width:230px;height:230px;border-radius:50%;
-    background:rgba(6,133,222,.08)"></div>
-  <div style="position:absolute;left:150px;top:408px">
-    ${circle(74, C.blue, "")}
+  <div style="position:absolute;left:72px;top:290px">
+    ${circle(300, navy, icon(`
+      <rect x="8" y="16" width="32" height="24" rx="2" stroke="${W}" stroke-width="2"/>
+      <line x1="8" y1="28" x2="40" y2="28" stroke="${W}" stroke-width="2"/>
+      <line x1="24" y1="16" x2="24" y2="40" stroke="${W}" stroke-width="2"/>`, 150))}
   </div>
-  <div style="position:absolute;left:290px;top:437px;width:170px;height:3px;background:${C.blue}"></div>
-  <div style="position:absolute;left:460px;top:408px">
-    ${circle(74, navy, "")}
-  </div>
+  <div style="position:absolute;left:330px;top:395px;width:52px;height:4px;background:${C.blue};border-radius:2px"></div>
+  <div style="position:absolute;left:330px;top:420px;width:84px;height:4px;background:${C.blue};border-radius:2px;opacity:.55"></div>
+  <div style="position:absolute;left:330px;top:445px;width:38px;height:4px;background:${C.blue};border-radius:2px;opacity:.3"></div>
 
   <div style="position:absolute;left:72px;right:72px;top:800px">
     <div class="eyebrow" style="color:${C.slate};font-size:21px">Gu&iacute;a</div>

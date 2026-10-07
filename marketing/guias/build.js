@@ -295,10 +295,63 @@ const CORREDOR = {
   ctaSub: "Cotiza directo con nosotros.<br>Sin comisi&oacute;n, sin intermediarios.",
 };
 
+// ── Guía: Bodega para e-commerce ─────────────────────────────────────────────
+// Condensado de la guía "bodega-para-ecommerce-san-bernardo" en lib/guias.js.
+// Fotos de Acacias Seis (las 5 están limpias, sin marcas de agua ni defectos
+// — ver ../recorrido/README.md): exterior con portón para la portada,
+// interior mirando a la puerta para el concepto de apertura, nave ancha para
+// la capacidad de cierre.
+const ECOMMERCE = {
+  id: "bodega-para-ecommerce-san-bernardo",
+  kicker: "Gu&iacute;a",
+  name: "Bodega para e-commerce",
+  tagline: "Picking, despacho y &uacute;ltima milla en San Bernardo",
+  titleSize: 60,
+  cover: { src: photo("acacias-seis", 4), pos: "55% 50%" },
+  concepts: [
+    {
+      src: photo("acacias-seis", 2),
+      pos: "50% 55%",
+      label: "Por qu&eacute; es distinto",
+      head: "No es guardar cosas,<br>es operar un negocio",
+      sub: "Entra inventario, pero sobre todo sale &mdash; pedido por pedido, todos los d&iacute;as.",
+    },
+  ],
+  list: {
+    kicker: "Las zonas que necesitas",
+    heading: "Del flujo ordenado<br>depende no caer en el caos",
+    items: [
+      "Recepci&oacute;n &mdash; registro de mercader&iacute;a antes de guardarla",
+      "Almacenaje y picking &mdash; racks organizados para armar pedidos r&aacute;pido",
+      "Packing &mdash; mesa de embalaje e insumos a mano",
+      "Despacho &mdash; acceso directo para furgones y camiones",
+      "Devoluciones &mdash; un espacio aparte, sin mezclar con lo vendible",
+    ],
+  },
+  steps: {
+    kicker: "Temporada alta",
+    heading: "La flexibilidad pesa<br>m&aacute;s que el precio",
+    steps: [
+      "CyberDay, Black Friday y Navidad multiplican el despacho",
+      "Dimensionar solo para el d&iacute;a a d&iacute;a te deja corriendo detr&aacute;s del inventario",
+      "Ampliar sin mudarte vale m&aacute;s que ahorrar unas UF por m&sup2;",
+    ],
+  },
+  capacity: {
+    src: photo("acacias-seis", 3),
+    pos: "50% 60%",
+    label: "Portal de Bodegas",
+    head: "Ampliable<br>en el mismo recinto",
+    sub: "Parte acotado y crece sin cambiar de direcci&oacute;n cuando el volumen lo pida. Trato directo con el propietario.",
+  },
+  ctaHead: "&iquest;Tu e-commerce ya<br>necesita m&aacute;s que un box?",
+  ctaSub: "Cu&eacute;ntanos tu volumen de pedidos<br>y te ayudamos a dimensionar la bodega.",
+};
+
 // ── Render ────────────────────────────────────────────────────────────────────
 // Por defecto renderiza todas las guías definidas abajo.
 // Para una sola: node build.js built-to-suit
-const ALL_GUIDES = [BUILT_TO_SUIT, MERCADO_SEPTIEMBRE, CORREDOR];
+const ALL_GUIDES = [BUILT_TO_SUIT, MERCADO_SEPTIEMBRE, CORREDOR, ECOMMERCE];
 
 (async () => {
   const filter = process.argv[2];

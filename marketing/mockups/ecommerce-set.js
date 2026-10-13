@@ -6,7 +6,7 @@
 const { chromium } = require("playwright");
 const fs = require("fs");
 const path = require("path");
-const { C, shell, brandRow, whatsappButton } = require("../shared/brand.js");
+const { C, shell, brandRow, whatsappButton, photo } = require("../shared/brand.js");
 
 const CHROME =
   process.env.CHROME_PATH ||
@@ -89,29 +89,26 @@ const numberBadge = (n) => `
 
 const NAME = "Bodega para e-commerce";
 
-// 1 — Portada: marca gráfica de nodos, con relleno de color
+// 1 — Portada editorial: foto a sangre con el bloque de título montado
+// encima (capas, no zonas). Es la opción elegida sobre las de diagrama.
 const slideCover = () => shell(`
 <div class="slide" style="background:#fff">
-  <div style="position:absolute;top:48px;right:48px;border:2px solid ${navy};color:${navy};
+  <img src="${photo("acacias-seis", 3)}"
+    style="position:absolute;left:0;top:0;width:1080px;height:660px;object-fit:cover;object-position:50% 55%">
+
+  <div style="position:absolute;top:48px;right:48px;border:2px solid rgba(255,255,255,.6);color:#fff;
     font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:19px;letter-spacing:.18em;
-    padding:13px 24px">Desliza &rarr;</div>
+    padding:13px 24px;z-index:5">Desliza &rarr;</div>
 
-  <div style="position:absolute;left:72px;top:290px">
-    ${circle(300, navy, icon(`
-      <rect x="8" y="16" width="32" height="24" rx="2" stroke="${W}" stroke-width="2"/>
-      <line x1="8" y1="28" x2="40" y2="28" stroke="${W}" stroke-width="2"/>
-      <line x1="24" y1="16" x2="24" y2="40" stroke="${W}" stroke-width="2"/>`, 150))}
+  <div style="position:absolute;left:0;top:470px;width:800px;background:${navy};padding:54px 72px 58px">
+    <div class="eyebrow" style="font-size:21px">Gu&iacute;a</div>
+    <div style="width:92px;height:4px;background:${C.blue};margin:24px 0 30px"></div>
+    <h1 style="color:#fff;font-size:82px;line-height:1.02;letter-spacing:-.02em">Bodega para<br>e-commerce</h1>
   </div>
-  <div style="position:absolute;left:330px;top:395px;width:52px;height:4px;background:${C.blue};border-radius:2px"></div>
-  <div style="position:absolute;left:330px;top:420px;width:84px;height:4px;background:${C.blue};border-radius:2px;opacity:.55"></div>
-  <div style="position:absolute;left:330px;top:445px;width:38px;height:4px;background:${C.blue};border-radius:2px;opacity:.3"></div>
 
-  <div style="position:absolute;left:72px;right:72px;top:800px">
-    <div class="eyebrow" style="color:${C.slate};font-size:21px">Gu&iacute;a</div>
-    <div class="rule" style="background:${C.blue}"></div>
-    <h1 style="color:${navy};font-size:72px;line-height:1.06">${NAME}</h1>
-    <div style="font-family:Inter,sans-serif;font-weight:400;font-size:33px;color:${C.slate};margin-top:22px">
-      Picking, despacho y &uacute;ltima milla en San Bernardo
+  <div style="position:absolute;left:72px;right:72px;top:930px">
+    <div style="font-family:Inter,sans-serif;font-weight:400;font-size:34px;color:${C.slate};line-height:1.4">
+      Picking, despacho y &uacute;ltima milla<br>en San Bernardo
     </div>
   </div>
   ${brandRow(false, "1 / 6")}

@@ -114,69 +114,96 @@ const slideCover = () => shell(`
   ${brandRow(false, "1 / 6")}
 </div>`);
 
-// 2 — Concepto: guardar (estático, muted) vs. operar (flujo, navy)
+// 2 — El fan-out: entra consolidado, sale fraccionado. Es la diferencia
+// operativa real entre almacenar y despachar e-commerce, y se puede
+// dibujar — no solo enunciar.
+const FAN_X = 430, FAN_Y = 660;
+const rays = [-27, -18, -9, 0, 9, 18, 27]
+  .map(
+    (deg) => `
+  <div style="position:absolute;left:${FAN_X}px;top:${FAN_Y - 1.5}px;width:290px;height:3px;
+    background:${C.blue};transform:rotate(${deg}deg);transform-origin:left center"></div>
+  <div style="position:absolute;left:${FAN_X}px;top:${FAN_Y - 9}px;width:306px;height:18px;
+    transform:rotate(${deg}deg);transform-origin:left center">
+    <div style="position:absolute;right:0;top:0;width:18px;height:18px;background:${navy};border-radius:2px"></div>
+  </div>`
+  )
+  .join("");
+
 const slideConcept = () => shell(`
 <div class="slide" style="background:#fff">
   ${header("Por qu&eacute; es distinto", NAME)}
   <div style="position:absolute;left:72px;right:72px;top:190px">
-    <h1 style="color:${navy};font-size:58px;line-height:1.18">No es guardar cosas,<br>es operar un negocio</h1>
+    <h1 style="color:${navy};font-size:58px;line-height:1.18">Entra por pallet.<br>Sale por unidad.</h1>
   </div>
 
-  <div style="position:absolute;left:140px;top:580px;width:320px;text-align:center">
-    <div style="display:flex;justify-content:center">${circle(160, C.slate, ICONS.guardar)}</div>
-    <div style="font-family:Inter,sans-serif;font-weight:500;font-size:25px;color:${C.slate};margin-top:34px">Guardar cosas</div>
-  </div>
-  <div style="position:absolute;left:532px;top:650px;width:16px;height:16px;border-radius:50%;background:${C.border}"></div>
-  <div style="position:absolute;left:620px;top:580px;width:320px;text-align:center">
-    <div style="display:flex;justify-content:center">${circle(160, navy, ICONS.operar)}</div>
-    <div style="font-family:Inter,sans-serif;font-weight:600;font-size:25px;color:${navy};margin-top:34px">Operar un negocio</div>
-  </div>
+  <!-- entrada consolidada -->
+  <div style="position:absolute;left:72px;top:${FAN_Y - 4}px;width:96px;height:8px;background:${C.slate}"></div>
+  <div style="position:absolute;left:162px;top:${FAN_Y - 13}px;width:0;height:0;
+    border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:18px solid ${C.slate}"></div>
 
-  <div style="position:absolute;left:72px;right:72px;top:920px;text-align:center">
+  <!-- la bodega -->
+  <div style="position:absolute;left:196px;top:${FAN_Y - 90}px;width:234px;height:180px;background:${navy};
+    border-radius:8px;box-shadow:0 18px 36px rgba(1,25,67,.22)"></div>
+
+  <!-- salida fraccionada -->
+  ${rays}
+
+  <div style="position:absolute;left:72px;right:72px;top:1000px">
     <div style="font-family:Inter,sans-serif;font-weight:400;font-size:29px;color:${C.slate};line-height:1.5">
-      Entra inventario, pero sobre todo sale &mdash; pedido por<br>pedido, todos los d&iacute;as.
+      Una bodega de almacenaje recibe y mueve poco. Una de e-commerce
+      despacha pedido por pedido, todos los d&iacute;as.
     </div>
   </div>
   ${brandRow(false, "2 / 6")}
 </div>`);
 
-// 3 — Flujo (dirección aprobada, con el nuevo relleno de color)
-const node = (n, key, label, x, y, muted) => `
-<div style="position:absolute;left:${x - 68}px;top:${y - 68}px;width:136px;text-align:center">
-  ${circle(136, muted ? C.slate : navy, ICONS[key], n ? numberBadge(n) : "")}
-  <div style="font-family:Inter,sans-serif;font-weight:500;font-size:19px;color:${navy};margin-top:18px">${label}</div>
+// 3 — Cuánto espacio ocupa cada zona. Las cifras salen de la guía de
+// cálculo de m² en lib/guias.js (almacenaje 60–70%, recepción/despacho
+// 10–15%, picking 5–15%, oficina 5–10%), que esta misma guía enlaza.
+// El ancho de cada tramo va al centro de su rango publicado.
+const ZONES = [
+  { label: "Almacenaje", range: "60 &ndash; 70%", w: 65, fill: navy },
+  { label: "Recepci&oacute;n y despacho", range: "10 &ndash; 15%", w: 13, fill: C.blue },
+  { label: "Picking y packing", range: "5 &ndash; 15%", w: 12, fill: "#89c7f6" },
+  { label: "Oficina", range: "5 &ndash; 10%", w: 10, fill: C.slate },
+];
+
+const BAR_L = 72, BAR_W = 936, BAR_T = 470, BAR_H = 128;
+
+const barSegments = () => {
+  let x = 0;
+  return ZONES.map((z, i) => {
+    const w = (z.w / 100) * BAR_W;
+    const seg = `
+    <div style="position:absolute;left:${BAR_L + x}px;top:${BAR_T}px;width:${w}px;height:${BAR_H}px;
+      background:${z.fill};${i === 0 ? "border-radius:8px 0 0 8px;" : ""}${i === ZONES.length - 1 ? "border-radius:0 8px 8px 0;" : ""}"></div>`;
+    x += w;
+    return seg;
+  }).join("");
+};
+
+const legendRow = (z, i) => `
+<div style="position:absolute;left:72px;right:72px;top:${660 + i * 76}px;display:flex;align-items:center;gap:22px">
+  <div style="width:20px;height:20px;background:${z.fill};border-radius:4px;flex:none"></div>
+  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:28px;color:${navy};flex:1">${z.label}</div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:26px;color:${navy}">${z.range}</div>
 </div>`;
-
-const arrow = (x1, x2, y) => `
-<div style="position:absolute;left:${x1}px;top:${y - 1.5}px;width:${x2 - x1}px;height:3px;background:${C.blue}"></div>
-<div style="position:absolute;left:${x2 - 8}px;top:${y - 7}px;width:0;height:0;
-  border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid ${C.blue}"></div>`;
-
-const FLOW_Y = 530;
-const FLOW_X = [168, 420, 672, 918];
 
 const slideFlow = () => shell(`
 <div class="slide" style="background:#fff">
-  ${header("C&oacute;mo fluye tu operaci&oacute;n", NAME)}
+  ${header("C&oacute;mo se reparte el espacio", NAME)}
   <div style="position:absolute;left:72px;right:72px;top:160px">
-    <h1 style="color:${navy};font-size:52px;line-height:1.18">Del flujo ordenado<br>depende no caer en el caos</h1>
+    <h1 style="color:${navy};font-size:52px;line-height:1.18">El almacenaje no es<br>toda tu bodega</h1>
   </div>
 
-  ${arrow(FLOW_X[0] + 68, FLOW_X[1] - 68, FLOW_Y)}
-  ${arrow(FLOW_X[1] + 68, FLOW_X[2] - 68, FLOW_Y)}
-  ${arrow(FLOW_X[2] + 68, FLOW_X[3] - 68, FLOW_Y)}
+  ${barSegments()}
+  ${ZONES.map(legendRow).join("")}
 
-  ${node(1, "recepcion", "Recepci&oacute;n", FLOW_X[0], FLOW_Y)}
-  ${node(2, "picking", "Picking", FLOW_X[1], FLOW_Y)}
-  ${node(3, "packing", "Packing", FLOW_X[2], FLOW_Y)}
-  ${node(4, "despacho", "Despacho", FLOW_X[3], FLOW_Y)}
-
-  <div style="position:absolute;left:${FLOW_X[3] - 1.5}px;top:${FLOW_Y + 72}px;width:3px;height:110px;
-    background:repeating-linear-gradient(to bottom, ${C.slate} 0 7px, transparent 7px 14px)"></div>
-  ${node(null, "devoluciones", "Devoluciones", FLOW_X[3], FLOW_Y + 250, true)}
-  <div style="position:absolute;left:${FLOW_X[3] - 150}px;top:${FLOW_Y + 400}px;width:300px;text-align:center">
-    <div style="font-family:Inter,sans-serif;font-weight:400;font-size:18px;color:${C.slate};line-height:1.4">
-      Aparte, para no mezclarlo con lo que s&iacute; est&aacute; listo para vender
+  <div style="position:absolute;left:72px;right:72px;top:${660 + ZONES.length * 76 + 36}px;
+    border-top:2px solid ${C.border};padding-top:32px">
+    <div style="font-family:Inter,sans-serif;font-weight:400;font-size:27px;color:${C.slate};line-height:1.45">
+      Si tu c&aacute;lculo da 300 m&sup2; de almacenaje,<br>busca una bodega de 420 a 500 m&sup2;.
     </div>
   </div>
   ${brandRow(false, "3 / 6")}
@@ -253,11 +280,7 @@ const slideCta = () => shell(`
     <div class="rule"></div>
     <h1 style="font-size:66px">&iquest;Tu e-commerce ya<br>necesita m&aacute;s que un box?</h1>
     <div class="sub" style="margin-top:30px">Cu&eacute;ntanos tu volumen de pedidos<br>y te ayudamos a dimensionar la bodega.</div>
-    ${whatsappButton("+56 9 9225 9272")}
-    <div style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:24px;
-                letter-spacing:.14em;color:${C.blueLight};margin-top:44px">
-      www.portaldebodegas.cl
-    </div>
+    ${whatsappButton("Cotiza por WhatsApp")}
   </div>
   ${brandRow(true, "6 / 6")}
 </div>`);

@@ -15,7 +15,10 @@ series se ven como una sola familia visual.
 | Built-to-suit (construcción a medida) | publicado — `salida/built-to-suit/` |
 | Mercado de bodegas — Septiembre 2026 | publicado — `salida/mercado-bodegas-santiago-septiembre-2026/` |
 | Cuánto cobra un corredor (y por qué acá no) | publicado — `salida/cuanto-cobra-un-corredor/` |
-| Bodega para e-commerce en San Bernardo | publicado — `salida/bodega-para-ecommerce-san-bernardo/` |
+
+La guía de e-commerce se armó primero en esta serie y después se rehizo
+en `../diagramas/`, con diagramas de datos en vez de foto + scrim: vive
+ahí, no acá.
 
 El resto de las guías en `lib/guias.js` (precio de arriendo, checklist
 técnica, hub logístico San Bernardo, galpón vs. bodega, contrato de
@@ -130,14 +133,13 @@ tiene más sentido un formato 100% tipográfico — fondo navy con degradado,
 sin `<img>`. Ver `slideCoverText` / `slideConceptText` en `build.js` y el
 flag `noPhoto: true` en el objeto de la guía.
 
-"Bodega para e-commerce" volvió a usar fotos (venía justo después del
-carrusel sin fotos, así que alternar de nuevo aporta variedad) con
-Acacias Seis completo: las 5 fotos del proyecto están limpias, sin
-marcas de agua ni branding de terceros (ver `../recorrido/README.md`).
-Se eligió la exterior con el portón abierto para la portada, la interior
-mirando hacia la puerta para el concepto de apertura (refuerza la idea
-de flujo: algo entra, algo sale) y la nave ancha vacía para el cierre de
-capacidad (espacio para organizar zonas y crecer).
+"Bodega para e-commerce" se armó primero acá con fotos de Acacias Seis,
+pero en revisión quedó claro que el problema no era la elección de fotos
+sino el formato: las slides nombraban zonas evidentes sin agregar
+información. Se rehizo en `../diagramas/`, donde cada slide carga un
+dato dibujado. De esa ronda queda una nota útil para esta serie: las 5
+fotos de Acacias Seis están limpias, sin marcas de agua ni branding de
+terceros (ver `../recorrido/README.md`).
 
 ## Contenido que no viene de una guía completa
 

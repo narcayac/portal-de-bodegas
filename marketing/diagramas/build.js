@@ -1,8 +1,9 @@
-// Mockup de dirección v2: mismo diagrama, pero con círculos de color
-// sólido (como el badge "VS" de marketing/versus) en vez de contornos
-// finos huecos — la v1 se leía como un esquema de manual viejo. También
-// se llenan los espacios vacíos: tarjetas con relleno en vez de recuadros
-// punteados, elementos más grandes, menos aire muerto.
+// Generador de carruseles "Diagramas" — Portal de Bodegas
+// Tercera familia visual, además de ../recorrido/ (proyecto físico) y
+// ../guias/ (explicativo con foto + scrim). Acá cada slide carga un dato
+// dibujado: un flujo, una proporción, una comparación. Portada editorial
+// con foto a sangre y bloque de título montado encima; cierre navy.
+// Renderiza 6 slides de 1080x1350 (4:5).
 const { chromium } = require("playwright");
 const fs = require("fs");
 const path = require("path");
@@ -17,37 +18,9 @@ const icon = (d, size = 58) => `
 
 const navy = C.navy;
 const W = "#fff";
-// Todos los íconos van en blanco: ahora viven sobre círculos de color
-// sólido, no sueltos sobre blanco.
+// Los íconos van en blanco: viven sobre círculos de color sólido, no
+// sueltos sobre el fondo.
 const ICONS = {
-  recepcion: icon(`
-    <path d="M10 22 H38 V40 H10 Z" stroke="${W}" stroke-width="2.5" stroke-linejoin="round"/>
-    <path d="M24 6 V22" stroke="${W}" stroke-width="2.5"/>
-    <path d="M16 15 L24 23 L32 15" stroke="${W}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`),
-  picking: icon(`
-    <rect x="8" y="8" width="32" height="32" rx="2" stroke="${W}" stroke-width="2.5"/>
-    <line x1="8" y1="20" x2="40" y2="20" stroke="${W}" stroke-width="2.5"/>
-    <line x1="8" y1="32" x2="40" y2="32" stroke="${W}" stroke-width="2.5"/>`),
-  packing: icon(`
-    <rect x="8" y="16" width="32" height="24" rx="2" stroke="${W}" stroke-width="2.5"/>
-    <line x1="8" y1="28" x2="40" y2="28" stroke="${W}" stroke-width="2.5"/>
-    <line x1="24" y1="16" x2="24" y2="40" stroke="${W}" stroke-width="2.5"/>`),
-  despacho: icon(`
-    <rect x="6" y="18" width="22" height="18" rx="2" stroke="${W}" stroke-width="2.5"/>
-    <path d="M30 27 H42" stroke="${W}" stroke-width="2.5"/>
-    <path d="M36 21 L42 27 L36 33" stroke="${W}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`),
-  devoluciones: icon(`
-    <path d="M30 12 A16 16 0 1 1 14 28" stroke="${W}" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <path d="M22 6 L30 12 L23 17" stroke="${W}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`),
-  guardar: icon(`
-    <rect x="8" y="16" width="32" height="24" rx="2" stroke="${W}" stroke-width="2.5"/>
-    <line x1="8" y1="28" x2="40" y2="28" stroke="${W}" stroke-width="2.5"/>`, 66),
-  operar: icon(`
-    <rect x="16" y="16" width="16" height="16" rx="2" stroke="${W}" stroke-width="2.5"/>
-    <path d="M2 24 H14" stroke="${W}" stroke-width="2.5"/>
-    <path d="M8 19 L14 24 L8 29" stroke="${W}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M34 24 H46" stroke="${W}" stroke-width="2.5"/>
-    <path d="M40 19 L46 24 L40 29" stroke="${W}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`, 66),
   calendario: icon(`
     <rect x="7" y="10" width="34" height="30" rx="2" stroke="${W}" stroke-width="2.5"/>
     <line x1="7" y1="18" x2="41" y2="18" stroke="${W}" stroke-width="2.5"/>
@@ -285,15 +258,24 @@ const slideCta = () => shell(`
   ${brandRow(true, "6 / 6")}
 </div>`);
 
+// ── Render ────────────────────────────────────────────────────────────
+const ID = "bodega-para-ecommerce-san-bernardo";
+
 (async () => {
   const browser = await chromium.launch({ executablePath: CHROME });
   const page = await browser.newPage({ viewport: { width: 1080, height: 1350 }, deviceScaleFactor: 1 });
+
+  const outDir = path.join(__dirname, "salida", ID);
+  fs.mkdirSync(outDir, { recursive: true });
+
   const pages = [slideCover(), slideConcept(), slideFlow(), slideSteps(), slideCapacity(), slideCta()];
+
+  console.log(`\n${NAME} (${ID})`);
   for (let i = 0; i < pages.length; i++) {
     await page.setContent(pages[i], { waitUntil: "load" });
     await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(250);
-    const file = path.join(__dirname, `slide-${String(i + 1).padStart(2, "0")}.png`);
+    const file = path.join(outDir, `slide-${String(i + 1).padStart(2, "0")}.png`);
     await page.screenshot({ path: file });
     console.log("✓", path.basename(file));
   }

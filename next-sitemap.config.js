@@ -3,13 +3,15 @@ module.exports = {
   siteUrl: "https://www.portaldebodegas.cl",
   generateRobotsTxt: true,
   trailingSlash: true,
-  // /politica-de-privacidad/ is noindex and excluded from the sitemap.
+  // /politica-de-privacidad/ and /galpones/ (Ads landing) are noindex and excluded from the sitemap.
   // The /icon.svg, /opengraph-image, /apple-icon and /manifest.webmanifest
   // entries are Next.js metadata routes (files, not pages) — keep them out.
   exclude: [
     "/politica-de-privacidad",
     "/politica-de-privacidad/",
     "/gracias",
+    "/galpones",
+    "/galpones/",
     "/gracias/",
     "/icon.svg",
     "/icon.svg/",

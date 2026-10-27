@@ -16,7 +16,7 @@ const CHROME =
 
 const navy = C.navy;
 const W = "#fff";
-const N = 8; // láminas por informe
+const N = 7; // láminas por informe
 
 // ── Chrome del informe ────────────────────────────────────────────────
 // La cabecera va en TODAS las láminas: es lo que hace que una lámina
@@ -26,32 +26,33 @@ const masthead = (edicion) => `
 <div style="position:absolute;left:0;top:0;width:1080px;height:96px;background:${navy};
   border-bottom:3px solid ${C.blue}">
   <div style="position:absolute;left:72px;top:36px;font-family:'IBM Plex Mono',monospace;font-weight:600;
-    font-size:20px;letter-spacing:.22em;color:#fff;text-transform:uppercase">Informe de mercado</div>
+    font-size:24px;letter-spacing:.2em;color:#fff;text-transform:uppercase">Informe de mercado</div>
   <div style="position:absolute;right:72px;top:36px;font-family:'IBM Plex Mono',monospace;font-weight:500;
-    font-size:20px;letter-spacing:.22em;color:${C.blueLight};text-transform:uppercase">${edicion}</div>
+    font-size:24px;letter-spacing:.2em;color:${C.blueLight};text-transform:uppercase">${edicion}</div>
 </div>`;
 
 const seccion = (n, titulo) => `
 <div style="position:absolute;left:72px;top:148px;display:flex;align-items:baseline;gap:18px">
-  <div style="font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:21px;color:${C.blue};
+  <div style="font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:26px;color:${C.blue};
     letter-spacing:.1em">${n}</div>
-  <div style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:21px;color:${C.slate};
-    letter-spacing:.2em;text-transform:uppercase">${titulo}</div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:26px;color:${C.slate};
+    letter-spacing:.18em;text-transform:uppercase">${titulo}</div>
 </div>`;
 
 // Pie de fuente por lámina. En un informe la atribución no es letra
 // chica legal: es parte de lo que se está publicando.
 const pie = (fuente) => `
-<div style="position:absolute;left:72px;right:72px;top:1150px;height:1px;background:${C.border}"></div>
-<div style="position:absolute;left:72px;right:72px;top:1170px;font-family:'IBM Plex Mono',monospace;
-  font-weight:500;font-size:17px;letter-spacing:.08em;color:${C.slate};text-transform:uppercase">Fuente: ${fuente}</div>`;
+<div style="position:absolute;left:72px;right:72px;top:1136px;height:1px;background:${C.border}"></div>
+<div style="position:absolute;left:72px;right:72px;top:1154px;font-family:'IBM Plex Mono',monospace;
+  font-weight:500;font-size:24px;letter-spacing:.04em;color:${C.slate};text-transform:uppercase;
+  white-space:nowrap;overflow:hidden">Fuente: ${fuente}</div>`;
 
 const titular = (texto, size) => `
 <div style="position:absolute;left:72px;right:72px;top:206px">
   <h1 style="color:${navy};font-size:${size}px;line-height:1.18">${texto}</h1>
 </div>`;
 
-const bajada = (top, texto, size = 27) => `
+const bajada = (top, texto, size = 30) => `
 <div style="position:absolute;left:72px;right:72px;top:${top}px">
   <div style="font-family:Inter,sans-serif;font-weight:400;font-size:${size}px;color:${C.slate};
     line-height:1.45">${texto}</div>
@@ -59,7 +60,7 @@ const bajada = (top, texto, size = 27) => `
 
 const remate = (top, texto) => `
 <div style="position:absolute;left:72px;right:72px;top:${top}px;border-top:2px solid ${C.border};padding-top:30px">
-  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:26px;color:${C.slate};line-height:1.45">${texto}</div>
+  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:29px;color:${C.slate};line-height:1.45">${texto}</div>
 </div>`;
 
 const icon = (d, size = 50) => `
@@ -98,10 +99,10 @@ const filaNumerada = (n, iconHtml, title, desc, y, x = 128) => `
 <div style="position:absolute;left:${x - 58}px;top:${y - 58}px">
   ${circulo(116, navy, iconHtml, numberBadge(n))}
 </div>
-<div style="position:absolute;left:${x + 90}px;top:${y - 61}px;width:780px">
-  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:31px;color:${navy};
+<div style="position:absolute;left:${x + 90}px;top:${y - 66}px;width:780px">
+  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:33px;color:${navy};
     letter-spacing:-.01em">${title}</div>
-  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:26px;color:${C.slate};line-height:1.4;
+  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:29px;color:${C.slate};line-height:1.4;
     margin-top:12px">${desc}</div>
 </div>`;
 
@@ -129,11 +130,11 @@ function informeOctubre2026() {
   ${M}
 
   <div style="position:absolute;left:72px;right:72px;top:176px">
-    <div class="eyebrow" style="font-size:20px">Bodegas &middot; Regi&oacute;n Metropolitana</div>
+    <div class="eyebrow" style="font-size:24px">Bodegas &middot; Regi&oacute;n Metropolitana</div>
     <div style="width:92px;height:4px;background:${C.blue};margin:24px 0 30px"></div>
     <h1 style="color:#fff;font-size:76px;line-height:1.04;letter-spacing:-.02em">Dos mercados,<br>dos direcciones</h1>
-    <div style="font-family:Inter,sans-serif;font-weight:300;font-size:30px;color:rgba(255,255,255,.82);
-      line-height:1.45;margin-top:28px;max-width:860px">
+    <div style="font-family:Inter,sans-serif;font-weight:400;font-size:32px;color:rgba(255,255,255,.88);
+      line-height:1.45;margin-top:28px;max-width:900px">
       La bodega industrial escasea. La minibodega sobra.<br>Qu&eacute; dicen las cifras de este mes, y de d&oacute;nde salen.
     </div>
   </div>
@@ -144,10 +145,10 @@ function informeOctubre2026() {
         ([n, t]) => `
     <div style="display:flex;align-items:baseline;gap:22px;padding:11px 0;
       border-bottom:1px solid rgba(255,255,255,.14)">
-      <div style="font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:19px;color:${C.blue};
+      <div style="font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:25px;color:${C.blue};
         letter-spacing:.1em">${n}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:19px;
-        color:rgba(255,255,255,.80);letter-spacing:.18em;text-transform:uppercase">${t}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:25px;
+        color:rgba(255,255,255,.88);letter-spacing:.16em;text-transform:uppercase">${t}</div>
     </div>`
       )
       .join("")}
@@ -171,8 +172,8 @@ function informeOctubre2026() {
   font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:60px;color:${fill};
   letter-spacing:-.03em">${pct.toString().replace(".", ",")}%</div>
 <div style="position:absolute;left:${cx - BW / 2 - 40}px;top:${BASE + 26}px;width:${BW + 80}px;text-align:center">
-  <div style="font-family:Inter,sans-serif;font-weight:600;font-size:28px;color:${navy}">${nombre}</div>
-  <div style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:21px;color:${C.slate};
+  <div style="font-family:Inter,sans-serif;font-weight:600;font-size:31px;color:${navy}">${nombre}</div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:26px;color:${C.slate};
     margin-top:12px">${delta}</div>
 </div>`;
   };
@@ -184,7 +185,7 @@ function informeOctubre2026() {
   <div style="position:absolute;left:72px;right:72px;top:${BASE}px;height:3px;background:${C.border}"></div>
   ${barraV(330, 3.59, navy, "Bodega industrial", "desde 3,69% &darr;")}
   ${barraV(750, 31.7, C.slate, "Minibodega", "desde 28,5% &uarr;")}
-  ${pie("NAI Sarr&agrave; 1S 2026 (industrial) &middot; Colliers octubre 2026 (minibodegas)")}
+  ${pie("NAI Sarr&agrave; 1S 2026 &middot; Colliers octubre 2026")}
   ${brandRow(false, `2 / ${N}`)}
 </div>`);
 
@@ -196,13 +197,13 @@ function informeOctubre2026() {
     const w = Math.round((pct / PMAX) * PW);
     return `
 <div style="position:absolute;left:${PX0}px;top:${top}px;font-family:Inter,sans-serif;font-weight:600;
-  font-size:28px;color:${navy}">${nombre}</div>
+  font-size:31px;color:${navy}">${nombre}</div>
 <div style="position:absolute;left:${PX0}px;top:${top + 44}px;width:${w}px;height:${PBH}px;background:${fill};
   border-radius:0 6px 6px 0"></div>
 <div style="position:absolute;left:${PX0 + w + 26}px;top:${top + 48}px;font-family:'Plus Jakarta Sans',sans-serif;
   font-weight:800;font-size:42px;color:${fill};letter-spacing:-.02em">${valor}</div>
-<div style="position:absolute;left:${PX0}px;right:72px;top:${top + 132}px;font-family:Inter,sans-serif;
-  font-weight:400;font-size:23px;color:${C.slate};line-height:1.4">${incluye}</div>`;
+<div style="position:absolute;left:${PX0}px;right:72px;top:${top + 134}px;font-family:Inter,sans-serif;
+  font-weight:400;font-size:28px;color:${C.slate};line-height:1.4">${incluye}</div>`;
   };
 
   const slidePrecio = () => shell(`
@@ -210,7 +211,7 @@ function informeOctubre2026() {
   ${M}${seccion("02", "Precio por m&sup2;")}
   ${titular("El metro chico se paga<br>m&aacute;s caro", 48)}
   ${barraH(400, 0.148, navy, "Bodega industrial", "0,148 UF/m&sup2;", "Precio pedido promedio. Gastos comunes y consumos van aparte.")}
-  ${barraH(640, 0.356, C.slate, "Minibodega", "0,356 UF/m&sup2;", "Promedio. Suele venir con gastos comunes, seguridad y acceso incluidos.")}
+  ${barraH(640, 0.356, C.slate, "Minibodega", "0,356 UF/m&sup2;", "Promedio. Suele incluir gastos comunes, seguridad y acceso.")}
   ${remate(880, "No miden lo mismo, y aun ajustando por eso la brecha por m&sup2; sigue siendo de m&aacute;s del doble. Es lo esperable: los metros a granel siempre salen m&aacute;s baratos por unidad.")}
   ${pie("Cushman &amp; Wakefield 2T 2026 &middot; Colliers octubre 2026")}
   ${brandRow(false, `3 / ${N}`)}
@@ -226,14 +227,14 @@ function informeOctubre2026() {
   ];
 
   const criterio = ([term, desc], i) => {
-    const y = 500 + i * 140;
+    const y = 520 + i * 142;
     return `
-<div style="position:absolute;left:72px;top:${y + 12}px;width:16px;height:16px;background:${C.blue};
+<div style="position:absolute;left:72px;top:${y + 14}px;width:18px;height:18px;background:${C.blue};
   border-radius:3px"></div>
-<div style="position:absolute;left:116px;right:72px;top:${y}px">
-  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:29px;color:${navy};
+<div style="position:absolute;left:122px;right:72px;top:${y}px">
+  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:32px;color:${navy};
     letter-spacing:-.01em">${term}</div>
-  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:25px;color:${C.slate};line-height:1.4;
+  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:28px;color:${C.slate};line-height:1.4;
     margin-top:10px">${desc}</div>
 </div>`;
   };
@@ -242,9 +243,9 @@ function informeOctubre2026() {
 <div class="slide" style="background:#fff">
   ${M}${seccion("03", "Glosario")}
   ${titular("Clase A y clase B<br>no son una norma", 48)}
-  ${bajada(362, "Es una convenci&oacute;n de mercado, no una certificaci&oacute;n oficial, y cada consultora la pondera a su manera. Esto es lo que se eval&uacute;a:")}
+  ${bajada(362, "No es una certificaci&oacute;n oficial: es una convenci&oacute;n de mercado, y cada consultora la pondera a su manera. Se eval&uacute;a:")}
   ${CRITERIOS.map(criterio).join("")}
-  ${pie("Criterios descritos por CBRE y Cushman &amp; Wakefield en prensa del rubro")}
+  ${pie("CBRE y Cushman &amp; Wakefield, v&iacute;a prensa del rubro")}
   ${brandRow(false, `4 / ${N}`)}
 </div>`);
 
@@ -258,7 +259,7 @@ function informeOctubre2026() {
 <div style="position:absolute;left:${cx - 180}px;top:${cy + 140}px;width:360px;text-align:center">
   <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:54px;color:${fill};
     letter-spacing:-.03em">${valor}</div>
-  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:27px;color:${C.slate};margin-top:14px">${label}</div>
+  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:30px;color:${C.slate};margin-top:14px">${label}</div>
 </div>`;
 
   const slideCalidad = () => shell(`
@@ -280,50 +281,11 @@ function informeOctubre2026() {
   ${titular("El mercado se compromete<br>antes de existir", 46)}
   <div style="position:absolute;left:126.5px;top:${PY[0] + 58}px;width:3px;height:${PY[2] - PY[0] - 116}px;
     background:${C.border}"></div>
-  ${filaNumerada(1, icon(D.contrato), "61,5% ya est&aacute; prearrendado", "De la superficie en construcci&oacute;n en la Regi&oacute;n Metropolitana, seis de cada diez ya tienen arrendatario antes de terminarse.", PY[0])}
-  ${filaNumerada(2, icon(D.reloj), "4 a 5 a&ntilde;os para desarrollar", "Lo que toma conseguir terreno, permisos y construir. La oferta no puede reaccionar r&aacute;pido aunque la demanda apriete.", PY[1])}
+  ${filaNumerada(1, icon(D.contrato), "61,5% ya est&aacute; prearrendado", "Seis de cada diez metros en construcci&oacute;n en la Regi&oacute;n Metropolitana ya tienen arrendatario.", PY[0])}
+  ${filaNumerada(2, icon(D.reloj), "4 a 5 a&ntilde;os para desarrollar", "Lo que toma conseguir terreno, permisos y construir. La oferta no reacciona r&aacute;pido.", PY[1])}
   ${filaNumerada(3, icon(D.calendario), "18 a 24 meses de anticipaci&oacute;n", "El plazo con que la prensa del rubro recomienda planificar una operaci&oacute;n nueva.", PY[2])}
-  ${pie("Cushman &amp; Wakefield 2T 2026 &middot; CBRE &middot; prensa del rubro")}
+  ${pie("Cushman &amp; Wakefield 2T 2026 &middot; CBRE")}
   ${brandRow(false, `6 / ${N}`)}
-</div>`);
-
-  // ── Fuentes: cifra por cifra, más la advertencia metodológica. Es la
-  // lámina que separa un informe de una infografía.
-  const FUENTES = [
-    ["NAI Sarr&agrave;", "1<sup>er</sup> semestre 2026", "Vacancia industrial: 3,59% general, 1,21% clase A y 5,95% clase B. Absorci&oacute;n por submercado."],
-    ["Colliers", "Octubre 2026", "Minibodegas: inventario de 396.035 m&sup2;, vacancia de 28,5% a 31,7% y precio promedio de 0,356 UF/m&sup2;."],
-    ["Cushman &amp; Wakefield", "2&ordm; trimestre 2026", "Precio pedido industrial de 0,148 UF/m&sup2; y 61,5% de la superficie en construcci&oacute;n ya prearrendada."],
-    ["CBRE", "2026", "Plazo de cuatro a cinco a&ntilde;os para desarrollar y proyecci&oacute;n de superficie nueva para el a&ntilde;o."],
-  ];
-
-  const fuenteRow = ([nombre, periodo, aporta], i) => {
-    const y = 380 + i * 142;
-    return `
-<div style="position:absolute;left:72px;right:72px;top:${y}px">
-  <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:20px;letter-spacing:.14em;
-    text-transform:uppercase;color:${C.blue}">${nombre} <span style="color:${C.slate}">&middot; ${periodo}</span></div>
-  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:25px;color:${navy};line-height:1.4;
-    margin-top:10px">${aporta}</div>
-</div>`;
-  };
-
-  const slideFuentes = () => shell(`
-<div class="slide" style="background:#fff">
-  ${M}${seccion("&mdash;", "Fuentes y metodolog&iacute;a")}
-  ${titular("De d&oacute;nde sale<br>cada cifra", 48)}
-  ${FUENTES.map(fuenteRow).join("")}
-
-  <div style="position:absolute;left:72px;right:72px;top:920px;background:rgba(6,133,222,.07);
-    border-radius:16px;padding:28px 32px">
-    <div style="font-family:Inter,sans-serif;font-weight:400;font-size:23px;color:${C.slate};line-height:1.45">
-      Accedimos a los reportes v&iacute;a su cobertura en prensa especializada, no a los documentos
-      originales. Cada consultora mide un universo distinto, as&iacute; que las cifras no son
-      comparables entre s&iacute;: lo comparable es la tendencia. A octubre no hay publicado un
-      reporte industrial del 3<sup>er</sup> trimestre, y no extrapolamos uno.
-    </div>
-  </div>
-  ${pie("Elaboraci&oacute;n Portal de Bodegas &middot; Octubre 2026")}
-  ${brandRow(false, `7 / ${N}`)}
 </div>`);
 
   const slideCta = () => shell(`
@@ -332,10 +294,10 @@ function informeOctubre2026() {
     radial-gradient(120% 80% at 50% 0%, #0d2444 0%, ${navy} 62%)"></div>
   ${M}
   <div style="position:absolute;left:72px;right:72px;top:430px">
-    <div class="eyebrow">Informe N&ordm; 04 &middot; Octubre 2026</div>
+    <div class="eyebrow" style="font-size:25px">Informe N&ordm; 04 &middot; Octubre 2026</div>
     <div class="rule"></div>
     <h1 style="font-size:66px">&iquest;Necesitas bodega<br>con plazos reales?</h1>
-    <div class="sub" style="margin-top:30px">Cu&eacute;ntanos metraje y uso,<br>y te cotizamos hoy mismo.</div>
+    <div class="sub" style="margin-top:30px;font-size:34px;font-weight:400">Cu&eacute;ntanos metraje y uso,<br>y te cotizamos hoy mismo.</div>
     ${whatsappButton("Cotiza por WhatsApp")}
   </div>
   ${brandRow(true, `${N} / ${N}`)}
@@ -346,7 +308,7 @@ function informeOctubre2026() {
     name: "Informe Nº 04 — octubre 2026",
     slides: [
       slidePortada, slideVacancia, slidePrecio, slideGlosario,
-      slideCalidad, slidePlazos, slideFuentes, slideCta,
+      slideCalidad, slidePlazos, slideCta,
     ],
   };
 }

@@ -2,9 +2,9 @@ Informe de mercado Nº 04 — Bodegas en Santiago, octubre 2026.
 
 31,7% contra 3,59%. Esa es la distancia entre dos mercados que comparten la palabra "bodega" y van en direcciones opuestas.
 
-La bodega industrial se sigue apretando: la vacancia en la Región Metropolitana bajó de 3,69% a 3,59% en el primer semestre (NAI Sarrà).
+La bodega industrial se sigue apretando: la vacancia en la Región Metropolitana bajó de 3,69% a 3,59% en el primer semestre.
 
-La minibodega hace lo contrario: su vacancia subió de 28,5% a 31,7%, con 125.639 m² sin arrendar sobre un inventario de 396.035 m² (Colliers, octubre 2026).
+La minibodega hace lo contrario: su vacancia subió de 28,5% a 31,7%, con 125.639 m² sin arrendar sobre un inventario de 396.035 m².
 
 Sobre el precio hay que ser cuidadoso, porque los dos valores no incluyen lo mismo: la minibodega promedia 0,356 UF/m² al mes y suele venir con gastos comunes y seguridad incluidos; la bodega industrial promedia 0,148 UF/m² de precio pedido, con gastos comunes y consumos aparte. Aun ajustando por eso, la brecha por m² sigue siendo de más del doble — que es lo esperable: los metros a granel siempre salen más baratos por unidad.
 
@@ -14,6 +14,20 @@ El dato con más consecuencias es de tiempo, no de precio: el 61,5% de lo que se
 
 Traducción práctica: si vas a necesitar espacio, cotizar temprano rinde más que negociar duro.
 
-La lámina 7 trae todas las fuentes, cifra por cifra. El informe completo está en nuestras guías.
+—— DE DÓNDE SALE CADA CIFRA ——
+
+NAI Sarrà, 1er semestre 2026: vacancia industrial de 3,59% general, 1,21% clase A y 5,95% clase B.
+
+Colliers, octubre 2026: minibodegas, inventario de 396.035 m², vacancia de 28,5% a 31,7% y precio promedio de 0,356 UF/m².
+
+Cushman & Wakefield, 2º trimestre 2026: precio pedido industrial de 0,148 UF/m² y 61,5% de la superficie en construcción prearrendada.
+
+CBRE, 2026: plazo de cuatro a cinco años para desarrollar.
+
+Clase A y clase B: criterios descritos por CBRE y Cushman & Wakefield.
+
+Accedimos a los reportes vía su cobertura en prensa especializada, no a los documentos originales. Cada consultora mide un universo distinto, así que las cifras no son comparables entre sí: lo comparable es la tendencia. A octubre no hay publicado un reporte industrial del 3er trimestre, y no extrapolamos uno.
+
+El informe completo está en nuestras guías.
 
 #MercadoInmobiliario #ArriendoDeBodegas #BodegaIndustrial #LogísticaSantiago #SanBernardo #BienesRaícesIndustriales

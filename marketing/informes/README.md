@@ -12,8 +12,11 @@ Eso se nota en tres cosas que las otras series no tienen:
   un informe y no como una imagen cualquiera.
 - **Pie de fuente en cada lámina de datos.** En un informe la
   atribución no es letra chica legal, es parte de lo que se publica.
-- **Lámina de fuentes y metodología**, cifra por cifra, más la
-  advertencia de por qué las consultoras no calzan entre sí.
+- **El desglose de fuentes va en el caption**, cifra por cifra, junto
+  con la advertencia de por qué las consultoras no calzan entre sí.
+  Primero se probó como lámina y se sacó: ocupaba una lámina entera de
+  texto que nadie se detiene a leer en el feed, y en el caption se lee
+  mejor y se puede copiar.
 
 Nació porque el informe de octubre se armó primero en `../diagramas/` y
 quedó bien como post, pero sin decir de dónde salía cada número ni
@@ -29,13 +32,13 @@ serie: la de septiembre vive como carrusel en `../guias/salida/`.
 
 ## Estructura
 
+Siete láminas:
+
 1. **Portada** — cubierta de informe: navy, cabecera, titular, bajada,
    índice numerado y una banda de foto al pie. Sin titular sobre foto.
 2. **01 a 05** — una lámina por sección, cada una con su gráfico y su
    pie de fuente.
-3. **Fuentes y metodología** — qué aporta cada consultora y qué
-   advertencias hay que hacer antes de comparar.
-4. **Cierre** — CTA a WhatsApp, sin teléfono ni URL.
+7. **Cierre** — CTA a WhatsApp, sin teléfono ni URL.
 
 ## Reglas de los gráficos
 
@@ -55,6 +58,25 @@ serie: la de septiembre vive como carrusel en `../guias/salida/`.
   clase A y clase B, que es una convención de mercado y no una norma
   oficial.
 
+## Tamaños de letra
+
+Una imagen de 1080 px se ve en el celular a unos 400 px de ancho: todo
+lo que acá mida menos de 28 px queda ilegible en la mano, aunque en el
+monitor se vea bien. Los pisos de esta serie:
+
+| Tipo de texto | Mínimo |
+|---|---|
+| Texto corrido, descripciones, remates | 28 px |
+| Rótulos en mono (cabecera, sección, pie de fuente) | 24 px |
+| Nombres de serie y etiquetas de gráfico | 30 px |
+| Cifras destacadas | 42 px |
+
+El mono lee un poco más grande por el espaciado, por eso admite 24. El
+pie de fuente lleva `white-space:nowrap`: si el texto no cabe en una
+línea se corta, y eso avisa en la revisión — una segunda línea se monta
+sobre el logo del pie. La solución es acortar la atribución, no bajar
+el cuerpo.
+
 ## Cómo generar
 
 ```bash
@@ -73,7 +95,8 @@ Si Chromium está en otra ruta: `CHROME_PATH=/ruta/al/chrome node build.js`.
 Se agrega una función `informe<Mes><Año>()` que devuelve
 `{ id, name, slides }` y se suma a `INFORMES`. Lo que se reusa tal cual:
 `masthead`, `seccion`, `pie`, `titular`, `bajada`, `remate`,
-`filaNumerada`, `circulo` y `numberBadge`. Lo que cambia cada mes es el
+`filaNumerada`, `circulo` y `numberBadge`. Todos ya vienen calibrados a
+los pisos de tamaño de arriba. Lo que cambia cada mes es el
 número de edición, las secciones y los gráficos.
 
 Antes de escribir nada: el contenido sale de la guía correspondiente en
@@ -83,7 +106,8 @@ fuentes viven en un solo lugar.
 
 ## Reglas al escribir los textos
 
-- Ninguna cifra sin fuente visible en la lámina donde aparece.
+- Ninguna cifra sin fuente visible en la lámina donde aparece, y el
+  desglose completo en el caption.
 - Si no se accedió al documento original, se dice. El informe de
   octubre se armó con la cobertura en prensa especializada de los
   reportes de NAI Sarrà, Colliers, Cushman & Wakefield y CBRE, y la

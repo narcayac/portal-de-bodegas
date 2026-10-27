@@ -13,7 +13,6 @@ evidentes ("recepción, picking, packing") sin agregar información.
 |---|---|---|
 | Bodega para e-commerce en San Bernardo | `bodega-para-ecommerce-san-bernardo` | publicado |
 | Por qué el sur se convirtió en polo logístico | `polo-logistico-sur-santiago` | publicado |
-| Mercado de bodegas en Santiago — octubre 2026 | `mercado-bodegas-santiago-octubre-2026` | publicado |
 
 ## Estructura
 
@@ -33,10 +32,7 @@ verticales conectados por una línea, y tarjetas anidadas (hoy /
 ampliable). En el polo logístico sur: dos bandas sólidas con la flecha
 del giro norte→sur, un hub-and-spokes con las cuatro salidas troncales,
 tres razones numeradas, y dos tarjetas de cifras con las citas de
-mercado. En el informe de octubre, todas son gráficos a escala real:
-barras verticales (vacancia industrial contra minibodega), barras
-horizontales (precio por m²), tres plazos numerados y dos burbujas de
-área proporcional (vacancia clase A contra clase B).
+mercado.
 
 Las slides 1 y 6 son las de contraste (foto y navy); del 2 al 5 van
 sobre blanco, con círculos y bloques de color sólido y sombra suave — el
@@ -93,18 +89,11 @@ buscados, Cushman & Wakefield 2T 2026). No se escribió guía nueva para
 este post: el tema ya está cubierto por `bodegas-san-bernardo-hub-logistico`
 y una segunda página sobre lo mismo competiría con ella en búsqueda.
 
-El informe de octubre compara cifras de consultoras distintas (NAI
-Sarrà, Colliers, Cushman & Wakefield, CBRE), que miden universos
-distintos y en cortes de período distintos. Por eso cada slide de datos
-lleva su pie de fuente —el helper `fuente()`— y la guía abre con una
-nota metodológica. No se mezclan dos cifras en un mismo gráfico si no
-vienen de la misma medición: la vacancia industrial contra la de
-minibodegas se grafica junta porque son mercados distintos medidos cada
-uno por su consultora, y eso se declara al pie.
-
-Los gráficos van a escala real, sin truncar ejes: la barra de 3,59%
-queda chica al lado de la de 31,7% porque esa desproporción es el dato.
-Las burbujas de la slide 5 escalan por área, no por diámetro.
+El informe de mercado de octubre se armó primero acá y después se
+rehízo en `../informes/`: para un contenido que compara cifras de
+cuatro consultoras que miden universos distintos, un post no alcanza —
+hace falta pie de fuente por lámina, un glosario de los términos que
+usa y una lámina de metodología. Esa serie existe por eso.
 
 El cierre no muestra teléfono ni URL: el botón de WhatsApp es la única
 acción, igual que en `../versus/`.

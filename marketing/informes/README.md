@@ -54,9 +54,13 @@ Siete láminas:
   gastos comunes aparte, el de minibodega suele venir con gastos
   comunes y seguridad incluidos. Sin esa línea la comparación no es
   honesta.
-- **Los términos se explican antes de usarse.** La lámina 03 define
-  clase A y clase B, que es una convención de mercado y no una norma
-  oficial.
+- **Los términos se explican antes de usarse, y la explicación tiene
+  que responder la pregunta.** La lámina 03 empezó como una lista de
+  los criterios que se evalúan (altura, andenes, incendios, patio) y no
+  servía: decía qué se mide, pero no cuál clase era cuál. Quedó como
+  comparación lado a lado, con el titular respondiendo de entrada —
+  clase A es el estándar alto, clase B es todo lo demás— y una columna
+  por clase para cada criterio.
 
 ## Tamaños de letra
 

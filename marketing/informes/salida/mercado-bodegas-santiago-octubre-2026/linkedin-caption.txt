@@ -8,7 +8,9 @@ Minibodega. El movimiento inverso: la vacancia subió de 28,5% a 31,7%, equivale
 
 Sobre precios, conviene comparar con cuidado y decirlo abierto: los dos valores no incluyen lo mismo. El promedio de minibodega es 0,356 UF/m² al mes y normalmente viene con gastos comunes, seguridad y acceso incluidos; el promedio industrial de 0,148 UF/m² es precio pedido —lo que se publica, no necesariamente lo que se firma— y deja fuera gastos comunes y consumos. Aun ajustando por eso, la brecha por metro cuadrado sigue siendo de más del doble. Y eso no tiene nada de escandaloso: los metros chicos siempre se pagan más caros por unidad que los metros a granel. Lo que la minibodega vende no es superficie, es conveniencia. El punto práctico es desde qué volumen esa conveniencia deja de convenir.
 
-Una aclaración que los informes de mercado casi nunca hacen: clase A y clase B no son una norma oficial ni una certificación. Son una convención que usan las consultoras, ponderando altura libre, andenes de carga con niveladores, protección contra incendios, resistencia del radier y patio de maniobras. Cada consultora la aplica a su manera, y por eso sus cifras de vacancia por clase no son intercambiables.
+Una aclaración que los informes de mercado casi nunca hacen, y que conviene tener clara antes de leer cualquier cifra por clase: clase A es el estándar alto y clase B es todo lo demás. Clase A significa altura en torno a 10 a 12 metros al hombro, muelles elevados con niveladores hidráulicos, redes húmeda y seca con rociadores, y radier y patio capaces de aguantar grúas, racks y el giro de un camión completo. Clase B es menos de cada una de esas cosas.
+
+Ahora, no es una norma oficial ni una certificación: es una convención de mercado, y cada consultora la pondera a su manera. Un centro con menos altura puede seguir clasificando como A si compensa en seguridad o resistencia al fuego. Por eso dos consultoras pueden clasificar el mismo galpón distinto, y por eso sus cifras de vacancia por clase no son intercambiables.
 
 El tercer bloque es de plazos, y es el que más consecuencias tiene para quien planifica:
 

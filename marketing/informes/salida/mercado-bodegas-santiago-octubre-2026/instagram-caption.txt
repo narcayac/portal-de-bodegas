@@ -8,7 +8,7 @@ La minibodega hace lo contrario: su vacancia subió de 28,5% a 31,7%, con 125.63
 
 Sobre el precio hay que ser cuidadoso, porque los dos valores no incluyen lo mismo: la minibodega promedia 0,356 UF/m² al mes y suele venir con gastos comunes y seguridad incluidos; la bodega industrial promedia 0,148 UF/m² de precio pedido, con gastos comunes y consumos aparte. Aun ajustando por eso, la brecha por m² sigue siendo de más del doble — que es lo esperable: los metros a granel siempre salen más baratos por unidad.
 
-Y una aclaración que los informes nunca hacen: clase A y clase B no son una norma oficial. Es una convención de mercado que pondera altura libre, andenes de carga, protección contra incendios, radier y patio de maniobras. Por eso dos consultoras pueden clasificar el mismo galpón distinto.
+Y una aclaración que los informes nunca hacen: clase A es el estándar alto, clase B es todo lo demás. Clase A quiere decir 10 a 12 metros de altura al hombro, muelles de carga con niveladores, rociadores y patio donde gira un camión completo; clase B, menos de todo eso. Y no es una norma oficial: es una convención de mercado que cada consultora pondera a su manera, así que dos pueden clasificar el mismo galpón distinto.
 
 El dato con más consecuencias es de tiempo, no de precio: el 61,5% de lo que se construye ya tiene arrendatario antes de terminarse, y desarrollar una bodega desde cero toma entre 4 y 5 años.
 

@@ -217,34 +217,51 @@ function informeOctubre2026() {
   ${brandRow(false, `3 / ${N}`)}
 </div>`);
 
-  // ── 03 Glosario: los informes usan "clase A" y "clase B" todo el
-  // tiempo sin explicarlos. Acá se explican antes de usarlos.
-  const CRITERIOS = [
-    ["Altura libre", "Cu&aacute;nto se puede apilar en vertical. Los centros de mayor est&aacute;ndar rondan los 10 a 12 metros al hombro."],
-    ["Andenes de carga", "Muelles elevados con niveladores, para cargar el cami&oacute;n a nivel del piso de bodega."],
-    ["Protecci&oacute;n contra incendios", "Redes h&uacute;meda y seca; en el est&aacute;ndar m&aacute;s alto, factibilidad o instalaci&oacute;n de rociadores."],
-    ["Radier y patio de maniobras", "Piso que aguante gr&uacute;as y racks, y espacio real para que gire un cami&oacute;n completo."],
+  // ── 03 Glosario: la versión anterior listaba los criterios pero no
+  // decía cuál clase era cuál — se leía como una lista de requisitos y
+  // no como una distinción. Ahora es una comparación lado a lado, y el
+  // titular ya responde la pregunta.
+  const COMPARA = [
+    ["Altura", "10 a 12 m al hombro", "Bastante menos"],
+    ["Andenes", "Muelles con niveladores", "Pocos o ninguno"],
+    ["Incendios", "Redes y rociadores", "Est&aacute;ndar menor"],
+    ["Patio y radier", "Para cami&oacute;n completo", "M&aacute;s acotado"],
   ];
 
-  const criterio = ([term, desc], i) => {
-    const y = 520 + i * 142;
+  const COL_A = 342, COL_B = 700;
+
+  const filaCompara = ([criterio, a, b], i) => {
+    const y = 548 + i * 104;
     return `
-<div style="position:absolute;left:72px;top:${y + 14}px;width:18px;height:18px;background:${C.blue};
-  border-radius:3px"></div>
-<div style="position:absolute;left:122px;right:72px;top:${y}px">
-  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:32px;color:${navy};
-    letter-spacing:-.01em">${term}</div>
-  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:28px;color:${C.slate};line-height:1.4;
-    margin-top:10px">${desc}</div>
-</div>`;
+${i ? `<div style="position:absolute;left:72px;right:72px;top:${y - 26}px;height:1px;background:${C.border}"></div>` : ""}
+<div style="position:absolute;left:72px;top:${y + 3}px;width:250px;font-family:'IBM Plex Mono',monospace;
+  font-weight:500;font-size:24px;letter-spacing:.06em;text-transform:uppercase;color:${C.slate}">${criterio}</div>
+<div style="position:absolute;left:${COL_A}px;width:340px;top:${y}px;font-family:Inter,sans-serif;
+  font-weight:600;font-size:28px;color:${navy}">${a}</div>
+<div style="position:absolute;left:${COL_B}px;width:308px;top:${y}px;font-family:Inter,sans-serif;
+  font-weight:400;font-size:28px;color:${C.slate}">${b}</div>`;
   };
+
+  const cabezaColumna = (left, nombre, glosa, color) => `
+<div style="position:absolute;left:${left}px;top:400px">
+  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:36px;color:${color};
+    letter-spacing:-.01em">${nombre}</div>
+  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:25px;color:${C.slate};
+    margin-top:8px">${glosa}</div>
+</div>`;
 
   const slideGlosario = () => shell(`
 <div class="slide" style="background:#fff">
   ${M}${seccion("03", "Glosario")}
-  ${titular("Clase A y clase B<br>no son una norma", 48)}
-  ${bajada(362, "No es una certificaci&oacute;n oficial: es una convenci&oacute;n de mercado, y cada consultora la pondera a su manera. Se eval&uacute;a:")}
-  ${CRITERIOS.map(criterio).join("")}
+  ${titular("Clase A es el est&aacute;ndar alto.<br>Clase B, todo lo dem&aacute;s.", 46)}
+
+  ${cabezaColumna(COL_A, "Clase A", "Centros de alto est&aacute;ndar", navy)}
+  ${cabezaColumna(COL_B, "Clase B", "El resto del mercado", C.slate)}
+  <div style="position:absolute;left:72px;right:72px;top:510px;height:2px;background:${navy}"></div>
+
+  ${COMPARA.map(filaCompara).join("")}
+
+  ${remate(930, "No es una norma oficial ni una certificaci&oacute;n: es una convenci&oacute;n de mercado, y cada consultora la pondera a su manera.")}
   ${pie("CBRE y Cushman &amp; Wakefield, v&iacute;a prensa del rubro")}
   ${brandRow(false, `4 / ${N}`)}
 </div>`);

@@ -1,33 +1,25 @@
-Informe de mercado Nº 04 — Bodegas en Santiago, octubre 2026.
+Informe de mercado Nº 04 · Bodegas en Santiago, octubre 2026.
 
-31,7% contra 3,59%. Esa es la distancia entre dos mercados que comparten la palabra "bodega" y van en direcciones opuestas.
+31,7% contra 3,59%: dos mercados que comparten la palabra "bodega" y van en direcciones opuestas.
 
-La bodega industrial se sigue apretando: la vacancia en la Región Metropolitana bajó de 3,69% a 3,59% en el primer semestre.
+La bodega industrial se aprieta. La vacancia en la Región Metropolitana bajó de 3,69% a 3,59% en el primer semestre.
 
-La minibodega hace lo contrario: su vacancia subió de 28,5% a 31,7%, con 125.639 m² sin arrendar sobre un inventario de 396.035 m².
+La minibodega hace lo contrario: subió de 28,5% a 31,7%, con 125.639 m² sin arrendar.
 
-Sobre el precio hay que ser cuidadoso, porque los dos valores no incluyen lo mismo: la minibodega promedia 0,356 UF/m² al mes y suele venir con gastos comunes y seguridad incluidos; la bodega industrial promedia 0,148 UF/m² de precio pedido, con gastos comunes y consumos aparte. Aun ajustando por eso, la brecha por m² sigue siendo de más del doble — que es lo esperable: los metros a granel siempre salen más baratos por unidad.
+Y cuesta más por m²: 0,356 UF contra 0,148 UF. Ojo que no incluyen lo mismo —la minibodega suele traer gastos comunes y seguridad—, pero aun ajustando la brecha es de más del doble. Lo esperable: los metros a granel siempre salen más baratos por unidad.
 
-Y una aclaración que los informes nunca hacen: clase A es el estándar alto, clase B es todo lo demás. Clase A quiere decir 10 a 12 metros de altura al hombro, muelles de carga con niveladores, rociadores y patio donde gira un camión completo; clase B, menos de todo eso. Y no es una norma oficial: es una convención de mercado que cada consultora pondera a su manera, así que dos pueden clasificar el mismo galpón distinto.
+Aclaración que los informes nunca hacen: clase A es el estándar alto (10 a 12 m de altura, andenes con niveladores, rociadores, patio para camión completo) y clase B es todo lo demás. Las dos son bodega industrial. La minibodega es otro mercado y no entra en esa clasificación.
 
-El dato con más consecuencias es de tiempo, no de precio: el 61,5% de lo que se construye ya tiene arrendatario antes de terminarse, y desarrollar una bodega desde cero toma entre 4 y 5 años.
+El dato con más consecuencias es de tiempo: 61,5% de lo que se construye ya tiene arrendatario antes de terminarse, y desarrollar una bodega toma 4 a 5 años. Si vas a necesitar espacio, cotizar temprano rinde más que negociar duro.
 
-Traducción práctica: si vas a necesitar espacio, cotizar temprano rinde más que negociar duro.
+FUENTES
+· NAI Sarrà, 1er sem. 2026: vacancia industrial 3,59% general, 1,21% clase A, 5,95% clase B.
+· Colliers, octubre 2026: minibodegas, 396.035 m² de inventario, 28,5% → 31,7%, 0,356 UF/m².
+· Cushman & Wakefield, 2T 2026: precio pedido 0,148 UF/m² y 61,5% prearrendado.
+· CBRE: 4 a 5 años para desarrollar.
 
-—— DE DÓNDE SALE CADA CIFRA ——
+Los tomamos de su cobertura en prensa, no de los documentos originales. Cada consultora mide un universo distinto: lo comparable es la tendencia, no las cifras entre sí. A octubre no hay reporte industrial del 3er trimestre publicado.
 
-NAI Sarrà, 1er semestre 2026: vacancia industrial de 3,59% general, 1,21% clase A y 5,95% clase B.
+Informe completo en nuestras guías.
 
-Colliers, octubre 2026: minibodegas, inventario de 396.035 m², vacancia de 28,5% a 31,7% y precio promedio de 0,356 UF/m².
-
-Cushman & Wakefield, 2º trimestre 2026: precio pedido industrial de 0,148 UF/m² y 61,5% de la superficie en construcción prearrendada.
-
-CBRE, 2026: plazo de cuatro a cinco años para desarrollar.
-
-Clase A y clase B: criterios descritos por CBRE y Cushman & Wakefield.
-
-Accedimos a los reportes vía su cobertura en prensa especializada, no a los documentos originales. Cada consultora mide un universo distinto, así que las cifras no son comparables entre sí: lo comparable es la tendencia. A octubre no hay publicado un reporte industrial del 3er trimestre, y no extrapolamos uno.
-
-El informe completo está en nuestras guías.
-
-#MercadoInmobiliario #ArriendoDeBodegas #BodegaIndustrial #LogísticaSantiago #SanBernardo #BienesRaícesIndustriales
+#ArriendoDeBodegas #BodegaIndustrial #MercadoInmobiliario #LogísticaSantiago #SanBernardo

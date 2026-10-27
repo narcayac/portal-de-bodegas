@@ -1,35 +1,31 @@
 Informe de mercado Nº 04 — Bodegas en Santiago, octubre 2026.
 
-El dato más interesante del mes no está dentro del mercado industrial: está en el contraste con el de minibodegas. Dos segmentos que comparten nombre y se mueven en direcciones opuestas.
+El dato del mes no está dentro del mercado industrial: está en el contraste con el de minibodegas. Dos segmentos que comparten nombre y se mueven en direcciones opuestas.
 
-Bodega industrial. La vacancia general de los centros de bodegaje de la Región Metropolitana bajó de 3,69% a 3,59% en el primer semestre de 2026. La brecha por calidad es lo que más dice: clase A en 1,21% y clase B en 5,95%, casi cinco veces más vacancia en el segmento de menor estándar pese a tener arriendos más bajos. No es que no haya bodegas; no hay bodegas buenas disponibles.
+Bodega industrial: la vacancia en la Región Metropolitana bajó de 3,69% a 3,59% en el primer semestre. La brecha por calidad es lo que más dice: clase A en 1,21% y clase B en 5,95%. No es que no haya bodegas; no hay bodegas buenas disponibles.
 
-Minibodega. El movimiento inverso: la vacancia subió de 28,5% a 31,7%, equivalente a 125.639 m² sin arrendar sobre un inventario de 396.035 m², con solo dos centros nuevos durante 2026.
+Minibodega: el movimiento inverso. La vacancia subió de 28,5% a 31,7%, con 125.639 m² sin arrendar sobre un inventario de 396.035 m².
 
-Sobre precios, conviene comparar con cuidado y decirlo abierto: los dos valores no incluyen lo mismo. El promedio de minibodega es 0,356 UF/m² al mes y normalmente viene con gastos comunes, seguridad y acceso incluidos; el promedio industrial de 0,148 UF/m² es precio pedido —lo que se publica, no necesariamente lo que se firma— y deja fuera gastos comunes y consumos. Aun ajustando por eso, la brecha por metro cuadrado sigue siendo de más del doble. Y eso no tiene nada de escandaloso: los metros chicos siempre se pagan más caros por unidad que los metros a granel. Lo que la minibodega vende no es superficie, es conveniencia. El punto práctico es desde qué volumen esa conveniencia deja de convenir.
+Sobre precios conviene comparar con cuidado, porque los dos valores no incluyen lo mismo. La minibodega promedia 0,356 UF/m² al mes y suele venir con gastos comunes y seguridad incluidos; el industrial promedia 0,148 UF/m² de precio pedido, con gastos comunes y consumos aparte. Aun ajustando, la brecha por m² sigue siendo de más del doble. Es lo esperable: los metros chicos siempre se pagan más caros por unidad. La minibodega vende conveniencia, no superficie.
 
-Una aclaración que los informes de mercado casi nunca hacen, y que conviene tener clara antes de leer cualquier cifra por clase: clase A es el estándar alto y clase B es todo lo demás. Clase A significa altura en torno a 10 a 12 metros al hombro, muelles elevados con niveladores hidráulicos, redes húmeda y seca con rociadores, y radier y patio capaces de aguantar grúas, racks y el giro de un camión completo. Clase B es menos de cada una de esas cosas.
+Una aclaración que los informes casi nunca hacen: clase A es el estándar alto —altura de 10 a 12 m al hombro, muelles con niveladores, redes y rociadores, patio donde gira un camión completo— y clase B es todo lo demás. Las dos son bodega industrial: es una clasificación por estándar dentro del mismo mercado. La minibodega no entra ahí; es otro mercado.
 
-Ahora, no es una norma oficial ni una certificación: es una convención de mercado, y cada consultora la pondera a su manera. Un centro con menos altura puede seguir clasificando como A si compensa en seguridad o resistencia al fuego. Por eso dos consultoras pueden clasificar el mismo galpón distinto, y por eso sus cifras de vacancia por clase no son intercambiables.
+Y no es una norma oficial, es una convención que cada consultora pondera a su manera. Por eso el mes pasado publicamos 0,29% de vacancia en clase A (Cushman & Wakefield) y este mes aparece 1,21% (NAI Sarrà): no se cuadruplicó nada, son universos distintos. Las dos dicen lo mismo en lo que importa.
 
-El tercer bloque es de plazos, y es el que más consecuencias tiene para quien planifica:
+El tercer bloque es de plazos, y es el que más pesa para quien planifica:
 
-— El 61,5% de la superficie en construcción en la Región Metropolitana ya tiene contrato firmado antes de estar terminada.
-— Conseguir terreno, obtener permisos y construir toma entre cuatro y cinco años.
-— La prensa del rubro recoge recomendaciones de planificar una operación nueva con 18 a 24 meses de anticipación.
+— 61,5% de la superficie en construcción ya tiene contrato firmado antes de estar terminada.
+— Conseguir terreno, permisos y construir toma entre cuatro y cinco años.
+— Se recomienda planificar una operación nueva con 18 a 24 meses.
 
-Si el horizonte es de años, el camino es el built-to-suit con contrato firmado de antemano. Si es de meses, la única vía realista es superficie ya construida y disponible.
+Si el horizonte es de años, el camino es el built-to-suit. Si es de meses, superficie ya construida y disponible.
 
-DE DÓNDE SALE CADA CIFRA
+FUENTES
+— Vacancia industrial, general y por clase: NAI Sarrà, 1er semestre 2026.
+— Minibodegas (inventario, vacancia y precio): Colliers, octubre 2026.
+— Precio pedido industrial y 61,5% prearrendado: Cushman & Wakefield, 2T 2026.
+— Plazos de desarrollo: CBRE.
 
-— NAI Sarrà, 1er semestre 2026: vacancia industrial de 3,59% general, 1,21% clase A y 5,95% clase B, y absorción por submercado.
-— Colliers, octubre 2026: minibodegas, inventario de 396.035 m², vacancia de 28,5% a 31,7% y precio promedio de 0,356 UF/m².
-— Cushman & Wakefield, 2º trimestre 2026: precio pedido industrial de 0,148 UF/m² y 61,5% de la superficie en construcción ya prearrendada.
-— CBRE, 2026: plazo de cuatro a cinco años para desarrollar y proyección de superficie nueva para el año.
-— Criterios de clase A y clase B: descripciones de CBRE y Cushman & Wakefield.
-
-Metodología, porque corresponde: accedimos a los reportes a través de su cobertura en prensa especializada, no a los documentos originales de cada consultora. Cada una mide un universo distinto de propiedades y con cortes de período distintos, así que las cifras no son comparables una contra otra; lo comparable es la tendencia. A la fecha de este informe no hay publicado un reporte de bodegas industriales del tercer trimestre de 2026, y no extrapolamos uno.
-
-En Portal de Bodegas publicamos nuestros valores en el sitio, algo que en este mercado sigue siendo la excepción: nuestras bodegas en San Bernardo parten en 0,13 UF/m² al mes, equipadas y con trato directo con el propietario, sin comisión de corretaje.
+Accedimos a los reportes vía su cobertura en prensa especializada, no a los documentos originales. Cada consultora mide un universo distinto: lo comparable es la tendencia, no las cifras entre sí. A octubre no hay publicado un reporte industrial del tercer trimestre, y no extrapolamos uno.
 
 #BienesRaícesIndustriales #MercadoInmobiliario #LogísticaChile #ArriendoDeBodegas #SanBernardo

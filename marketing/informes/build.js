@@ -231,7 +231,7 @@ function informeOctubre2026() {
   const COL_A = 342, COL_B = 700;
 
   const filaCompara = ([criterio, a, b], i) => {
-    const y = 548 + i * 104;
+    const y = 588 + i * 104;
     return `
 ${i ? `<div style="position:absolute;left:72px;right:72px;top:${y - 26}px;height:1px;background:${C.border}"></div>` : ""}
 <div style="position:absolute;left:72px;top:${y + 3}px;width:250px;font-family:'IBM Plex Mono',monospace;
@@ -243,7 +243,7 @@ ${i ? `<div style="position:absolute;left:72px;right:72px;top:${y - 26}px;height
   };
 
   const cabezaColumna = (left, nombre, glosa, color) => `
-<div style="position:absolute;left:${left}px;top:400px">
+<div style="position:absolute;left:${left}px;top:440px">
   <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:36px;color:${color};
     letter-spacing:-.01em">${nombre}</div>
   <div style="font-family:Inter,sans-serif;font-weight:400;font-size:25px;color:${C.slate};
@@ -255,13 +255,18 @@ ${i ? `<div style="position:absolute;left:72px;right:72px;top:${y - 26}px;height
   ${M}${seccion("03", "Glosario")}
   ${titular("Clase A es el est&aacute;ndar alto.<br>Clase B, todo lo dem&aacute;s.", 46)}
 
+  <div style="position:absolute;left:72px;right:72px;top:352px;font-family:Inter,sans-serif;
+    font-weight:600;font-size:29px;color:${navy}">
+    Las dos son bodega industrial. La minibodega es otro mercado.
+  </div>
+
   ${cabezaColumna(COL_A, "Clase A", "Centros de alto est&aacute;ndar", navy)}
   ${cabezaColumna(COL_B, "Clase B", "El resto del mercado", C.slate)}
-  <div style="position:absolute;left:72px;right:72px;top:510px;height:2px;background:${navy}"></div>
+  <div style="position:absolute;left:72px;right:72px;top:550px;height:2px;background:${navy}"></div>
 
   ${COMPARA.map(filaCompara).join("")}
 
-  ${remate(930, "No es una norma oficial ni una certificaci&oacute;n: es una convenci&oacute;n de mercado, y cada consultora la pondera a su manera.")}
+  ${remate(990, "No es una norma oficial: es una convenci&oacute;n de mercado, y cada consultora la pondera a su manera.")}
   ${pie("CBRE y Cushman &amp; Wakefield, v&iacute;a prensa del rubro")}
   ${brandRow(false, `4 / ${N}`)}
 </div>`);
@@ -283,9 +288,13 @@ ${i ? `<div style="position:absolute;left:72px;right:72px;top:${y - 26}px;height
 <div class="slide" style="background:#fff">
   ${M}${seccion("04", "Brecha por calidad")}
   ${titular("No es que no haya bodegas.<br>No hay bodegas buenas.", 48)}
-  ${burbuja(320, 620, dA, navy, "1,21%", "Vacancia clase A")}
-  ${burbuja(740, 620, dB, C.slate, "5,95%", "Vacancia clase B")}
-  ${remate(910, "El espacio sobra donde el est&aacute;ndar no alcanza. Quien busca clase A compite por un stock m&iacute;nimo.")}
+  <div style="position:absolute;left:72px;right:72px;top:400px;font-family:'IBM Plex Mono',monospace;
+    font-weight:500;font-size:24px;letter-spacing:.06em;text-transform:uppercase;color:${C.slate}">
+    Vacancia en bodega industrial, por clase
+  </div>
+  ${burbuja(320, 640, dA, navy, "1,21%", "Clase A")}
+  ${burbuja(740, 640, dB, C.slate, "5,95%", "Clase B")}
+  ${remate(930, "El espacio sobra donde el est&aacute;ndar no alcanza: quien busca clase A compite por un stock m&iacute;nimo. Cushman &amp; Wakefield, midiendo otro universo, la sit&uacute;a en 0,29%.")}
   ${pie("NAI Sarr&agrave; 1S 2026 &middot; burbujas a escala de &aacute;rea")}
   ${brandRow(false, `5 / ${N}`)}
 </div>`);

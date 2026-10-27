@@ -44,6 +44,11 @@ const D = {
     <path d="M26 21 H34 L42 27 V32 H26 Z" stroke="${W}" stroke-width="2.5" stroke-linejoin="round"/>
     <circle cx="15" cy="36" r="4" fill="${W}"/>
     <circle cx="34" cy="36" r="4" fill="${W}"/>`,
+  contrato: `
+    <rect x="10" y="6" width="28" height="36" stroke="${W}" stroke-width="2.5"/>
+    <line x1="17" y1="16" x2="31" y2="16" stroke="${W}" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="17" y1="23" x2="31" y2="23" stroke="${W}" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M17 31 L22 36 L32 26" stroke="${W}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`,
   valor: `
     <rect x="9" y="11" width="12" height="27" fill="${W}"/>
     <rect x="27" y="24" width="12" height="14" fill="${W}"/>
@@ -488,8 +493,181 @@ function postPoloSur() {
   };
 }
 
+
+// ══════════════════════════════════════════════════════════════════════
+// Post — Mercado de bodegas en Santiago, octubre 2026
+// Fuente: guía mercado-bodegas-santiago-octubre-2026 en lib/guias.js.
+// Cifras de NAI Sarrà (1S 2026), Colliers (minibodegas, octubre 2026),
+// Cushman & Wakefield (2T 2026) y CBRE, según la cobertura en prensa
+// del rubro. Ninguna se redondea ni se reinterpreta acá.
+// ══════════════════════════════════════════════════════════════════════
+function postMercadoOctubre() {
+  const NAME = "Informe &middot; Octubre 2026";
+
+  // Pie de fuente: en un informe de mercado la atribución no es un
+  // detalle legal, es parte del contenido.
+  const fuente = (top, texto) => `
+<div style="position:absolute;left:72px;right:72px;top:${top}px;font-family:'IBM Plex Mono',monospace;
+  font-weight:500;font-size:18px;letter-spacing:.12em;text-transform:uppercase;color:${C.slate}">${texto}</div>`;
+
+  const slideCover = () =>
+    coverSlide({
+      src: photo("alto-las-acacias", 1),
+      pos: "50% 58%",
+      kicker: "Informe de mercado",
+      titleSize: 78,
+      title: "Dos mercados,<br>dos direcciones",
+      tagline: "Bodegas en Santiago &mdash; octubre 2026",
+      taglineTop: 910,
+    });
+
+  // 2 — La divergencia, en barras verticales a escala real: la vacancia
+  // industrial contra la de minibodegas. La desproporción es el dato.
+  const BASE = 950, VMAX = 31.7, VH = 430, BW = 250;
+
+  const vBar = (cx, pct, fill, nombre, delta) => {
+    const h = Math.round((pct / VMAX) * VH);
+    return `
+<div style="position:absolute;left:${cx - BW / 2}px;top:${BASE - h}px;width:${BW}px;height:${h}px;
+  background:${fill};border-radius:6px 6px 0 0"></div>
+<div style="position:absolute;left:${cx - BW / 2}px;top:${BASE - h - 82}px;width:${BW}px;text-align:center;
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:60px;color:${fill};
+  letter-spacing:-.03em">${pct.toString().replace(".", ",")}%</div>
+<div style="position:absolute;left:${cx - BW / 2 - 40}px;top:${BASE + 28}px;width:${BW + 80}px;text-align:center">
+  <div style="font-family:Inter,sans-serif;font-weight:600;font-size:28px;color:${navy}">${nombre}</div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:21px;color:${C.slate};
+    margin-top:14px">${delta}</div>
+</div>`;
+  };
+
+  const slideVacancia = () => shell(`
+<div class="slide" style="background:#fff">
+  ${header("Vacancia", NAME)}
+  <div style="position:absolute;left:72px;right:72px;top:170px">
+    <h1 style="color:${navy};font-size:46px;line-height:1.18">La bodega industrial escasea.<br>La minibodega sobra.</h1>
+  </div>
+
+  <div style="position:absolute;left:72px;right:72px;top:${BASE}px;height:3px;background:${C.border}"></div>
+  ${vBar(330, 3.59, navy, "Bodega industrial", "desde 3,69% &darr;")}
+  ${vBar(750, 31.7, C.slate, "Minibodega", "desde 28,5% &uarr;")}
+
+  ${fuente(1110, "NAI Sarr&agrave; 1S 2026 &middot; Colliers minibodegas, octubre 2026")}
+  ${brandRow(false, "2 / 6")}
+</div>`);
+
+  // 3 — La segunda dimensión del mismo contraste, girada 90°: el precio
+  // por m². Las barras van a escala sobre un máximo de 0,40 UF.
+  const PX0 = 72, PMAX = 0.4, PW = 620, PBH = 76;
+
+  const hBar = (top, pct, fill, nombre, valor) => {
+    const w = Math.round((pct / PMAX) * PW);
+    return `
+<div style="position:absolute;left:${PX0}px;top:${top}px;font-family:Inter,sans-serif;font-weight:600;
+  font-size:28px;color:${navy}">${nombre}</div>
+<div style="position:absolute;left:${PX0}px;top:${top + 45}px;width:${w}px;height:${PBH}px;background:${fill};
+  border-radius:0 6px 6px 0"></div>
+<div style="position:absolute;left:${PX0 + w + 26}px;top:${top + 50}px;font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:800;font-size:42px;color:${fill};letter-spacing:-.02em">${valor}</div>`;
+  };
+
+  const slidePrecio = () => shell(`
+<div class="slide" style="background:#fff">
+  ${header("Precio por m&sup2;", NAME)}
+  <div style="position:absolute;left:72px;right:72px;top:170px">
+    <h1 style="color:${navy};font-size:50px;line-height:1.18">Y la que sobra<br>cuesta m&aacute;s del doble</h1>
+  </div>
+
+  ${hBar(420, 0.148, navy, "Bodega industrial", "0,148 UF/m&sup2;")}
+  ${hBar(640, 0.356, C.slate, "Minibodega", "0,356 UF/m&sup2;")}
+
+  <div style="position:absolute;left:72px;right:72px;top:850px;border-top:2px solid ${C.border};padding-top:32px">
+    <div style="font-family:Inter,sans-serif;font-weight:400;font-size:27px;color:${C.slate};line-height:1.45">
+      En la minibodega se paga la conveniencia &mdash;metros chicos, plazo
+      corto, sin contrato largo&mdash;, no el metro cuadrado.
+    </div>
+  </div>
+  ${fuente(1040, "Valores de arriendo mensual promedio")}
+  ${brandRow(false, "3 / 6")}
+</div>`);
+
+  // 4 — Los plazos: el dato con más consecuencias prácticas del mes
+  const TX = 128;
+  const TY = [515, 740, 965];
+
+  const plazoRow = (n, iconHtml, title, desc, y) => `
+<div style="position:absolute;left:${TX - 58}px;top:${y - 58}px">
+  ${circle(116, navy, iconHtml, numberBadge(n))}
+</div>
+<div style="position:absolute;left:${TX + 90}px;top:${y - 61}px;width:780px">
+  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:31px;color:${navy};
+    letter-spacing:-.01em">${title}</div>
+  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:26px;color:${C.slate};line-height:1.4;
+    margin-top:12px">${desc}</div>
+</div>`;
+
+  const slidePlazos = () => shell(`
+<div class="slide" style="background:#fff">
+  ${header("Los plazos", NAME)}
+  <div style="position:absolute;left:72px;right:72px;top:170px">
+    <h1 style="color:${navy};font-size:48px;line-height:1.18">El mercado se compromete<br>antes de existir</h1>
+  </div>
+  <div style="position:absolute;left:${TX - 1.5}px;top:${TY[0] + 58}px;width:3px;height:${TY[2] - TY[0] - 116}px;
+    background:${C.border}"></div>
+  ${plazoRow(1, icon(D.contrato, 50), "61,5% ya est&aacute; prearrendado", "De la superficie en construcci&oacute;n en la Regi&oacute;n Metropolitana, seis de cada diez ya tienen arrendatario antes de terminarse.", TY[0])}
+  ${plazoRow(2, icon(D.reloj, 50), "4 a 5 a&ntilde;os para desarrollar", "Lo que toma conseguir terreno, permisos y construir. La oferta no puede reaccionar r&aacute;pido aunque la demanda apriete.", TY[1])}
+  ${plazoRow(3, icon(D.calendario, 50), "18 a 24 meses de anticipaci&oacute;n", "El plazo con que la prensa del rubro recomienda planificar una operaci&oacute;n nueva.", TY[2])}
+  ${brandRow(false, "4 / 6")}
+</div>`);
+
+  // 5 — La brecha por calidad en círculos a escala de área: clase B
+  // tiene casi cinco veces la vacancia de clase A.
+  const dA = 96, dB = Math.round(dA * Math.sqrt(5.95 / 1.21));
+
+  const burbuja = (cx, cy, d, fill, valor, label) => `
+<div style="position:absolute;left:${cx - d / 2}px;top:${cy - d / 2}px;width:${d}px;height:${d}px;
+  border-radius:50%;background:${fill};box-shadow:0 16px 32px rgba(1,25,67,.2)"></div>
+<div style="position:absolute;left:${cx - 180}px;top:${cy + 140}px;width:360px;text-align:center">
+  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:54px;color:${fill};
+    letter-spacing:-.03em">${valor}</div>
+  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:27px;color:${C.slate};margin-top:14px">${label}</div>
+</div>`;
+
+  const slideCalidad = () => shell(`
+<div class="slide" style="background:#fff">
+  ${header("Calidad", NAME)}
+  <div style="position:absolute;left:72px;right:72px;top:170px">
+    <h1 style="color:${navy};font-size:50px;line-height:1.18">No es que no haya bodegas.<br>No hay bodegas buenas.</h1>
+  </div>
+
+  ${burbuja(320, 600, dA, navy, "1,21%", "Vacancia clase A")}
+  ${burbuja(740, 600, dB, C.slate, "5,95%", "Vacancia clase B")}
+
+  <div style="position:absolute;left:72px;right:72px;top:880px;border-top:2px solid ${C.border};padding-top:32px">
+    <div style="font-family:Inter,sans-serif;font-weight:400;font-size:27px;color:${C.slate};line-height:1.45">
+      El espacio sobra donde el est&aacute;ndar no alcanza. Quien busca clase A
+      compite por un stock m&iacute;nimo.
+    </div>
+  </div>
+  ${fuente(1040, "NAI Sarr&agrave; &middot; 1er semestre 2026 &middot; &aacute;rea proporcional")}
+  ${brandRow(false, "5 / 6")}
+</div>`);
+
+  const slideCta = () =>
+    ctaSlide({
+      eyebrow: "Informe de mercado &middot; Octubre 2026",
+      title: "&iquest;Necesitas bodega<br>con plazos reales?",
+      sub: "Cu&eacute;ntanos metraje y uso,<br>y te cotizamos hoy mismo.",
+    });
+
+  return {
+    id: "mercado-bodegas-santiago-octubre-2026",
+    name: "Mercado de bodegas — octubre 2026",
+    slides: [slideCover, slideVacancia, slidePrecio, slidePlazos, slideCalidad, slideCta],
+  };
+}
+
 // ── Render ────────────────────────────────────────────────────────────
-const POSTS = [postEcommerce(), postPoloSur()];
+const POSTS = [postEcommerce(), postPoloSur(), postMercadoOctubre()];
 
 (async () => {
   const filtro = process.argv.slice(2);

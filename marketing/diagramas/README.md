@@ -13,6 +13,7 @@ evidentes ("recepción, picking, packing") sin agregar información.
 |---|---|---|
 | Bodega para e-commerce en San Bernardo | `bodega-para-ecommerce-san-bernardo` | publicado |
 | Por qué el sur se convirtió en polo logístico | `polo-logistico-sur-santiago` | publicado |
+| Temporada alta: qué hacer cuando no alcanza a construirse | `temporada-alta-black-friday-navidad` | publicado (noviembre 2026) |
 
 ## Estructura
 
@@ -49,6 +50,19 @@ mismo lenguaje del badge "VS" de `../versus/`.
   foto a sangre y bloque de título encima.
 - **Sin isometría ni emojis**, por la regla de marca en
   `.claude/agents/_contexto-cliente.md`.
+
+## Posts de coyuntura
+
+No todos los posts de la serie son atemporales. "Temporada alta" está
+atado a una fecha: habla de los días que faltan para Black Friday y
+Navidad, y después de diciembre no tiene sentido republicarlo.
+
+Los días se calculan desde una constante `PUBLICACION` dentro del post,
+no desde `new Date()`. Eso mantiene el render determinista —se puede
+volver a generar el mismo PNG dentro de un año y verificarlo contra el
+original— en vez de que las cifras cambien solas cada vez que alguien
+corre el build. Si el post se reutiliza el próximo año, se cambia esa
+constante y las fechas objetivo, y los números se recalculan solos.
 
 ## Cómo generar
 

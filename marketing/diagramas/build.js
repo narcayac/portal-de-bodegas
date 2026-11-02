@@ -35,6 +35,9 @@ const D = {
   expandir: `
     <path d="M30 18 L42 6 M42 6 H33 M42 6 V15" stroke="${W}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M18 30 L6 42 M6 42 H15 M6 42 V33" stroke="${W}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  galpon: `
+    <path d="M6 22 L24 8 L42 22 V40 H6 Z" stroke="${W}" stroke-width="2.5" stroke-linejoin="round"/>
+    <rect x="19" y="27" width="10" height="13" fill="${W}"/>`,
   terreno: `
     <rect x="4" y="13" width="40" height="25" stroke="${W}" stroke-width="2.5"/>
     <rect x="9" y="18" width="13" height="15" fill="${W}"/>
@@ -77,7 +80,7 @@ const numberBadge = (n) => `
 
 // Portada editorial compartida: foto a sangre con el bloque de título
 // montado encima (capas, no zonas). Es la fórmula elegida para la serie.
-const coverSlide = ({ src, pos, kicker, titleSize, title, tagline, taglineTop }) => shell(`
+const coverSlide = ({ src, pos, kicker, titleSize, title, tagline, taglineTop, counter = "1 / 6" }) => shell(`
 <div class="slide" style="background:#fff">
   <img src="${src}"
     style="position:absolute;left:0;top:0;width:1080px;height:660px;object-fit:cover;object-position:${pos}">
@@ -97,12 +100,12 @@ const coverSlide = ({ src, pos, kicker, titleSize, title, tagline, taglineTop })
       ${tagline}
     </div>
   </div>
-  ${brandRow(false, "1 / 6")}
+  ${brandRow(false, counter)}
 </div>`);
 
 // Cierre compartido: navy + CTA. Sin teléfono ni URL — el botón de
 // WhatsApp es la única acción, igual que en ../versus/.
-const ctaSlide = ({ eyebrow, title, sub }) => shell(`
+const ctaSlide = ({ eyebrow, title, sub, counter = "6 / 6" }) => shell(`
 <div class="slide">
   <div style="position:absolute;inset:0;background:
     radial-gradient(120% 80% at 50% 0%, #0d2444 0%, ${navy} 62%)"></div>
@@ -113,7 +116,7 @@ const ctaSlide = ({ eyebrow, title, sub }) => shell(`
     <div class="sub" style="margin-top:30px">${sub}</div>
     ${whatsappButton("Cotiza por WhatsApp")}
   </div>
-  ${brandRow(true, "6 / 6")}
+  ${brandRow(true, counter)}
 </div>`);
 
 // ══════════════════════════════════════════════════════════════════════
@@ -489,8 +492,115 @@ function postPoloSur() {
 }
 
 
+
+// ══════════════════════════════════════════════════════════════════════
+// Post — Temporada alta: qué hacer cuando ya no alcanza a construirse
+// Post de coyuntura, atado a una fecha: se publica a comienzos de
+// noviembre y pierde sentido después de Navidad. Los días se calculan
+// desde PUBLICACION, no desde new Date(), para que el render sea
+// determinista y se pueda verificar contra el original.
+// Datos: informe de octubre (lib/guias.js) para vacancia y plazos;
+// guía de e-commerce para la estacionalidad; guía de terreno de acopio
+// para la tercera salida.
+// ══════════════════════════════════════════════════════════════════════
+function postTemporadaAlta() {
+  const NAME = "Temporada alta";
+  const N = 4;
+
+  const PUBLICACION = Date.parse("2026-11-02T00:00:00-03:00");
+  const diasHasta = (iso) => Math.round((Date.parse(iso) - PUBLICACION) / 86400000);
+  const A_BLACK_FRIDAY = diasHasta("2026-11-27T00:00:00-03:00");
+  const A_NAVIDAD = diasHasta("2026-12-25T00:00:00-03:00");
+
+  const slideCover = () =>
+    coverSlide({
+      src: photo("acacias-seis", 1),
+      pos: "50% 45%",
+      kicker: "Temporada alta",
+      titleSize: 76,
+      title: `Quedan ${A_BLACK_FRIDAY} d&iacute;as<br>para Black Friday`,
+      tagline: `Y ${A_NAVIDAD} para Navidad. Lo que todav&iacute;a<br>se puede hacer con tu bodega.`,
+      taglineTop: 930,
+      counter: `1 / ${N}`,
+    });
+
+  // 2 — Por qué no va a aparecer la bodega perfecta: las tres cifras del
+  // informe de octubre, puestas como lo que son, un muro.
+  const statFila = (y, valor, label) => `
+<div style="position:absolute;left:72px;top:${y}px;width:340px;font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:800;font-size:62px;color:${navy};letter-spacing:-.03em">${valor}</div>
+<div style="position:absolute;left:440px;right:72px;top:${y + 12}px;font-family:Inter,sans-serif;
+  font-weight:400;font-size:28px;color:${C.slate};line-height:1.4">${label}</div>`;
+
+  const slideMuro = () => shell(`
+<div class="slide" style="background:#fff">
+  ${header("Por qu&eacute; cuesta tanto", NAME)}
+  <div style="position:absolute;left:72px;right:72px;top:180px">
+    <h1 style="color:${navy};font-size:50px;line-height:1.18">No es que busques mal.<br>No hay mucho que buscar.</h1>
+  </div>
+
+  ${statFila(430, "1,21%", "de vacancia en bodegas clase A")}
+  ${statFila(570, "61,5%", "de la superficie en construcci&oacute;n ya tiene arrendatario")}
+  ${statFila(730, "4 a 5", "a&ntilde;os es lo que toma desarrollar una bodega desde cero")}
+
+  <div style="position:absolute;left:72px;right:72px;top:900px;border-top:2px solid ${C.border};padding-top:30px">
+    <div style="font-family:Inter,sans-serif;font-weight:400;font-size:28px;color:${C.slate};line-height:1.45">
+      Construir a medida es la mejor estrategia del mercado, pero no para
+      este peak. Para este peak sirve lo que ya est&aacute; en pie.
+    </div>
+  </div>
+  <div style="position:absolute;left:72px;right:72px;top:1090px;font-family:'IBM Plex Mono',monospace;
+    font-weight:500;font-size:24px;letter-spacing:.04em;text-transform:uppercase;color:${C.slate};
+    white-space:nowrap;overflow:hidden">Fuente: NAI Sarr&agrave; &middot; Cushman &amp; Wakefield &middot; CBRE</div>
+  ${brandRow(false, `2 / ${N}`)}
+</div>`);
+
+  // 3 — Las tres salidas que sí caben en el plazo
+  const SX = 128;
+  const SY = [500, 730, 960];
+
+  const salida = (n, iconHtml, title, desc, y) => `
+<div style="position:absolute;left:${SX - 58}px;top:${y - 58}px">
+  ${circle(116, navy, iconHtml, numberBadge(n))}
+</div>
+<div style="position:absolute;left:${SX + 90}px;top:${y - 66}px;width:780px">
+  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:33px;color:${navy};
+    letter-spacing:-.01em">${title}</div>
+  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:29px;color:${C.slate};line-height:1.4;
+    margin-top:12px">${desc}</div>
+</div>`;
+
+  const slideSalidas = () => shell(`
+<div class="slide" style="background:#fff">
+  ${header("Qu&eacute; s&iacute; alcanza", NAME)}
+  <div style="position:absolute;left:72px;right:72px;top:180px">
+    <h1 style="color:${navy};font-size:50px;line-height:1.18">Tres salidas que s&iacute;<br>caben en ${A_BLACK_FRIDAY} d&iacute;as</h1>
+  </div>
+  <div style="position:absolute;left:${SX - 1.5}px;top:${SY[0] + 58}px;width:3px;height:${SY[2] - SY[0] - 116}px;
+    background:${C.border}"></div>
+  ${salida(1, icon(D.galpon, 50), "Superficie ya construida", "Lo que est&aacute; en pie y disponible hoy. Sin obra, sin permisos, sin esperar entrega.", SY[0])}
+  ${salida(2, icon(D.expandir, 40), "Partir acotado y ampliar", "Tomar lo que necesitas ahora y crecer en el mismo recinto cuando el volumen lo pida.", SY[1])}
+  ${salida(3, icon(D.terreno, 50), "Sacar al patio lo que no usa techo", "Contenedores, maquinaria, materiales: al aire libre liberan bodega para lo que s&iacute; lo necesita.", SY[2])}
+  ${brandRow(false, `3 / ${N}`)}
+</div>`);
+
+  const slideCta = () =>
+    ctaSlide({
+      eyebrow: `${NAME} &middot; Noviembre 2026`,
+      title: "&iquest;Te falta espacio<br>para el peak?",
+      sub: "Cu&eacute;ntanos qu&eacute; necesitas guardar y cu&aacute;ntos m&sup2;,<br>y te cotizamos hoy mismo.",
+      counter: `${N} / ${N}`,
+    });
+
+  return {
+    id: "temporada-alta-black-friday-navidad",
+    name: NAME,
+    slides: [slideCover, slideMuro, slideSalidas, slideCta],
+  };
+}
+
 // ── Render ────────────────────────────────────────────────────────────
-const POSTS = [postEcommerce(), postPoloSur()];
+const POSTS = [postEcommerce(), postPoloSur(), postTemporadaAlta()];
 
 (async () => {
   const filtro = process.argv.slice(2);

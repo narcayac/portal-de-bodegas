@@ -355,9 +355,10 @@ la razón de que hoy no se pueda decir si Ads sirvió.
 
 Cinco cosas que cambian el plan y que no puedo averiguar desde fuera:
 
-1. ¿Quién administraba esto: un empleado de Duramet o el estudio
-   `vdiseno.cl` que aparece en el pie del sitio? Cambia el tono y el
-   formalismo del traspaso.
+1. Resuelto el 4 de noviembre: quien administra está dentro de Duramet y
+   puede entregar los accesos directamente, así que el traspaso no pasa
+   por trámites de reclamo. Queda abierto si el estudio `vdiseno.cl`
+   sigue vigente y si el archivo del sitio está allá.
 2. ¿Ya tienes algún acceso, o se parte de cero?
 3. ¿Hay campañas de Google Ads corriendo hoy, y con qué presupuesto
    mensual?

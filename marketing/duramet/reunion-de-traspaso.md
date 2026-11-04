@@ -39,6 +39,13 @@ segunda conversación, con un tercero, y lo que necesitas de esta reunión
 es saber **si esa relación sigue vigente y quién puede pedirle el
 archivo**.
 
+Lo que baja la urgencia de ese punto es que el hosting es cPanel 138.0.19
+y **el acceso ya lo tenemos**. Con eso se pueden hacer los arreglos
+urgentes —medición, `robots.txt`, sitemaps— sin el archivo de proyecto y
+sin esperar esta reunión. Así que el hosting sale de la lista de cosas
+por conseguir y entra en la lista de cosas por ordenar: que el usuario
+sea propio y no compartido, y saber quién más tiene la clave.
+
 Y algo que sí hay que cuidar: esta persona va a seguir siendo tu
 compañera de trabajo todas las semanas. Conviene no llevar el diagnóstico
 del sitio a la reunión como lista de errores. El estado del sitio es de
@@ -97,6 +104,7 @@ la cuenta corporativa como administrador o propietario.
 | **LinkedIn** | Página → Herramientas de administración → Administradores | Solo un administrador existente puede agregarte |
 | **YouTube** | Según el tipo de canal | Preguntar si es **cuenta de marca** o canal personal. Si es personal, no se transfiere: se migra o se abre uno nuevo. Conviene saberlo hoy |
 | **X / Twitter** | No tiene roles | Se entrega usuario, clave, **el correo asociado y el segundo factor**. Si el 2FA está en el teléfono de esa persona, cambiarlo en la reunión |
+| **Hosting (cPanel 138.0.19)** | `duramet.cl:2083` → Usuarios de FTP | Acceso ya disponible. Lo que falta es ordenarlo: **quién más tiene la clave**, crear un usuario propio en vez de compartir el principal, y revisar si el DNS se administra ahí o en NIC Chile |
 | **Dominio `duramet.cl`** | NIC Chile | Verificar titular y **el correo de contacto registrado**. Si es el de una persona, los avisos de vencimiento le llegan a ella y nadie más los ve |
 
 Regla del bloque: cada fila queda hecha, o queda con fecha. Que la
@@ -116,11 +124,15 @@ probablemente no esté en sus manos.
    quién de Duramet tiene la relación para pedirlo.
 4. ¿Hay licencias de complementos pagadas por Duramet, o eran del
    estudio?
-5. ¿Dónde está alojado el sitio y con qué proveedor? ¿Quién paga el
-   hosting?
-6. ¿Tienes las credenciales de FTP o del panel, o también las tiene el
-   estudio?
-7. ¿Hay respaldo del sitio en alguna parte?
+5. El hosting es cPanel y ya entramos: ¿con qué proveedor, en qué plan,
+   quién lo paga, y **quién más tiene la clave del usuario principal**?
+6. ¿El DNS del dominio se administra en cPanel o en NIC Chile? Define
+   dónde se toca si algún día hay que mover el sitio.
+7. ¿Alguien republica el sitio desde RapidWeaver cada cierto tiempo?
+   Importa porque **una republicación borra los arreglos hechos a mano**
+   en cPanel, incluida la etiqueta de medición.
+8. ¿Hay respaldo del sitio en alguna parte, o se confía en las copias
+   del proveedor?
 
 Si la respuesta es que todo está en el estudio, no insistas en la
 reunión: anótalo y la decisión de rescatar o rehacer el sitio pasa al
@@ -204,8 +216,11 @@ el traspaso quede a medias.
 | YouTube | | | | |
 | Dominio `duramet.cl` (NIC Chile) | | | | |
 | Correo de contacto del dominio | | | | |
-| Hosting (panel) | | | | |
+| Hosting cPanel (proveedor, plan, quién paga) | | | | |
+| Quién más tiene la clave de cPanel | | | | |
+| Usuario de cPanel propio | | | | |
 | FTP / SFTP | | | | |
+| ¿Quién republica desde RapidWeaver? | | | | |
 | Archivo de proyecto RapidWeaver | | | | |
 | Licencias de complementos Stacks | | | | |
 | Relación con `vdiseno.cl` | | | | |
@@ -250,7 +265,8 @@ no para mostrarle el detalle de lo que se va a revisar.
 > 1. Google Ads, Analytics y Search Console
 > 2. La ficha de Google (la que aparece en Maps)
 > 3. Redes sociales: Facebook, LinkedIn, X y YouTube
-> 4. El dominio `duramet.cl` y el hosting: dónde están y quién los paga
+> 4. El dominio `duramet.cl` y el hosting en cPanel: dónde están y quién
+>    los paga
 > 5. El sitio: con qué está hecho y quién lo edita hoy
 > 6. A qué correo llegan los contactos del formulario
 > 7. Qué se paga mensual y qué tiene fecha de vencimiento

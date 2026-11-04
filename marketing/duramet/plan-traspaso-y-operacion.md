@@ -43,18 +43,42 @@ cuánto cuesta un lead, ni si la campaña sirve. La plata se está gastando
 a ciegas. Hasta que esto se arregle, cualquier conversación sobre
 rendimiento de Ads es una conversación sin datos.
 
-**Crítico — el sitio no se puede editar desde un navegador.**
+**Crítico — el sitio no se edita desde un navegador, pero el servidor sí.**
 Está hecho con **RapidWeaver + Stacks 4**, una aplicación de escritorio
 para Mac, no un CMS web. Conté unos 25 complementos de pago distintos
 en el código (Gator, Skyward, Eternity, Clean Menu, FreeStack R,
-Rotator, superForms y otros). En la práctica, para cambiar una coma
-hacen falta cuatro cosas a la vez: el archivo de proyecto de RapidWeaver,
-un Mac con RapidWeaver instalado, las licencias de todos esos
-complementos, y las credenciales de FTP del hosting. El pie del sitio
-enlaza a `vdiseno.cl`, lo que sugiere que todo eso vive en el estudio
-que lo construyó. **Si el archivo de proyecto no aparece en el traspaso,
-el sitio queda congelado**: solo editable tocando HTML a mano por FTP,
-que es exactamente la forma de romperlo.
+Rotator, superForms y otros). Para cambiar una coma *en el constructor*
+hacen falta cuatro cosas a la vez: el archivo de proyecto, un Mac con
+RapidWeaver instalado, las licencias de todos esos complementos, y el
+acceso al hosting. El pie del sitio enlaza a `vdiseno.cl`, lo que sugiere
+que todo eso vive en el estudio que lo construyó.
+
+Lo que cambia el panorama es que **el hosting es cPanel 138.0.19 y el
+acceso ya está en nuestras manos** (`duramet.cl:2083`). Eso abre una vía
+paralela que no depende del estudio ni de la reunión de traspaso: desde el administrador de archivos se puede subir la etiqueta
+de medición, arreglar `robots.txt` y los sitemaps, leer a qué correo
+entrega el formulario y bajar un respaldo completo. Los arreglos
+urgentes se pueden hacer esta semana sin esperar el archivo de proyecto.
+
+Con una trampa que hay que anotar desde el primer día: **todo cambio
+hecho a mano en cPanel se borra sin aviso la próxima vez que alguien
+republique desde RapidWeaver.** El constructor sube el sitio completo y
+pisa lo que haya. Mientras el estudio pueda publicar, cualquier arreglo
+manual es provisorio, y la forma en que se descubre es desagradable: la
+medición deja de registrar y nadie se da cuenta hasta el reporte del mes.
+De ahí salen dos obligaciones: llevar una lista de los cambios manuales
+para reaplicarlos, y cerrar pronto si `vdiseno.cl` sigue vigente.
+
+Para la medición hay además una vía que sobrevive a las
+republicaciones. Como las páginas son `.php`, la etiqueta se puede
+inyectar del lado del servidor (`auto_prepend_file` o `auto_append_file`,
+desde `.htaccess` o el editor de INI de PHP de cPanel) en vez de
+escribirla en cada archivo. Hay que probarlo, pero si funciona, la
+medición deja de depender de quién publique.
+
+Lo que sigue bloqueado sin el archivo de proyecto es lo estructural:
+cambiar el diseño, agregar páginas, reordenar el menú. Editar HTML
+compilado a mano para eso es la forma más rápida de romper el sitio.
 
 **Alto — hay texto de relleno publicado en la portada.**
 La portada muestra cuatro veces, visible para cualquiera,
@@ -67,13 +91,18 @@ La portada lista una bodega de 900 m² con la leyenda
 `ARRENDADA NO DISPONIBLE`. Publicar lo que no está disponible le resta
 credibilidad a lo que sí lo está, y obliga al visitante a filtrar.
 
-**Alto — el formulario de contacto es una caja negra.**
-Es un `superForms` de RapidWeaver que se procesa en PHP en el propio
-servidor, con captcha. Desde fuera no se puede saber a qué correo
-entrega, ni si ese correo sigue existiendo, ni queda registro de los
-envíos en ninguna parte. Hay que verificarlo con un envío de prueba
-antes de cualquier otra cosa: puede estar llegando a la casilla de
-alguien que ya no trabaja ahí.
+**Alto — el formulario es una caja negra, pero con cPanel se abre en
+dos minutos.**
+Es un `superForms` de RapidWeaver procesado en PHP en el propio
+servidor, con captcha. El destinatario no aparece en el HTML público
+—ahí solo está el enlace `mailto:contacto@duramet.cl`— porque va en la
+parte PHP que el visitante no ve. Con cPanel se resuelve de inmediato:
+abrir `contacto.php` en el administrador de archivos y leer el
+destinatario, y después revisar en Cuentas de Correo y en
+Redireccionamientos dónde cae `contacto@duramet.cl` en la práctica.
+Hacerlo antes que cualquier otra cosa: si entrega a una casilla que ya
+no existe, esa es la explicación más simple y más barata de por qué no
+llegan arrendatarios.
 
 **Medio — 14 páginas comparten 2 títulos y 2 descripciones.**
 `contacto.php`, `galeria-de-fotos.php`, `clientes.php` y
@@ -133,9 +162,32 @@ de preguntas que la Fase 0 tiene que cerrar.
 | Google Business Profile | Si existe ficha, si está verificada, quién es el propietario principal |
 | Facebook / X / LinkedIn / YouTube | Quiénes son administradores, si hay Business Manager, última actividad |
 | Dominio `duramet.cl` | Titular en NIC Chile, correo de contacto, fecha de vencimiento, quién paga |
-| Hosting y FTP | Proveedor, plan, credenciales, dónde está el certificado SSL |
+| Hosting | Confirmado que es cPanel. Falta el proveedor, el plan, el usuario, si el DNS se administra ahí o en NIC Chile, y quién paga |
 | Proyecto RapidWeaver | Si existe el archivo y las licencias, y en qué computador |
 | Formulario | A qué correo entrega y si ese correo sigue vivo |
+
+### Lo que se puede hacer ya, sin esperar la reunión
+
+Con la sesión de cPanel abierta, estas cinco cosas no dependen de nadie
+más. Conviene hacerlas en este orden.
+
+| # | Qué | Dónde en cPanel |
+|---|---|---|
+| 1 | **Respaldo completo antes de tocar nada.** Es la red de seguridad de todo lo demás | Archivos → Asistente de copias de seguridad → Copia de seguridad completa |
+| 2 | **Averiguar a qué correo entrega el formulario.** Abrir el archivo y leer el destinatario en la parte PHP | Archivos → Administrador de archivos → `public_html/bodegas/contacto.php` → Editar |
+| 3 | **Confirmar que ese correo existe y lo lee alguien.** Si es una cuenta local, ver si tiene redirección a una casilla real | Correo → Cuentas de Correo, y Correo → Redireccionamientos |
+| 4 | **Mirar el tráfico histórico.** Aunque no haya analítica instalada, el servidor guarda los registros: da una idea de visitas, páginas más vistas y de dónde llegan | Métricas → Visitantes, AWStats o Webalizer |
+| 5 | **Instalar la medición** (GA4 y etiqueta de Ads), y arreglar `robots.txt` y los sitemaps | Archivos → Administrador de archivos |
+
+El punto 4 es el más subestimado: hoy no hay ninguna fuente de datos
+sobre el sitio, y los registros del servidor son la única que existe
+hacia atrás. No reemplazan a GA4 —cuentan robots como visitas y no
+distinguen campañas— pero sirven para saber si el sitio recibe 50 o
+5.000 visitas al mes antes de decidir cuánto invertir en él.
+
+Y el punto 1 no es formalidad: el sitio está compilado por un
+constructor, no hay repositorio, y un archivo mal guardado desde el
+administrador de archivos no tiene cómo deshacerse.
 
 ---
 
@@ -218,14 +270,15 @@ personas, incluida tú, entran como administradores invitados.
 |---|---|---|
 | 6 | Google Ads: pasar la cuenta a la cuenta corporativa como administrador y quitar al anterior. Si está bajo una cuenta de agencia (MCC), desvincular | Herramientas → Acceso y seguridad |
 | 7 | Antes de tocar nada en Ads: **pausar o medir**. Si no hay medición, se pausa hasta instalarla | Decisión escrita en la bitácora |
-| 8 | Instalar GA4 y la etiqueta de Google Ads en el sitio (por FTP si es necesario) y verificar que registran | Evento de prueba visible en GA4 |
+| 8 | Instalar GA4 y la etiqueta de Google Ads desde el administrador de archivos de cPanel y verificar que registran. Evaluar la inyección por PHP para que sobreviva a una republicación | Evento de prueba visible en GA4 |
 | 9 | Search Console: verificar el dominio con la cuenta corporativa y enviar el sitemap arreglado | Propiedad verificada |
 | 10 | Google Business Profile: reclamar o traspasar la propiedad principal | Ficha bajo la cuenta corporativa |
 | 11 | Facebook, X, LinkedIn, YouTube: quedar como administrador con la cuenta corporativa, quitar accesos viejos | Captura de la lista de roles de cada una |
-| 12 | Respaldo completo: copia del sitio por FTP, del proyecto RapidWeaver si llegó, y de los contactos recibidos | Carpeta de respaldo fechada |
-| 13 | Escribir el **inventario de activos digitales**: un documento con cada activo, su titular, su administrador, dónde se paga y cuándo vence | El documento |
+| 12 | Respaldo completo con el asistente de copias de seguridad de cPanel, más el proyecto RapidWeaver si llegó y los contactos recibidos | Carpeta de respaldo fechada |
+| 13 | Crear un usuario de cPanel propio en vez de compartir el principal, y rotar la clave del principal al cerrar el traspaso | Usuario propio operativo |
+| 14 | Escribir el **inventario de activos digitales**: un documento con cada activo, su titular, su administrador, dónde se paga y cuándo vence | El documento |
 
-El punto 13 no es burocracia: es el entregable que convierte esto en algo
+El punto 14 no es burocracia: es el entregable que convierte esto en algo
 que el directorio puede auditar y que la próxima persona puede recibir
 sin arqueología.
 
@@ -342,12 +395,13 @@ la razón de que hoy no se pueda decir si Ads sirvió.
 
 | Riesgo | Qué pasa si se ignora | Mitigación |
 |---|---|---|
-| El archivo de RapidWeaver no aparece | El sitio queda congelado: texto de relleno y bodegas arrendadas publicadas para siempre | Pedirlo por escrito en la semana 1. Si no llega en 15 días, presupuestar rehacerlo |
+| El archivo de RapidWeaver no aparece | El sitio no queda congelado, porque cPanel permite editar los archivos a mano, pero cada arreglo es frágil y lo estructural sigue bloqueado | Pedirlo por escrito en la semana 1. Mientras no llegue, arreglar por cPanel con registro de cambios manuales |
+| Alguien republica desde RapidWeaver y pisa los arreglos manuales | La medición y las correcciones desaparecen sin aviso, y se descubre un mes después | Lista de cambios manuales en la bitácora, etiqueta inyectada por PHP, y acordar con el estudio que no publica sin avisar |
 | Ads corriendo sin medición | Cada semana es plata sin atribución y sin aprendizaje | Pausar o medir en la semana 2. No hay tercera opción |
 | El formulario entrega a un correo muerto | Se pierden arrendatarios en silencio, y no se sabe desde cuándo | Envío de prueba esta semana, y uno al mes de ahí en adelante |
 | Canibalización con portaldebodegas.cl | Las dos propiedades compiten, la pauta se encarece y el arrendatario se confunde | Llevar la decisión del punto 2 al directorio este mes |
 | El acceso queda en cuentas personales | Se repite el problema con la próxima persona | Cuenta corporativa dueña de todo, Fase 0 punto 5 |
-| El traspaso se hace a medias | Queda un activo huérfano que aparece en el peor momento | El inventario del punto 13 es el criterio de cierre: si falta una fila, el traspaso no terminó |
+| El traspaso se hace a medias | Queda un activo huérfano que aparece en el peor momento | El inventario del punto 14 es el criterio de cierre: si falta una fila, el traspaso no terminó |
 
 ---
 

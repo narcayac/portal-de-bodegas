@@ -224,3 +224,45 @@ La reunión salió bien si al terminar tienes tres cosas:
    en el estudio, o no existe. Las tres respuestas sirven; la que no
    sirve es "habría que ver".
 3. El límite de aquí en adelante acordado y escrito.
+
+---
+
+## Anexo — correo de convocatoria
+
+Versión corta para pegar. La lista es deliberadamente más breve y más
+amable que la agenda interna: sirve para que la persona llegue preparada,
+no para mostrarle el detalle de lo que se va a revisar.
+
+> **Asunto:** Traspaso de accesos digitales — coordinemos 90 min
+>
+> Hola [nombre],
+>
+> Como te adelantó Ricardo, voy a quedar a cargo de lo digital de
+> Duramet. Para no tener que interrumpirte cada semana, me gustaría que
+> nos juntáramos una vez y dejáramos todos los accesos ordenados a nombre
+> de la empresa.
+>
+> Calculo 90 minutos y te pido que sea con pantalla compartida, así vamos
+> dejando cada cosa hecha en el momento en vez de quedar con pendientes.
+>
+> Lo que me gustaría repasar:
+>
+> 1. Google Ads, Analytics y Search Console
+> 2. La ficha de Google (la que aparece en Maps)
+> 3. Redes sociales: Facebook, LinkedIn, X y YouTube
+> 4. El dominio `duramet.cl` y el hosting: dónde están y quién los paga
+> 5. El sitio: con qué está hecho y quién lo edita hoy
+> 6. A qué correo llegan los contactos del formulario
+> 7. Qué se paga mensual y qué tiene fecha de vencimiento
+>
+> Si puedes tener a mano las claves o los paneles de esos puntos,
+> avanzamos rápido.
+>
+> ¿Te acomoda [día] a las [hora]?
+>
+> Gracias,
+> Nati
+
+Si la convocatoria la manda Ricardo en vez de ti, cambia la primera
+frase por "Nati queda a cargo de lo digital desde ahora, les pido
+coordinar el traspaso" y el resto queda igual.

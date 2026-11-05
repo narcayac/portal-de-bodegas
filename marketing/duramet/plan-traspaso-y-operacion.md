@@ -138,8 +138,9 @@ texto quedó escrito hace más de una década y nadie lo movió.
 **Bajo — el canal de contacto no está donde está la gente.**
 Hay tres teléfonos (+562 2857 1408, +562 2857 1547, +569 5392 6816) y
 `contacto@duramet.cl`, pero ningún enlace de WhatsApp: solo el número
-escrito. En Portal de Bodegas, WhatsApp es la vía de conversión
-principal y medida. Acá no existe.
+escrito. En arriendo industrial en Chile, WhatsApp es donde la gente
+efectivamente escribe, y además es medible como conversión. Acá no
+existe.
 
 ### Redes enlazadas desde el sitio
 
@@ -217,36 +218,48 @@ administrador de archivos no tiene cómo deshacerse.
 
 ---
 
-## 2. La decisión que hay que poner sobre la mesa temprano
+## 2. Para qué sirve duramet.cl
 
-Duramet arrienda bodegas en San Bernardo. Portal de Bodegas arrienda
-bodegas en San Bernardo, e **Inversiones Duramet es uno de sus cinco
-proyectos**. Son dos sitios, del mismo grupo, compitiendo por las mismas
-búsquedas, con el mismo inventario detrás.
+Antes de arreglar nada conviene responder qué es este sitio, porque hoy
+está tratando de ser dos cosas y no es ninguna del todo.
 
-Eso tiene tres costos concretos: las dos propiedades se canibalizan en
-los resultados orgánicos, si ambas pautan en Google Ads suben el precio
-de sus propios clics, y un arrendatario que encuentra las dos no entiende
-si son la misma empresa o competidores.
+Duramet es un grupo de 1964 con dos líneas: **estructuras metálicas** e
+**inversiones inmobiliarias y bodegaje**. El sitio, en cambio, vive
+entero dentro de la carpeta `/bodegas/`, con la raíz redirigiendo ahí.
+La historia de la empresa, los clientes y las empresas relacionadas
+—contenido claramente corporativo— cuelgan de una URL que anuncia
+bodegas. Y al mismo tiempo la portada intenta vender arriendo, con un
+listado que incluye una bodega que dice ARRENDADA.
 
-No es una decisión técnica y no es mía: es del directorio. Pero hay que
-plantearla antes de invertir horas en arreglar el SEO de duramet.cl,
-porque la respuesta cambia qué se arregla. Las tres salidas razonables:
+Las dos salidas razonables:
 
-1. **Duramet queda como sitio corporativo y Portal de Bodegas se queda
-   con el arriendo.** duramet.cl habla de la empresa, su historia, sus
-   50 años, estructuras metálicas e inmobiliaria, y manda todo el
-   arriendo al portal. Es la opción más limpia y la más barata de
-   sostener: un solo sitio que pelea por búsquedas comerciales.
-2. **Los dos siguen compitiendo**, cada uno con su inventario y su
-   pauta. Es el estado actual. Cuesta el doble y rinde menos.
-3. **Se fusionan** en el portal, con redirecciones 301 desde duramet.cl.
-   Es lo mejor para SEO y lo peor políticamente: el directorio pierde el
-   sitio de la empresa con 62 años.
+1. **Sitio corporativo del grupo**, con el arriendo como una sección
+   adentro. La raíz vuelve a ser la empresa, `/bodegas/` pasa a ser una
+   sección, y el sitio sirve también a la línea de estructuras
+   metálicas, que hoy no tiene presencia digital propia.
+2. **Sitio de arriendo de bodegas**, asumiendo que esa es la única línea
+   que necesita captar por internet, y dejando lo corporativo como una
+   página de historia.
 
-**Mi recomendación es la 1.** Resuelve la canibalización sin borrar la
-marca histórica, y reduce el trabajo semanal a un solo sitio que
-convierte.
+La diferencia no es cosmética: cambia qué palabras pelea el sitio en
+Google, qué se escribe en cada página y hacia dónde van las campañas.
+Es decisión del directorio, y conviene tomarla antes de invertir horas
+en arreglar el SEO, porque la respuesta cambia qué se arregla.
+
+**Mi recomendación es la 1**, por una razón concreta: la línea de
+estructuras metálicas es un negocio entero sin presencia digital, y el
+dominio que podría servirlo está ocupado anunciando bodegas desde una
+subcarpeta.
+
+### Nota aparte: el solapamiento con portaldebodegas.cl
+
+Esto no es parte del plan de Duramet y se registra solo para que el
+directorio lo tenga a la vista. Las dos propiedades ofrecen arriendo de
+bodegas en San Bernardo y compiten por las mismas búsquedas, así que se
+canibalizan en orgánico y, si ambas pautan, encarecen sus propios clics.
+Son proyectos distintos con decisiones distintas; lo único que hace
+falta acá es que alguien decida qué pelea cada uno, y que esa decisión
+se escriba una vez.
 
 ### Diseñar una página nueva y reemplazar la existente: sí se puede
 
@@ -324,8 +337,8 @@ Condensed como tipografías. Es un tema genérico, no una identidad.
 
 Lo único que sí es de la marca es el logo: *BODEGAS DURAMET*, una D navy
 con un corte cian sobre marco gris. Esos dos azules están muy cerca de la
-paleta del portal (navy `#011943`, azul eléctrico `#0685de`), así que
-aplicar el estándar institucional B2B del sistema existente no choca con
+registro visual del real estate comercial institucional —el de CBRE,
+JLL o Megacentro—, así que llevar el sitio a ese estándar no choca con
 la marca: la ordena. El logo actual, eso sí, es un JPG de 280×380 con
 fondo blanco y marco: para usarlo en limpio hace falta el vector, que ya
 está en la ficha de traspaso.
@@ -335,45 +348,36 @@ está en la ficha de traspaso.
 | | Qué | Cuándo conviene |
 |---|---|---|
 | **Una página** | Diseñar una sola página —la natural es `arrienda-hoy-tu-bodega`, que es la comercial y la landing obvia de Google Ads— y dejarla en ruta nueva con 301 desde la vieja | **Es por donde hay que partir.** Riesgo bajo, se prueba el enfoque con datos reales y no exige que el directorio decida nada todavía |
-| **El sitio completo, alojado donde está** | Rehacer las páginas y subirlas a cPanel como archivos estáticos | Si el directorio quiere conservar el hosting actual por costo o costumbre |
-| **El sitio completo, en Vercel** | Rehacerlo en Next.js y apuntar el dominio, como `portaldebodegas.cl` | Es lo que ya operas: deploy automático al hacer merge, sin FTP, sin licencias, sin republicaciones que pisen nada |
+| **Varias páginas** | Rehacer las páginas comerciales una por una, siempre en ruta nueva con 301 | Cuando la primera demostró que funciona |
+| **El sitio completo** | Rehacer las 14 páginas y reemplazar el contenido de `/bodegas/` | Solo con decisión y presupuesto del directorio, y después de responder la pregunta de la sección 2 |
 
-La tercera es la que recomiendo si se va a rehacer completo, y el costo
-marginal es más bajo de lo que parece: el sistema ya existe en el repo
-del portal. `ContactForm`, `WhatsAppFloat`, `GoogleAnalytics`,
-`TrackingEvents`, `Navbar`, `Footer`, `Faq`, más `lib/seo.js` y
-`lib/tracking.js` resuelven de entrada medición, formulario, CTA de
-WhatsApp, metadatos y schema, que son justo los hallazgos del
-diagnóstico. No se parte de cero: se parte de un sistema andando.
+Las tres se alojan en cPanel y se suben igual. **Hay que partir por
+una.** Demuestra el resultado con datos antes de pedir la decisión
+grande, y si no resulta, lo que se pierde es una página.
 
-**Una advertencia que no hay que pasar por alto.** Si el sitio se mueve a
-Vercel, se cambian solo los registros del sitio (`A` y `CNAME` de `www`)
-y **no se tocan los `MX`**. El correo `contacto@duramet.cl` casi con
-seguridad vive en el mismo cPanel: cambiar los nameservers completos
-dejaría a la empresa sin correo, y es el error clásico de este tipo de
-migración.
+Nada de esto entra en las 4 horas semanales: es un proyecto con
+presupuesto propio.
 
-Esto no entra en las 4 horas semanales. Es un proyecto con presupuesto
-propio, y por eso conviene partir por una sola página: demuestra el
-resultado con datos antes de pedir la decisión grande.
+Si algún día se evaluara mover el sitio a otro alojamiento —hoy
+descartado—, la única advertencia que importa es que se cambian solo los
+registros `A` y `CNAME` de `www` y **nunca los `MX`**: el correo
+`contacto@duramet.cl` vive en este mismo cPanel, y cambiar los
+nameservers completos deja a la empresa sin correo.
 
-### Y la decisión gemela: rescatar o rehacer el sitio
+### Y la decisión gemela: rescatar el constructor o dejarlo morir
 
 Una vez que se sepa si existe el archivo de RapidWeaver:
 
-- **Si existe**, se puede rescatar, y las correcciones de arriba se
-  hacen en el constructor. Pero queda la dependencia: un Mac, licencias
-  de pago que vencen y un flujo que nadie más en la empresa puede
-  operar.
-- **Si no existe**, no hay rescate posible y hay que rehacerlo.
+- **Si existe**, se puede seguir usando el constructor para lo
+  estructural. Pero la dependencia queda igual: un Mac, licencias de
+  pago que vencen y un flujo que nadie más en la empresa sabe operar.
+- **Si no existe**, no hay nada que rescatar.
 
-En los dos casos vale la pena evaluar rehacerlo en el mismo stack que
-`portaldebodegas.cl` (Next.js en Vercel). El argumento no es de moda
-técnica: es que ya lo operas, que el deploy es automático al hacer merge,
-que no hay licencias ni FTP, y que de una sola vez resuelve medición,
-títulos, canónicas, Open Graph y WhatsApp, que son casi todos los
-hallazgos de este informe. El costo hay que presupuestarlo aparte y
-aprobarlo; no entra en las 4 horas semanales.
+En los dos casos la dirección es la misma y ya no depende de esa
+respuesta: las páginas nuevas se escriben en HTML estático y se suben
+por cPanel, y el constructor va quedando atrás página por página. El
+día que ninguna página viva dependa de él, la dependencia desapareció
+sin haber tenido que migrar nada.
 
 ---
 
@@ -534,7 +538,7 @@ la razón de que hoy no se pueda decir si Ads sirvió.
 | Alguien republica desde RapidWeaver y pisa los arreglos manuales | La medición y las correcciones desaparecen sin aviso, y se descubre un mes después | Lista de cambios manuales en la bitácora, etiqueta inyectada por PHP, y acordar con el estudio que no publica sin avisar |
 | Ads corriendo sin medición | Cada semana es plata sin atribución y sin aprendizaje | Pausar o medir en la semana 2. No hay tercera opción |
 | El formulario entrega a un correo muerto | Se pierden arrendatarios en silencio, y no se sabe desde cuándo | Envío de prueba esta semana, y uno al mes de ahí en adelante |
-| Canibalización con portaldebodegas.cl | Las dos propiedades compiten, la pauta se encarece y el arrendatario se confunde | Llevar la decisión del punto 2 al directorio este mes |
+| El sitio no define si es corporativo o de arriendo | Se arregla el SEO dos veces, en direcciones contrarias | Resolver la pregunta de la sección 2 antes de escribir páginas nuevas |
 | El acceso queda en cuentas personales | Se repite el problema con la próxima persona | Cuenta corporativa dueña de todo, Fase 0 punto 5 |
 | El traspaso se hace a medias | Queda un activo huérfano que aparece en el peor momento | El inventario del punto 14 es el criterio de cierre: si falta una fila, el traspaso no terminó |
 
@@ -551,7 +555,7 @@ Cinco cosas que cambian el plan y que no puedo averiguar desde fuera:
 2. ¿Ya tienes algún acceso, o se parte de cero?
 3. ¿Hay campañas de Google Ads corriendo hoy, y con qué presupuesto
    mensual?
-4. ¿El directorio ya tiene opinión sobre la relación entre duramet.cl y
-   portaldebodegas.cl, o hay que plantearla desde cero?
+4. ¿El directorio quiere que duramet.cl sea el sitio del grupo —con
+   estructuras metálicas incluidas— o solo el de arriendo de bodegas?
 5. ¿Los dos bloques de 2 h quedan martes y jueves, o te acomodan otros
    días?

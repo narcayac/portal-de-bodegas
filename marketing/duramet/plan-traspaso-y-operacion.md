@@ -166,6 +166,32 @@ de preguntas que la Fase 0 tiene que cerrar.
 | Proyecto RapidWeaver | Si existe el archivo y las licencias, y en qué computador |
 | Formulario | A qué correo entrega y si ese correo sigue vivo |
 
+### Qué se puede cambiar desde cPanel y qué no
+
+La respuesta corta es que **sí se puede modificar el sitio**: los
+archivos están ahí y el administrador de archivos los edita. Pero lo que
+se edita es la *salida* del constructor, no la fuente, y eso define
+tres categorías con riesgo muy distinto.
+
+| | Qué | Por qué |
+|---|---|---|
+| **Sí, sin drama** | Etiquetas de medición en el `<head>`, `robots.txt`, los sitemaps, títulos y meta descripciones, `lang="en"` → `es`, canonical, Open Graph, textos sueltos (el "Insertar video de Youtube", los "50 años"), teléfonos, agregar un enlace de WhatsApp, sacar la bodega que dice ARRENDADA | Son cambios de una línea en un archivo. Se abre, se edita, se guarda, se mira en el navegador |
+| **Se puede, pero cuesta** | El menú de navegación y cualquier cosa repetida en todo el sitio | El menú está escrito **7 veces dentro de cada una de las 14 páginas**: son casi 100 lugares que tienen que quedar idénticos. Es mecánico, no difícil, pero es una tarde |
+| **No conviene** | Páginas nuevas, rediseño, mover bloques, cambiar la estructura | La portada tiene 127 bloques generados con nombres como `stacks_in_855x`. Editar eso a mano es la forma más rápida de romper el sitio, y no hay cómo deshacer salvo restaurar el respaldo |
+
+Dicho de otro modo: **para los arreglos del diagnóstico no hace falta el
+archivo de RapidWeaver.** Todos caen en la primera fila, salvo los cuatro
+H1 de la portada. El archivo recién se vuelve necesario el día que se
+quiera rediseñar, y ese día conviene más rehacer el sitio que rescatarlo.
+
+Queda en pie la advertencia de siempre: esto es la salida, no la fuente,
+así que una republicación lo borra todo. Lo que decide cuánto pesa ese
+riesgo es una sola pregunta para la reunión: **¿alguien republica el
+sitio?** Las señales dicen que no —el texto de relleno lleva años en la
+portada y el sitio dice "50 años" cuando van 62—, y si se confirma, cPanel
+pasa a ser de hecho el administrador del sitio y el archivo de RapidWeaver
+deja de ser urgente.
+
 ### Lo que se puede hacer ya, sin esperar la reunión
 
 Con la sesión de cPanel abierta, estas cinco cosas no dependen de nadie

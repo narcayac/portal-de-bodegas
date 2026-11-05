@@ -271,6 +271,65 @@ navegador. Para probar sin tocar nada en producción, cPanel permite crear
 un subdominio (`nuevo.duramet.cl`) y dejar ahí la página mientras se
 revisa.
 
+### Cómo vamos a trabajar el sitio
+
+Decisión tomada: **el sitio se queda en cPanel.** El argumento es de
+gobernanza y es el mismo que ordena todo este plan: si mañana esto lo
+toma otra persona, tiene que recibir un sitio que vive entero en el
+hosting de Duramet, no uno que depende de cuentas personales de GitHub o
+Vercel. Eso descarta la migración, y está bien descartada.
+
+El modo de trabajo que se desprende:
+
+| Paso | Quién | Dónde |
+|---|---|---|
+| 1. Se diseña y se arma la página | Claude, en el repo | `marketing/duramet/sitio/` |
+| 2. Se revisa con capturas de escritorio y móvil, se corrige, se vuelve a revisar | Las dos, acá | Antes de que exista en el servidor |
+| 3. Se aprueba y se descargan los archivos | Nati | — |
+| 4. Se suben a una ruta nueva o a un subdominio de prueba | Nati | cPanel → Administrador de archivos |
+| 5. Se revisa en vivo | Nati | `nuevo.duramet.cl` o la ruta nueva |
+| 6. Se activa el 301 desde la URL vieja | Nati | cPanel → `.htaccess` |
+| 7. Se anota en la lista de cambios manuales | Nati | Bitácora |
+
+**El límite que hay que tener claro:** Claude no entra a cPanel. No tiene
+las credenciales y no corresponde dárselas. Construye y revisa; **publicar
+lo hace siempre una persona de Duramet.** Eso no es una limitación del
+proceso, es la forma correcta: el único que publica es el dueño del
+activo.
+
+### Las dos reglas que hacen que esto sobreviva a un traspaso futuro
+
+**HTML estático y autocontenido.** Cada página es un `.html` y una hoja
+de estilo, sin framework, sin paso de compilación, sin dependencias que
+instalar. Quien reciba esto en dos años abre el archivo y entiende lo que
+ve. Es más austero que trabajar con Next.js, y es exactamente lo que el
+criterio de gobernanza pide.
+
+**Historial de versiones.** Es lo único que cPanel no da por sí solo: si
+un archivo se sobrescribe, no hay cómo volver atrás salvo el respaldo
+completo. Dos salidas, no excluyentes. La primera es que la fuente viva
+en el repo, que es una copia y no el sitio en vivo: si el repo
+desaparece, el sitio sigue funcionando igual. La segunda, mejor para el
+traspaso, es **Git Version Control dentro del propio cPanel** (está en
+Tools, en el buscador del panel): deja el historial y el despliegue
+adentro del hosting de Duramet, sin depender de nada externo. Vale la
+pena revisar si está habilitado.
+
+### Con qué identidad visual se diseña
+
+Revisé el tema del sitio y **no hay sistema de marca que respetar**: la
+hoja de estilo usa la paleta de fábrica de Bootstrap 4 sin tocar
+(`#007bff`, `#28a745`, `#dc3545`, `#ffc107`), con Rubik y Roboto
+Condensed como tipografías. Es un tema genérico, no una identidad.
+
+Lo único que sí es de la marca es el logo: *BODEGAS DURAMET*, una D navy
+con un corte cian sobre marco gris. Esos dos azules están muy cerca de la
+paleta del portal (navy `#011943`, azul eléctrico `#0685de`), así que
+aplicar el estándar institucional B2B del sistema existente no choca con
+la marca: la ordena. El logo actual, eso sí, es un JPG de 280×380 con
+fondo blanco y marco: para usarlo en limpio hace falta el vector, que ya
+está en la ficha de traspaso.
+
 ### Las tres formas de hacerlo, de menor a mayor alcance
 
 | | Qué | Cuándo conviene |

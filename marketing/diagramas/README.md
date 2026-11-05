@@ -13,7 +13,7 @@ evidentes ("recepción, picking, packing") sin agregar información.
 |---|---|---|
 | Bodega para e-commerce en San Bernardo | `bodega-para-ecommerce-san-bernardo` | publicado |
 | Por qué el sur se convirtió en polo logístico | `polo-logistico-sur-santiago` | publicado |
-| Temporada alta: qué hacer cuando no alcanza a construirse | `temporada-alta-black-friday-navidad` | publicado (noviembre 2026) |
+| Cierre de año: el plazo real para instalarse | `cierre-de-ano-plazo-para-instalarse` | publicado (noviembre 2026) |
 
 ## Estructura
 
@@ -53,16 +53,31 @@ mismo lenguaje del badge "VS" de `../versus/`.
 
 ## Posts de coyuntura
 
-No todos los posts de la serie son atemporales. "Temporada alta" está
-atado a una fecha: habla de los días que faltan para Black Friday y
-Navidad, y después de diciembre no tiene sentido republicarlo.
+No todos los posts de la serie son atemporales. "Cierre de año" está
+atado a una fecha: cuenta los días hábiles que quedan hasta el viernes
+18 de diciembre, y después de esa fecha no tiene sentido republicarlo.
 
-Los días se calculan desde una constante `PUBLICACION` dentro del post,
-no desde `new Date()`. Eso mantiene el render determinista —se puede
-volver a generar el mismo PNG dentro de un año y verificarlo contra el
-original— en vez de que las cifras cambien solas cada vez que alguien
-corre el build. Si el post se reutiliza el próximo año, se cambia esa
-constante y las fechas objetivo, y los números se recalculan solos.
+Su primera versión contaba los días para Black Friday y se descartó
+antes de publicarse: le hablaba a retail y e-commerce, que es una
+porción chica del público de bodegas industriales. El mismo mecanismo
+de cuenta regresiva funciona cuando lo que aprieta es el calendario
+—que afecta igual a una constructora, a un transportista y a un
+distribuidor— y no un evento comercial. Vale como criterio para los
+próximos: el gancho tiene que servirle a quien arrienda galpones, no
+a quien vende online.
+
+Los días hábiles se calculan desde las constantes `PUBLICACION`,
+`CORTE` y `FERIADOS` dentro del post, no desde `new Date()`. Eso
+mantiene el render determinista —se puede volver a generar el mismo
+PNG dentro de un año y verificarlo contra el original— en vez de que
+las cifras cambien solas cada vez que alguien corre el build. Si el
+post se atrasa unos días, se mueve `PUBLICACION` y se vuelve a
+renderizar; si se reutiliza el próximo año, se mueven las tres y los
+números se recalculan solos.
+
+Ojo con el titular: el corte es el 18 de diciembre, no el 31. Decir
+"días hábiles en el año" sería inexacto —hasta fin de mes quedan
+más—, así que el número va solo y la bajada explica hasta cuándo.
 
 ## Cómo generar
 
@@ -80,6 +95,14 @@ Para sumar un post se agrega una función `postX()` que devuelve
 objeto `D` compartido (solo el trazado; el tamaño lo pone `icon()`).
 
 Si Chromium está en otra ruta: `CHROME_PATH=/ruta/al/chrome node build.js`.
+
+Un aviso para cuando se re-renderiza todo: la identidad byte a byte de
+los PNG solo se sostiene dentro de un mismo contenedor. `fonts.css` no
+se versiona —lo genera `../shared/fuentes.sh`— y al regenerarlo cambia
+el antialiasing lo justo para que los archivos difieran sin que cambie
+el diseño. Si al tocar un post aparecen modificados los PNG de otros,
+conviene mirar uno antes de asumir una regresión: si el contenido es
+el mismo, se revierten esas carpetas y se commitea solo el post nuevo.
 
 ## De dónde salen las cifras
 

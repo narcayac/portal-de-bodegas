@@ -494,49 +494,99 @@ function postPoloSur() {
 
 
 // ══════════════════════════════════════════════════════════════════════
-// Post — Temporada alta: qué hacer cuando ya no alcanza a construirse
-// Post de coyuntura, atado a una fecha: se publica a comienzos de
-// noviembre y pierde sentido después de Navidad. Los días se calculan
-// desde PUBLICACION, no desde new Date(), para que el render sea
-// determinista y se pueda verificar contra el original.
-// Datos: informe de octubre (lib/guias.js) para vacancia y plazos;
-// guía de e-commerce para la estacionalidad; guía de terreno de acopio
-// para la tercera salida.
+// Post — Cierre de año: el plazo real para instalarse
+// Post de coyuntura. El gancho no es un evento comercial —la versión
+// anterior contaba los días para Black Friday y le hablaba a retail, no
+// a bodegas industriales— sino el calendario chileno, que aprieta igual
+// a una constructora, a un transportista y a un distribuidor.
+// Los días hábiles se calculan desde PUBLICACION y no desde new Date():
+// si el post se atrasa, se mueve la constante y se vuelve a renderizar.
+// Datos de mercado: informe de octubre en lib/guias.js.
 // ══════════════════════════════════════════════════════════════════════
-function postTemporadaAlta() {
-  const NAME = "Temporada alta";
-  const N = 4;
+function postCierreDeAno() {
+  const NAME = "Cierre de a&ntilde;o";
+  const N = 5;
 
-  const PUBLICACION = Date.parse("2026-11-02T00:00:00-03:00");
-  const diasHasta = (iso) => Math.round((Date.parse(iso) - PUBLICACION) / 86400000);
-  const A_BLACK_FRIDAY = diasHasta("2026-11-27T00:00:00-03:00");
-  const A_NAVIDAD = diasHasta("2026-12-25T00:00:00-03:00");
+  const PUBLICACION = "2026-11-05";
+  const CORTE = "2026-12-18";
+  const FERIADOS = ["2026-12-08"]; // Inmaculada Concepción
+
+  // El corte es el último viernes en que todavía se mueve gente, no el
+  // 31 de diciembre: hasta fin de mes quedan más hábiles, pero ya no
+  // sirven para instalar una operación.
+  const diasHabiles = (desde, hasta) => {
+    let n = 0;
+    const d = new Date(`${desde}T12:00:00Z`);
+    const fin = new Date(`${hasta}T12:00:00Z`);
+    while (d <= fin) {
+      const dow = d.getUTCDay();
+      if (dow !== 0 && dow !== 6 && !FERIADOS.includes(d.toISOString().slice(0, 10))) n++;
+      d.setUTCDate(d.getUTCDate() + 1);
+    }
+    return n;
+  };
+  const HABILES = diasHabiles(PUBLICACION, CORTE);
 
   const slideCover = () =>
     coverSlide({
       src: photo("acacias-seis", 1),
       pos: "50% 45%",
-      kicker: "Temporada alta",
-      titleSize: 76,
-      title: `Quedan ${A_BLACK_FRIDAY} d&iacute;as<br>para Black Friday`,
-      tagline: `Y ${A_NAVIDAD} para Navidad. Lo que todav&iacute;a<br>se puede hacer con tu bodega.`,
-      taglineTop: 930,
+      kicker: "Cierre de a&ntilde;o",
+      titleSize: 80,
+      title: `Quedan ${HABILES}<br>d&iacute;as h&aacute;biles`,
+      tagline:
+        "Hasta el viernes 18 de diciembre, que es cuando<br>se acaba el a&ntilde;o para instalar una operaci&oacute;n nueva.",
+      taglineTop: 960,
       counter: `1 / ${N}`,
     });
 
-  // 2 — Por qué no va a aparecer la bodega perfecta: las tres cifras del
-  // informe de octubre, puestas como lo que son, un muro.
+  // 2 — El calendario. Círculos con el número adentro, sin ícono: no hay
+  // ícono honesto para "febrero se detiene".
+  const numeroCirculo = (n) => `
+<div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:46px;color:#fff;
+  letter-spacing:-.02em">${n}</div>`;
+
+  const CX = 128;
+  const CY = [500, 730, 960];
+
+  const razon = (n, title, desc, y) => `
+<div style="position:absolute;left:${CX - 58}px;top:${y - 58}px">
+  ${circle(116, navy, numeroCirculo(n))}
+</div>
+<div style="position:absolute;left:${CX + 90}px;top:${y - 66}px;width:780px">
+  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:33px;color:${navy};
+    letter-spacing:-.01em">${title}</div>
+  <div style="font-family:Inter,sans-serif;font-weight:400;font-size:29px;color:${C.slate};line-height:1.4;
+    margin-top:12px">${desc}</div>
+</div>`;
+
+  const slideCalendario = () => shell(`
+<div class="slide" style="background:#fff">
+  ${header("El calendario", NAME)}
+  <div style="position:absolute;left:72px;right:72px;top:180px">
+    <h1 style="color:${navy};font-size:50px;line-height:1.18">Diciembre no son<br>cuatro semanas</h1>
+  </div>
+  <div style="position:absolute;left:${CX - 1.5}px;top:${CY[0] + 58}px;width:3px;height:${CY[2] - CY[0] - 116}px;
+    background:${C.border}"></div>
+  ${razon(1, "Diciembre se corta solo", "Feriado el 8, y desde la tercera semana el pa&iacute;s entra en modo fiestas.", CY[0])}
+  ${razon(2, "Enero arranca lento, febrero se detiene", "Personal de vacaciones, contratistas de habilitaci&oacute;n parados, municipalidades a media m&aacute;quina.", CY[1])}
+  ${razon(3, "Marzo es el siguiente punto de partida", "Lo que no qued&oacute; listo antes del 18 de diciembre, parte en marzo.", CY[2])}
+  ${brandRow(false, `2 / ${N}`)}
+</div>`);
+
+  // 3 — Y el mercado tampoco se deja apurar. Es lo único de este post
+  // que lleva cifras, y por eso lleva pie de fuente.
   const statFila = (y, valor, label) => `
 <div style="position:absolute;left:72px;top:${y}px;width:340px;font-family:'Plus Jakarta Sans',sans-serif;
   font-weight:800;font-size:62px;color:${navy};letter-spacing:-.03em">${valor}</div>
 <div style="position:absolute;left:440px;right:72px;top:${y + 12}px;font-family:Inter,sans-serif;
   font-weight:400;font-size:28px;color:${C.slate};line-height:1.4">${label}</div>`;
 
-  const slideMuro = () => shell(`
+  const slideMercado = () => shell(`
 <div class="slide" style="background:#fff">
-  ${header("Por qu&eacute; cuesta tanto", NAME)}
+  ${header("Los n&uacute;meros", NAME)}
   <div style="position:absolute;left:72px;right:72px;top:180px">
-    <h1 style="color:${navy};font-size:50px;line-height:1.18">No es que busques mal.<br>No hay mucho que buscar.</h1>
+    <h1 style="color:${navy};font-size:50px;line-height:1.18">Y el mercado no<br>se deja apurar</h1>
   </div>
 
   ${statFila(430, "1,21%", "de vacancia en bodegas clase A")}
@@ -544,63 +594,68 @@ function postTemporadaAlta() {
   ${statFila(730, "4 a 5", "a&ntilde;os es lo que toma desarrollar una bodega desde cero")}
 
   <div style="position:absolute;left:72px;right:72px;top:900px;border-top:2px solid ${C.border};padding-top:30px">
-    <div style="font-family:Inter,sans-serif;font-weight:400;font-size:28px;color:${C.slate};line-height:1.45">
-      Construir a medida es la mejor estrategia del mercado, pero no para
-      este peak. Para este peak sirve lo que ya est&aacute; en pie.
+    <div style="font-family:Inter,sans-serif;font-weight:400;font-size:29px;color:${C.slate};line-height:1.45">
+      No es un plazo que se comprima cotizando m&aacute;s r&aacute;pido.
     </div>
   </div>
-  <div style="position:absolute;left:72px;right:72px;top:1090px;font-family:'IBM Plex Mono',monospace;
+  <div style="position:absolute;left:72px;right:72px;top:1060px;font-family:'IBM Plex Mono',monospace;
     font-weight:500;font-size:24px;letter-spacing:.04em;text-transform:uppercase;color:${C.slate};
     white-space:nowrap;overflow:hidden">Fuente: NAI Sarr&agrave; &middot; Cushman &amp; Wakefield &middot; CBRE</div>
-  ${brandRow(false, `2 / ${N}`)}
+  ${brandRow(false, `3 / ${N}`)}
 </div>`);
 
-  // 3 — Las tres salidas que sí caben en el plazo
-  const SX = 128;
-  const SY = [500, 730, 960];
+  // 4 — Los pasos. Marcadores cuadrados sobre una línea, para que no se
+  // lea como repetición de los círculos de la lámina 2.
+  const PX = 96;
+  const PY = [490, 700, 910];
 
-  const salida = (n, iconHtml, title, desc, y) => `
-<div style="position:absolute;left:${SX - 58}px;top:${y - 58}px">
-  ${circle(116, navy, iconHtml, numberBadge(n))}
-</div>
-<div style="position:absolute;left:${SX + 90}px;top:${y - 66}px;width:780px">
+  const paso = (title, desc, y) => `
+<div style="position:absolute;left:${PX - 11}px;top:${y - 48}px;width:22px;height:22px;background:${navy};
+  border-radius:4px"></div>
+<div style="position:absolute;left:${PX + 64}px;top:${y - 58}px;width:820px">
   <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:33px;color:${navy};
     letter-spacing:-.01em">${title}</div>
   <div style="font-family:Inter,sans-serif;font-weight:400;font-size:29px;color:${C.slate};line-height:1.4;
     margin-top:12px">${desc}</div>
 </div>`;
 
-  const slideSalidas = () => shell(`
+  const slidePasos = () => shell(`
 <div class="slide" style="background:#fff">
-  ${header("Qu&eacute; s&iacute; alcanza", NAME)}
+  ${header("El proceso", NAME)}
   <div style="position:absolute;left:72px;right:72px;top:180px">
-    <h1 style="color:${navy};font-size:50px;line-height:1.18">Tres salidas que s&iacute;<br>caben en ${A_BLACK_FRIDAY} d&iacute;as</h1>
+    <h1 style="color:${navy};font-size:50px;line-height:1.18">Los pasos que hay<br>que hacer igual</h1>
   </div>
-  <div style="position:absolute;left:${SX - 1.5}px;top:${SY[0] + 58}px;width:3px;height:${SY[2] - SY[0] - 116}px;
+  <div style="position:absolute;left:${PX - 1.5}px;top:${PY[0] - 37}px;width:3px;height:${PY[2] - PY[0]}px;
     background:${C.border}"></div>
-  ${salida(1, icon(D.galpon, 50), "Superficie ya construida", "Lo que est&aacute; en pie y disponible hoy. Sin obra, sin permisos, sin esperar entrega.", SY[0])}
-  ${salida(2, icon(D.expandir, 40), "Partir acotado y ampliar", "Tomar lo que necesitas ahora y crecer en el mismo recinto cuando el volumen lo pida.", SY[1])}
-  ${salida(3, icon(D.terreno, 50), "Sacar al patio lo que no usa techo", "Contenedores, maquinaria, materiales: al aire libre liberan bodega para lo que s&iacute; lo necesita.", SY[2])}
-  ${brandRow(false, `3 / ${N}`)}
+  ${paso("Cotizar y visitar", "Ver el radier, la altura &uacute;til, el patio. Nadie firma una bodega por foto.", PY[0])}
+  ${paso("Negociar y firmar", "Plazo, reajuste, garant&iacute;a, qui&eacute;n paga las mantenciones.", PY[1])}
+  ${paso("Habilitar y mudar", "El&eacute;ctrico, racks, traslado. Esta es la parte que depende de terceros con agenda.", PY[2])}
+
+  <div style="position:absolute;left:72px;right:72px;top:1040px;border-top:2px solid ${C.border};padding-top:30px">
+    <div style="font-family:Inter,sans-serif;font-weight:400;font-size:29px;color:${C.slate};line-height:1.45">
+      Ninguno se salta. Por eso el plazo se cuenta hacia atr&aacute;s desde el 18 de diciembre.
+    </div>
+  </div>
+  ${brandRow(false, `4 / ${N}`)}
 </div>`);
 
   const slideCta = () =>
     ctaSlide({
       eyebrow: `${NAME} &middot; Noviembre 2026`,
-      title: "&iquest;Te falta espacio<br>para el peak?",
-      sub: "Cu&eacute;ntanos qu&eacute; necesitas guardar y cu&aacute;ntos m&sup2;,<br>y te cotizamos hoy mismo.",
+      title: "&iquest;Vas a necesitar<br>m&aacute;s espacio?",
+      sub: "Cu&eacute;ntanos metraje y uso,<br>y te cotizamos hoy mismo.",
       counter: `${N} / ${N}`,
     });
 
   return {
-    id: "temporada-alta-black-friday-navidad",
-    name: NAME,
-    slides: [slideCover, slideMuro, slideSalidas, slideCta],
+    id: "cierre-de-ano-plazo-para-instalarse",
+    name: "Cierre de año",
+    slides: [slideCover, slideCalendario, slideMercado, slidePasos, slideCta],
   };
 }
 
 // ── Render ────────────────────────────────────────────────────────────
-const POSTS = [postEcommerce(), postPoloSur(), postTemporadaAlta()];
+const POSTS = [postEcommerce(), postPoloSur(), postCierreDeAno()];
 
 (async () => {
   const filtro = process.argv.slice(2);

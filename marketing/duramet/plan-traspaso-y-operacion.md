@@ -248,6 +248,56 @@ porque la respuesta cambia qué se arregla. Las tres salidas razonables:
 marca histórica, y reduce el trabajo semanal a un solo sitio que
 convierte.
 
+### Diseñar una página nueva y reemplazar la existente: sí se puede
+
+Es la salida más razonable de todas, y conviene entender bien una
+distinción que cambia el riesgo por completo:
+
+- **Un archivo nuevo en una ruta nueva sobrevive a una republicación.**
+  RapidWeaver sube sus propios archivos; no borra los que no conoce.
+- **Un archivo que reemplaza a una página existente se pierde** la
+  próxima vez que alguien publique desde el constructor.
+
+De ahí sale la forma a prueba de republicaciones: **la página nueva se
+sube a una ruta nueva, y la vieja se redirige con un 301 desde
+`.htaccess`.** RapidWeaver tampoco administra el `.htaccess`, así que la
+redirección también sobrevive. El resultado es que el visitante y Google
+ven la página nueva en la URL de siempre, y aunque alguien republique el
+sitio entero, nada se cae.
+
+En cPanel eso son tres pasos: subir la página nueva por el administrador
+de archivos, agregar la regla al `.htaccess`, y probar la URL vieja en el
+navegador. Para probar sin tocar nada en producción, cPanel permite crear
+un subdominio (`nuevo.duramet.cl`) y dejar ahí la página mientras se
+revisa.
+
+### Las tres formas de hacerlo, de menor a mayor alcance
+
+| | Qué | Cuándo conviene |
+|---|---|---|
+| **Una página** | Diseñar una sola página —la natural es `arrienda-hoy-tu-bodega`, que es la comercial y la landing obvia de Google Ads— y dejarla en ruta nueva con 301 desde la vieja | **Es por donde hay que partir.** Riesgo bajo, se prueba el enfoque con datos reales y no exige que el directorio decida nada todavía |
+| **El sitio completo, alojado donde está** | Rehacer las páginas y subirlas a cPanel como archivos estáticos | Si el directorio quiere conservar el hosting actual por costo o costumbre |
+| **El sitio completo, en Vercel** | Rehacerlo en Next.js y apuntar el dominio, como `portaldebodegas.cl` | Es lo que ya operas: deploy automático al hacer merge, sin FTP, sin licencias, sin republicaciones que pisen nada |
+
+La tercera es la que recomiendo si se va a rehacer completo, y el costo
+marginal es más bajo de lo que parece: el sistema ya existe en el repo
+del portal. `ContactForm`, `WhatsAppFloat`, `GoogleAnalytics`,
+`TrackingEvents`, `Navbar`, `Footer`, `Faq`, más `lib/seo.js` y
+`lib/tracking.js` resuelven de entrada medición, formulario, CTA de
+WhatsApp, metadatos y schema, que son justo los hallazgos del
+diagnóstico. No se parte de cero: se parte de un sistema andando.
+
+**Una advertencia que no hay que pasar por alto.** Si el sitio se mueve a
+Vercel, se cambian solo los registros del sitio (`A` y `CNAME` de `www`)
+y **no se tocan los `MX`**. El correo `contacto@duramet.cl` casi con
+seguridad vive en el mismo cPanel: cambiar los nameservers completos
+dejaría a la empresa sin correo, y es el error clásico de este tipo de
+migración.
+
+Esto no entra en las 4 horas semanales. Es un proyecto con presupuesto
+propio, y por eso conviene partir por una sola página: demuestra el
+resultado con datos antes de pedir la decisión grande.
+
 ### Y la decisión gemela: rescatar o rehacer el sitio
 
 Una vez que se sepa si existe el archivo de RapidWeaver:

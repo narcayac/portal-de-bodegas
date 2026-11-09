@@ -4,12 +4,10 @@
 const { chromium } = require("playwright");
 const fs = require("fs");
 const path = require("path");
-const { C, photo, shell, brandRow, whatsappButton } = require("../shared/brand.js");
+const { C, photo, shell, brandRow, whatsappButton , chromePath } = require("../shared/brand.js");
 
 // Chromium de Playwright. Si tu ruta es otra, expórtala en CHROME_PATH.
-const CHROME =
-  process.env.CHROME_PATH ||
-  "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
+const CHROME = chromePath();
 
 // ── Slides ────────────────────────────────────────────────────────────────────
 // 1 — Portada

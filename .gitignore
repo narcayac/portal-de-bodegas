@@ -52,3 +52,6 @@ srv.log
 
 # Fuentes incrustadas del generador de carruseles (se regeneran con marketing/recorrido/fuentes.sh)
 marketing/shared/fonts.css
+
+# Cuadros intermedios del generador de video (se borran solos, pero por si acaso)
+marketing/video/salida/frames/

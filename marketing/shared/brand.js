@@ -5,6 +5,23 @@ const fs = require("fs");
 const path = require("path");
 
 const REPO = path.resolve(__dirname, "../..");
+
+// Playwright reinstala Chromium en una carpeta con número de build, así que
+// la ruta cambia cada vez que se reconstruye el contenedor. Se busca en vez
+// de fijarla; CHROME_PATH manda si está definida.
+function chromePath() {
+  if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
+  const base = "/opt/pw-browsers";
+  if (fs.existsSync(base)) {
+    for (const dir of fs.readdirSync(base).filter((d) => d.startsWith("chromium-")).sort().reverse()) {
+      for (const sub of ["chrome-linux64/chrome", "chrome-linux/chrome"]) {
+        const bin = path.join(base, dir, sub);
+        if (fs.existsSync(bin)) return bin;
+      }
+    }
+  }
+  return "chromium";
+}
 // fonts.css lo genera ./fuentes.sh (no se versiona: son ~460 KB de base64)
 const FONTS = fs.readFileSync(path.join(__dirname, "fonts.css"), "utf8");
 
@@ -89,6 +106,8 @@ ${extra}
 
 module.exports = {
   REPO,
+  FONTS,
+  chromePath,
   C,
   photo,
   shell,

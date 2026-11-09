@@ -6,11 +6,9 @@
 const { chromium } = require("playwright");
 const fs = require("fs");
 const path = require("path");
-const { C, shell, brandRow, whatsappButton } = require("../shared/brand.js");
+const { C, shell, brandRow, whatsappButton , chromePath } = require("../shared/brand.js");
 
-const CHROME =
-  process.env.CHROME_PATH ||
-  "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
+const CHROME = chromePath();
 
 const vsBadge = () => `
 <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);

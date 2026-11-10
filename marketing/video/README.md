@@ -1,53 +1,82 @@
-# Video — sobrevuelo de San Bernardo
+# Video — mapa de San Bernardo
 
-Video vertical de 28 segundos (1080×1920, 9:16, 24 fps) para reel.
+Video vertical de 27 segundos (1080×1920, 9:16, 24 fps) para reel: el
+mapa de San Bernardo con los 5 recintos marcados, un acercamiento a
+cada uno, y cierre con la aérea de dron.
 
 A diferencia de `../shared/video.js`, que hace Ken Burns sobre PNG ya
 renderizados, acá la animación se calcula: se arma el DOM una sola vez
 y cada cuadro solo actualiza estilos vía `window.render(t)`. Eso es lo
-que hace viable renderizar cientos de cuadros en un par de minutos —
-volver a montar el HTML en cada cuadro significaría reparsear los
-460 KB de fuentes 672 veces.
-
-## Qué muestra
+que hace viable renderizar 658 cuadros en un par de minutos — volver a
+montar el HTML en cada cuadro significaría reparsear los 460 KB de
+fuentes otras tantas veces.
 
 | Tiempo | Escena |
 |---|---|
-| 0:00 – 0:03 | San Bernardo, Región Metropolitana |
-| 0:03 – 0:10 | Las cuatro salidas troncales, dibujándose una a una |
-| 0:10 – 0:19 | Los 5 proyectos con su rango de m² |
-| 0:19 – 0:24 | La aérea real de Bosque Catemito con zoom lento |
-| 0:24 – 0:28 | Cierre con logo y CTA a WhatsApp |
+| 0:00 – 0:06 | Plano general; los 5 pines van cayendo |
+| 0:06 – 0:19 | Un acercamiento por recinto, de norte a sur, con nombre y m² |
+| 0:19 – 0:21 | Se abre de vuelta al plano general |
+| 0:21 – 0:25 | La aérea real de Bosque Catemito, con zoom lento |
+| 0:25 – 0:27 | Cierre con logo y CTA a WhatsApp |
 
 Los metrajes salen de `PROJECTS` en `lib/data.js`, no están escritos a
-mano: si cambia un rango en el sitio, cambia en el video.
+mano. El orden de los recintos es geográfico, de norte a sur.
 
-## Por qué no es Google Earth
+## El mapa base y las coordenadas
 
-La idea original era un sobrevuelo satelital tipo Google Earth. Dos
-caminos quedaron descartados:
+`mapa-base.webp` es una captura de Google Maps centrada en
+−33.5887, −70.7341 a zoom 12, recortada: se le sacó el chrome del
+navegador (205 px arriba) y la franja de controles de Maps (120 px
+más), porque el buscador y los chips de categorías salían en cuadro.
+Queda en 2000×925.
 
-- **Google Earth Studio** es la herramienta correcta y es gratis, pero
-  es una interfaz de navegador con cuenta de Google: no se puede
-  automatizar desde acá. Sigue siendo la mejor opción si alguien la
-  opera a mano.
-- **Mapbox** (imágenes satelitales por API, uso comercial permitido con
-  atribución) sí era automatizable, pero requiere una API key que no
-  está disponible.
+Las posiciones de los pines, en píxeles de esa imagen, se derivaron
+proyectando en Web Mercator las coordenadas de cada proyecto:
 
-Lo que hay en su lugar es un esquema de marca —el mismo hub-and-spokes
-del post del polo logístico— más la única aérea real del banco de
-fotos. Comunica dónde están los proyectos; no reemplaza ver los techos
-desde arriba. **Lo que de verdad cerraría esta brecha es video de dron
-propio**: hoy existe una sola foto aérea y es la toma más fuerte de
-todo el material.
+| Proyecto | Coordenadas | Pin (px) |
+|---|---|---|
+| Acacias Seis | −33.553577, −70.731995 | 1012, 157 |
+| Alto Las Acacias | −33.561821, −70.731111 | 1017, 215 |
+| Bosque Catemito | −33.607463, −70.756717 | 868, 534 |
+| Inversiones Duramet | −33.617688, −70.711464 | 1132, 605 |
+| El Barrancón | −33.623838, −70.731585 | 1015, 648 |
+
+Cuatro de las cinco salieron del parámetro `@lat,lng,zoom` de las URL
+de Google Maps de cada proyecto, corrigiendo por la posición del pin
+en pantalla y por el factor 2 de las capturas retina. Alto Las Acacias
+no tenía URL: se georreferenció comparando dos puntos presentes en esa
+captura y en el mapa base (el Relleno Sanitario Santiago Poniente y
+Cerros de Chena), que dieron el mismo resultado con cero píxeles de
+discrepancia.
+
+Si cambia el mapa base hay que recalcular los píxeles — las
+coordenadas en grados son lo estable.
+
+## Atribución
+
+El crédito "Mapa © Google" va fijo abajo mientras se ve el mapa, y la
+atribución propia de Google Maps queda visible dentro del recorte en
+los planos generales. Es requisito de los términos de Google y no hay
+que sacarlo.
+
+## Lo que falta para que se vean los techos
+
+Los acercamientos son suaves a propósito: el mapa base es de zoom 12 y
+más allá de 1,9× se pixela. Para los primeros planos donde de verdad
+se distingan los galpones harían falta 5 capturas en satélite a zoom
+~17, una por recinto. Con eso los tramos de acercamiento se
+reemplazarían por imagen nítida sin tocar la estructura del video.
+
+Antes se intentó resolverlo por API: **Google Earth Studio** es la
+herramienta correcta y es gratis, pero es una interfaz de navegador
+que no se puede automatizar desde acá; **Mapbox** sí era automatizable
+pero necesita una API key que no está disponible.
 
 ## Sin audio
 
-El video sale mudo a propósito: no hay música licenciada disponible
-acá, y la mayoría de la gente ve los reels sin sonido. Instagram
-permite agregar música desde la app al publicar, que además favorece el
-alcance. No se sintetiza voz.
+El video sale mudo a propósito: no hay música licenciada acá, y la
+mayoría ve los reels sin sonido. Instagram permite agregar música desde
+la app al publicar, que además favorece el alcance. No se sintetiza voz.
 
 ## Cómo generar
 
@@ -66,11 +95,9 @@ manda si está definida.
 
 ## Para cambiar el guion
 
-Las ventanas de tiempo están en la constante `T` al principio del
-archivo, en segundos, y se solapan medio segundo para que las
-transiciones no corten en seco. Cambiar una duración es mover un par de
-números; `DUR` se calcula del final de la última escena.
-
-Si se quiere otro formato, `W` y `H` están arriba — pero las posiciones
-son absolutas y habría que reacomodarlas, no basta con cambiar el
-lienzo.
+Las duraciones están en las constantes `T_INTRO`, `T_FICHA`, `T_VUELTA`,
+`T_AEREA` y `T_CIERRE`, en segundos; las ventanas de `T` se calculan a
+partir de ellas y se solapan para que las transiciones no corten en
+seco. `ESC_GRAL` es el encuadre del plano general —tiene que ser al
+menos `VH / MAPA_H` para que el mapa cubra la ventana— y `ESC_ZOOM` el
+de los acercamientos.

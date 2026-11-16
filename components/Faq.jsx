@@ -8,7 +8,7 @@ export default function FaqAccordion({ title = "Preguntas frecuentes", items }) 
   const [open, setOpen] = useState(null);
   return (
     <div>
-      <SectionLabel>{title}</SectionLabel>
+      <SectionLabel as="h2">{title}</SectionLabel>
       <div style={{ borderTop: `1px solid ${C.navy}`, maxWidth: 820 }}>
         {items.map((f, i) => {
           const isOpen = open === i;

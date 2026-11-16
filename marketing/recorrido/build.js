@@ -195,7 +195,7 @@ const ACACIAS_SEIS = {
 const DURAMET = {
   id: "inversiones-duramet",
   num: "05",
-  name: "Inversiones Duramet",
+  name: "Duramet",
   range: "450 &ndash; 1.900 m&sup2;",
   price: "desde 0,13 UF/m&sup2; al mes",
   titleSize: 72,
@@ -229,7 +229,7 @@ const DURAMET = {
     "Seguridad perimetral completa, CCTV y control de acceso",
     "Ideal para empresas medianas o crecimiento por etapas",
   ],
-  ctaHead: "&iquest;Te sirve<br>Inversiones Duramet?",
+  ctaHead: "&iquest;Te sirve<br>Duramet?",
   ctaSub: "Cotiza directo con el propietario.<br>Sin corredora y sin comisi&oacute;n.",
 };
 

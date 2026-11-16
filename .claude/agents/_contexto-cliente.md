@@ -11,7 +11,7 @@ description: Ficha de contexto compartida. TODOS los agentes deben leer este arc
 - **Marca:** Portal de Bodegas
 - **Categoría:** Arriendo de bodegas industriales B2B
 - **Ubicación:** San Bernardo, Región Metropolitana, Chile (zona sur de Santiago)
-- **Proyectos (5):** El Barrancón · Bosque Catemito · Alto Las Acacias · Acacias Seis · Inversiones Duramet
+- **Proyectos (5):** El Barrancón · Bosque Catemito · Alto Las Acacias · Acacias Seis · Duramet
 - **Superficies:** 180 m² a 14.000 m² (Bosque Catemito: ampliable hasta 30.000 m² construidos a medida)
 - **Modelo:** trato directo con el propietario (sin corretaje ni comisión)
 

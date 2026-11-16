@@ -32,12 +32,12 @@ export function LogoMark({ light = false }) {
 
 // ── SECTION LABEL ─────────────────────────────────────────────────────────────
 /** Small uppercase mono label with blue rule */
-export function SectionLabel({ children }) {
+export function SectionLabel({ children, as: Tag = "div" }) {
   return (
     <div style={{ marginBottom: 20 }}>
-      <div style={{ fontFamily: F.mono, fontSize: 10.5, color: C.slate, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 8 }}>
+      <Tag style={{ fontFamily: F.mono, fontSize: 10.5, fontWeight: 400, color: C.slate, textTransform: "uppercase", letterSpacing: "0.14em", margin: 0, marginBottom: 8 }}>
         {children}
-      </div>
+      </Tag>
       <div style={{ height: 1.5, width: 32, backgroundColor: C.blue }} />
     </div>
   );
@@ -106,7 +106,7 @@ export function JsonLd({ data }) {
 export function FaqSection({ title = "Preguntas frecuentes", items }) {
   return (
     <div>
-      <SectionLabel>{title}</SectionLabel>
+      <SectionLabel as="h2">{title}</SectionLabel>
       <div style={{ borderTop: `1px solid ${C.navy}` }}>
         {items.map((f) => (
           <div key={f.q} style={{ padding: "20px 0", borderBottom: `0.5px solid ${C.border}` }}>

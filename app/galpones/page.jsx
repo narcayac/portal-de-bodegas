@@ -69,6 +69,9 @@ export default function GalponesPage() {
             <img
               src="/photos/home/hero.webp"
               alt="Vista aérea de galpones industriales en San Bernardo"
+              width="1200"
+              height="900"
+              fetchPriority="high"
               style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>

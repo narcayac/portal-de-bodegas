@@ -2,7 +2,7 @@ import { C, F, W, SITE } from "../../lib/data";
 import { pageMeta } from "../../lib/seo";
 
 export const metadata = pageMeta({
-  title: "Política de Privacidad | Portal de Bodegas",
+  title: "Política de Privacidad",
   description:
     "Cómo Portal de Bodegas trata y protege tus datos personales conforme a la Ley N° 19.628.",
   path: "/politica-de-privacidad/",

@@ -1,4 +1,58 @@
-# Video — mapa de San Bernardo
+# Videos — Portal de Bodegas
+
+Dos generadores, los dos verticales 1080×1920 a 24 fps para reel:
+
+| Archivo | Qué produce |
+|---|---|
+| `build.js` | El mapa de San Bernardo con los 5 recintos marcados |
+| `anatomia.js` | Recorrido sobre la aérea de dron señalando las zonas de un recinto |
+
+Los dos usan la misma mecánica: el DOM se arma una sola vez y cada
+cuadro solo actualiza estilos vía `window.render(t)`. Remontar el HTML
+en cada cuadro significaría reparsear los 460 KB de fuentes cientos de
+veces.
+
+---
+
+## anatomia.js — Anatomía de un recinto industrial
+
+24 segundos sobre `public/photos/bosque-catemito/foto-04.webp`, la
+única aérea de dron del banco. La cámara recorre la foto de derecha a
+izquierda deteniéndose en tres zonas, con una mira que las señala.
+
+| Tiempo | Zona |
+|---|---|
+| 0:00 – 0:04 | Plano general, título |
+| 0:04 – 0:09 | Naves techadas |
+| 0:09 – 0:14 | Patio de maniobras |
+| 0:14 – 0:19 | Acopio a cielo abierto |
+| 0:19 – 0:21 | Vuelta al plano general |
+| 0:21 – 0:24 | Cierre con CTA |
+
+Las coordenadas de cada zona están en `ZONAS`, en píxeles de la foto
+(2000×1125). Para medirlas conviene superponer una grilla:
+
+```bash
+ffmpeg -i ../../public/photos/bosque-catemito/foto-04.webp \
+  -vf "drawgrid=w=200:h=125:t=2:c=red@0.8" /tmp/grilla.png
+```
+
+**Cada rótulo tiene que describir lo que de verdad se ve en ese punto.**
+La primera versión rotulaba "patio de maniobras — el camión entra, gira
+y carga" sobre una zona de la foto que está ocupada por maquinaria
+estacionada. Era falso y se cambió: el patio quedó apuntando a la
+explanada frente a los portones, donde efectivamente hay un camión
+cargando, y la zona de maquinaria pasó a llamarse acopio, que es lo que
+es. Si se mueve una zona, hay que volver a mirar el cuadro.
+
+Queda pendiente confirmar si el terreno despejado del primer plano es
+parte del recinto. Si lo es, da para una cuarta zona —terreno para
+construir a medida, que en Bosque Catemito llega a 30.000 m²— y hoy no
+se rotula porque no está confirmado.
+
+---
+
+# build.js — mapa de San Bernardo
 
 Video vertical de 27 segundos (1080×1920, 9:16, 24 fps) para reel: el
 mapa de San Bernardo con los 5 recintos marcados, un acercamiento a

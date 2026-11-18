@@ -105,6 +105,7 @@ const SG = ${ESC_GRAL}, SZ = ${ESC_ZOOM}, GCX = ${GRAL_CX}, GCY = ${GRAL_CY}, T_
 
 const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
 const easeOut = (x) => 1 - Math.pow(1 - clamp(x,0,1), 3);
+const easeOutQuad = (x) => 1 - Math.pow(1 - clamp(x,0,1), 2);
 const easeInOut = (x) => (x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x+2, 3)/2);
 const prog = (t,a,b) => clamp((t-a)/(b-a), 0, 1);
 const fade = (t,[a,b]) => Math.min(prog(t,a,a+.5), 1 - prog(t,b-.5,b));
@@ -118,10 +119,14 @@ function vista(cx, cy, s) {
 }
 const lerpV = (a,b,k) => ({ tx: a.tx+(b.tx-a.tx)*k, ty: a.ty+(b.ty-a.ty)*k, s: a.s+(b.s-a.s)*k });
 const GRAL = vista(GCX, GCY, SG);
+// Apertura: se parte acercado sobre las naves y se retrocede al plano
+// general. Un movimiento casi imperceptible al inicio hace que el reel
+// se lea como foto en el feed y la gente pase de largo.
+const APERTURA = vista(1400, 500, 1.55);
 
 window.render = (t) => {
-  // deriva lenta en el plano general, para que nunca quede congelado
-  let v = { ...GRAL, s: GRAL.s * (1 + 0.012 * prog(t, 0, T.intro[1])) };
+  // el retroceso de apertura: rápido al principio y asentándose
+  let v = lerpV(APERTURA, GRAL, easeOutQuad(prog(t, 0, T.intro[1])));
   if (t >= T.zonas[0] && t < T.zonas[1]) {
     const k = (t - T.zonas[0]) / T_ZONA;
     const i = Math.min(Math.floor(k), Z.length - 1), f = k - i;

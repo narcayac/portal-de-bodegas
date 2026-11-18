@@ -29,6 +29,14 @@ izquierda deteniéndose en tres zonas, con una mira que las señala.
 | 0:19 – 0:21 | Vuelta al plano general |
 | 0:21 – 0:24 | Cierre con CTA |
 
+**El reel abre en movimiento, no en foto fija.** La primera versión
+empezaba en el plano general con una deriva de 1,2% de escala en cuatro
+segundos: imperceptible, y en el feed se leía como una foto. Ahora parte
+acercado sobre las naves (`APERTURA`, escala 1,55) y retrocede al plano
+general con `easeOutQuad`, que es rápido en los primeros cuadros y se
+asienta. Hay desplazamiento visible desde el cuadro uno y el recinto se
+siente más grande al abrirse.
+
 Las coordenadas de cada zona están en `ZONAS`, en píxeles de la foto
 (2000×1125). Para medirlas conviene superponer una grilla:
 

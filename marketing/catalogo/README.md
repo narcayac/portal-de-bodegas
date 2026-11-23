@@ -44,6 +44,19 @@ camión antes que la nave vacía: por eso Duramet usa la foto de camiones
 cargando y la portada, la aérea con flota. Si se cambian, revisar que la
 foto siga diciendo lo que dice el rótulo.
 
+## Nunca usar text-shadow
+
+Chromium, al imprimir a PDF, rasteriza el desenfoque de `text-shadow` como un
+**rectángulo opaco**. En pantalla se ve bien; en el PDF el texto queda con una
+caja azul detrás y los títulos salen dobles. Pasó en la portada y en los
+rótulos de los recintos, y no se detectó en la revisión porque las hojas de
+contacto estaban a 50 dpi.
+
+La legibilidad del texto sobre foto se resuelve **solo con degradados**
+(`.scrim`, `.scrim-pie`), que son elementos del DOM y se imprimen bien.
+
+Corolario: revisar este documento a 72 dpi o más, nunca a 50.
+
 ## La numeración de los recintos
 
 `ficha()` recibe el número de lámina y el del recinto por separado. Son
@@ -61,8 +74,13 @@ Tres datos que el documento hoy **no** resuelve y que no se inventaron:
    públicas mezclan distancia en línea recta con distancia por carretera, y
    un forwarder sabe esos números de memoria: uno malo cuesta la autoridad
    del documento entero.
-3. **Firma.** Va el correo y el teléfono de `lib/data.js`, sin nombre ni
-   cargo de quien firma.
+3. **Firma.** El correo del documento es `ricardo@portaldebodegas.cl`, que
+   es el de contacto comercial y está escrito directo acá. Falta el nombre
+   completo y el cargo de quien firma.
+
+Ojo con el correo: `lib/data.js` todavía trae `rarcaya@arcaya.cl` como
+`SITE.email`, es decir el sitio publica uno distinto del que usa este
+documento. Hay que decidir cuál es el correcto y alinearlos.
 
 ## Datos
 

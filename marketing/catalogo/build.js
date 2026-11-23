@@ -394,7 +394,7 @@ const cierre = () => `
     </div>
     <div class="contacto">
       <div class="ct-k">Contacto</div>
-      <div class="ct-v">rarcaya@arcaya.cl &nbsp;&middot;&nbsp; +56 9 9225 9272 &nbsp;&middot;&nbsp; portaldebodegas.cl</div>
+      <div class="ct-v">ricardo@portaldebodegas.cl &nbsp;&middot;&nbsp; +56 9 9225 9272 &nbsp;&middot;&nbsp; portaldebodegas.cl</div>
       <div class="ct-n">Coordinamos visita a cualquiera de los cinco recintos sin compromiso.</div>
     </div>
   </div>
@@ -432,8 +432,9 @@ body{font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
 /* Degradados */
 .scrim{position:absolute;inset:0;background:linear-gradient(to top,
   ${C.navy} 0%, ${C.navy}fa 26%, ${C.navy}d8 44%, ${C.navy}7a 64%, ${C.navy}26 80%, transparent 96%)}
-/* La portada lleva sombra propia: el techo claro de la nave se come el texto. */
-.cover-txt .eyebrow,.cover-txt h1,.cover-txt .sub{text-shadow:0 4px 32px rgba(1,25,67,.92)}
+/* NO usar text-shadow en este documento. Chromium, al imprimir a PDF, rasteriza
+   el desenfoque como un rectángulo opaco: el texto sale con una caja azul detrás
+   y el título se ve doble. La legibilidad se resuelve solo con los degradados. */
 .scrim-der{position:absolute;inset:0;background:linear-gradient(to left,
   ${C.navy} 0%, ${C.navy}f2 44%, ${C.navy}aa 60%, ${C.navy}33 78%, transparent 100%)}
 .scrim-split{position:absolute;inset:0;background:linear-gradient(to right,
@@ -441,7 +442,7 @@ body{font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
 /* Degradado inferior: sin él, el rótulo de dirección se lava contra la gravilla
    clara de varias fotos. El nombre aguanta solo; la línea en mono, no. */
 .scrim-pie{position:absolute;inset:0;background:linear-gradient(to top,
-  ${C.navy}ed 0%, ${C.navy}b0 16%, ${C.navy}4d 32%, transparent 50%)}
+  ${C.navy}f7 0%, ${C.navy}e6 18%, ${C.navy}b8 30%, ${C.navy}6b 44%, ${C.navy}1f 58%, transparent 72%)}
 
 /* Tipografía base */
 .eyebrow{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:22px;
@@ -489,10 +490,9 @@ h2{font-family:Fraunces,Georgia,serif;font-weight:600;color:#fff;font-size:50px;
 /* El rótulo sube por encima del pie de marca: a 84px se montaba sobre el logo. */
 .split-cap{position:absolute;left:84px;bottom:172px;right:120px}
 .split-cap-n{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:62px;color:#fff;
-  line-height:1.06;letter-spacing:-.015em;text-shadow:0 4px 34px rgba(1,25,67,.86)}
+  line-height:1.06;letter-spacing:-.015em}
 .split-cap-d{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:21px;
-  letter-spacing:.12em;color:rgba(255,255,255,.9);margin-top:16px;
-  text-shadow:0 3px 22px rgba(1,25,67,.92)}
+  letter-spacing:.12em;color:rgba(255,255,255,.92);margin-top:16px}
 .split-panel{position:absolute;right:0;top:0;width:770px;height:${H}px;
   background:${C.navy};padding:112px 84px 128px 70px}
 .panel-rango{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:58px;color:${C.blueLight};

@@ -40,7 +40,10 @@ const RECINTOS = [
     id: "bosque-catemito",
     nombre: "Bosque Catemito",
     direccion: "Camino Catemito 1990",
-    foto: 4,
+    // La aérea (foto-04) se reservó para la lámina de acopio: es la única del
+    // banco que muestra carga guardada a la intemperie, que es justo lo que esa
+    // lámina vende. Acá va la nave con su explanada.
+    foto: 1,
     rango: "360 – 14.000 m&sup2;",
     titular: "La mayor escala de la red",
     cuerpo:
@@ -55,7 +58,7 @@ const RECINTOS = [
   },
   {
     id: "inversiones-duramet",
-    nombre: "Inversiones Duramet",
+    nombre: "Duramet",
     direccion: "General Urrutia 101",
     foto: 1,
     rango: "450 – 1.900 m&sup2;",
@@ -123,15 +126,65 @@ const RECINTOS = [
   },
 ];
 
+// ── Íconos ────────────────────────────────────────────────────────────────────
+// Mismo idioma que el set de ../diagramas/build.js: lienzo de 48, trazo 2.5,
+// relleno sólido solo donde hace falta peso. Acá van en azul claro, no en
+// blanco, porque se apoyan directo sobre el fondo y no sobre un círculo de
+// color: en blanco competían con el valor, que es la línea que hay que leer.
+const AZ = C.blueLight;
+// A 40 px con trazo de 2.5 estos íconos salían ilegibles: el cerco y el radier
+// quedaban como manchas rayadas. Van a 56 px, con trazo de 3.2 y el mínimo de
+// elementos que todavía dice de qué se trata.
+const ico = (d, size = 56) =>
+  `<svg width="${size}" height="${size}" viewBox="0 0 48 48" fill="none" style="flex:none">${d}</svg>`;
+
+const I = {
+  escudo: `
+    <path d="M24 4 L41 10 V24C41 33.5 33.5 40.5 24 44C14.5 40.5 7 33.5 7 24 V10 Z"
+      stroke="${AZ}" stroke-width="3.2" stroke-linejoin="round"/>
+    <path d="M16.5 23.5 L21.5 28.5 L31.5 18.5" stroke="${AZ}" stroke-width="3.2"
+      stroke-linecap="round" stroke-linejoin="round"/>`,
+  // Un perímetro cercado se lee mejor como recinto delimitado que como reja:
+  // la reja, a este tamaño, era indistinguible del radier.
+  cerco: `
+    <rect x="5" y="9" width="38" height="30" stroke="${AZ}" stroke-width="3.2"
+      stroke-dasharray="6 5" stroke-linecap="round"/>
+    <path d="M27 13 L17 26 H23 L20 36 L31 22 H25 Z" fill="${AZ}"/>`,
+  camara: `
+    <rect x="5" y="13" width="23" height="13" rx="2" stroke="${AZ}" stroke-width="3.2"/>
+    <path d="M28 17 L42 11.5 V27.5 L28 22 Z" stroke="${AZ}" stroke-width="3.2" stroke-linejoin="round"/>
+    <path d="M16 26 V38" stroke="${AZ}" stroke-width="3.2"/>
+    <path d="M8 42 H24" stroke="${AZ}" stroke-width="3.2" stroke-linecap="round"/>`,
+  barrera: `
+    <circle cx="10" cy="17" r="5" stroke="${AZ}" stroke-width="3.2"/>
+    <path d="M10 23 V40 M4 43 H16" stroke="${AZ}" stroke-width="3.2" stroke-linecap="round"/>
+    <rect x="17" y="13.5" width="27" height="7" rx="1.5" fill="${AZ}"/>`,
+  rayo: `
+    <path d="M29 2 L11 27 H22 L19 46 L37 20 H26 Z" fill="${AZ}"/>`,
+  radier: `
+    <path d="M4 17 H44" stroke="${AZ}" stroke-width="3.2" stroke-linecap="round"/>
+    <rect x="4" y="25" width="40" height="13" rx="1.5" fill="${AZ}"/>`,
+  giro: `
+    <path d="M11 44 V24 A12 12 0 0 1 35 24 V35" stroke="${AZ}" stroke-width="3.2"
+      stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M28 29 L35 36 L42 29" stroke="${AZ}" stroke-width="3.2"
+      stroke-linecap="round" stroke-linejoin="round"/>`,
+  camion: `
+    <rect x="3" y="14" width="23" height="17" stroke="${AZ}" stroke-width="3.2"/>
+    <path d="M26 20 H34 L44 27 V31 H26 Z" stroke="${AZ}" stroke-width="3.2" stroke-linejoin="round"/>
+    <circle cx="14" cy="36" r="4.5" fill="${AZ}"/>
+    <circle cx="35" cy="36" r="4.5" fill="${AZ}"/>`,
+};
+
 const EQUIPAMIENTO = [
-  ["Seguridad", "24/7 con guardia en el recinto"],
-  ["Per&iacute;metro", "Cerco el&eacute;ctrico perimetral"],
-  ["Vigilancia", "C&aacute;maras CCTV y PTZ en exterior"],
-  ["Acceso", "Control de acceso al recinto"],
-  ["Energ&iacute;a", "Trif&aacute;sica instalada"],
-  ["Pisos", "Radieres industriales alisados"],
-  ["Maniobra", "Patios amplios y v&iacute;as extra anchas"],
-  ["Camiones", "Acceso directo y estacionamiento"],
+  [I.escudo, "Seguridad", "24/7 con guardia en el recinto"],
+  [I.cerco, "Per&iacute;metro", "Cerco el&eacute;ctrico perimetral"],
+  [I.camara, "Vigilancia", "C&aacute;maras CCTV y PTZ en exterior"],
+  [I.barrera, "Acceso", "Control de acceso al recinto"],
+  [I.rayo, "Energ&iacute;a", "Trif&aacute;sica instalada"],
+  [I.radier, "Pisos", "Radieres industriales alisados"],
+  [I.giro, "Maniobra", "Patios amplios y v&iacute;as extra anchas"],
+  [I.camion, "Camiones", "Acceso directo y estacionamiento"],
 ];
 
 const COLABORACION = [
@@ -285,7 +338,7 @@ const ficha = (r, n, idx) => `
 const acopio = () => `
 <div class="slide">
   <div class="split-img">
-    <img class="bg" src="${foto("bosque-catemito", 1)}">
+    <img class="bg" src="${foto("bosque-catemito", 4)}">
     <div class="scrim-split"></div>
     <div class="scrim-pie"></div>
     <div class="split-cap">
@@ -326,7 +379,7 @@ const tabla = () => `
       </thead>
       <tbody>
         <tr><td class="n">Bosque Catemito</td><td>Camino Catemito 1990</td><td class="num">360 m&sup2;</td><td class="num">14.000 m&sup2;</td><td>Construcci&oacute;n a medida y acopio en el mismo recinto</td></tr>
-        <tr><td class="n">Inversiones Duramet</td><td>General Urrutia 101</td><td class="num">450 m&sup2;</td><td class="num">1.900 m&sup2;</td><td>Crecimiento por etapas</td></tr>
+        <tr><td class="n">Duramet</td><td>General Urrutia 101</td><td class="num">450 m&sup2;</td><td class="num">1.900 m&sup2;</td><td>Crecimiento por etapas</td></tr>
         <tr><td class="n">Acacias Seis</td><td>Las Acacias 1250</td><td class="num">1.551 m&sup2;</td><td class="num">1.551 m&sup2;</td><td>Planta libre, sin columnas interiores</td></tr>
         <tr><td class="n">El Barranc&oacute;n</td><td>Camino El Barranc&oacute;n 3890</td><td class="num">623 m&sup2;</td><td class="num">1.266 m&sup2;</td><td>V&iacute;as extra anchas para cami&oacute;n grande</td></tr>
         <tr><td class="n">Alto Las Acacias</td><td>Las Acacias 1250</td><td class="num">180 m&sup2;</td><td class="num">720 m&sup2;</td><td>El tramo de superficie acotada</td></tr>
@@ -351,7 +404,8 @@ const equipamiento = () => `
     </div>
     <div class="grid2">
       ${EQUIPAMIENTO.map(
-        ([k, v]) => `<div class="g2"><div class="g2-k">${k}</div><div class="g2-v">${v}</div></div>`
+        ([d, k, v]) => `<div class="g2">${ico(d)}<div class="g2-t">
+          <div class="g2-k">${k}</div><div class="g2-v">${v}</div></div></div>`
       ).join("")}
     </div>
   </div>
@@ -520,7 +574,9 @@ h2{font-family:Fraunces,Georgia,serif;font-weight:600;color:#fff;font-size:50px;
 
 /* Grilla de equipamiento */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 92px;margin-top:52px}
-.g2{border-top:1px solid rgba(255,255,255,.15);padding:24px 0}
+.g2{border-top:1px solid rgba(255,255,255,.15);padding:22px 0;display:flex;
+  align-items:center;gap:24px}
+.g2-t{flex:1}
 .g2-k{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:18px;
   letter-spacing:.17em;text-transform:uppercase;color:${C.blueLight}}
 .g2-v{font-family:Inter,sans-serif;font-weight:300;font-size:28px;color:#fff;margin-top:10px}

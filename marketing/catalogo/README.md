@@ -44,6 +44,27 @@ camión antes que la nave vacía: por eso Duramet usa la foto de camiones
 cargando y la portada, la aérea con flota. Si se cambian, revisar que la
 foto siga diciendo lo que dice el rótulo.
 
+**`bosque-catemito/foto-04` está reservada para la lámina de acopio.** Es la
+única del banco que muestra carga guardada a la intemperie —contenedores,
+maquinaria y materiales en el patio—, que es exactamente lo que esa lámina
+vende. La ficha de Bosque Catemito usa `foto-01` aunque una aérea vendería
+mejor la escala: la lámina de acopio la necesita más, porque sin ella queda
+afirmando que hay terreno con la foto de una nave.
+
+## Íconos
+
+La lámina de estándar común lleva íconos en el mismo idioma que el set de
+`../diagramas/build.js`: lienzo de 48, trazo grueso, relleno sólido solo
+donde hace falta peso. Van en azul claro y no en blanco porque se apoyan
+directo sobre el fondo, sin círculo de color detrás; en blanco competían con
+el valor, que es la línea que hay que leer.
+
+A 40 px con trazo de 2.5 salían ilegibles: el cerco y el radier quedaban como
+manchas rayadas. Están a 56 px con trazo de 3.2 y el mínimo de elementos que
+todavía dice de qué se trata. El perímetro se dibuja como recinto delimitado
+con un rayo dentro, no como reja, porque a este tamaño una reja era
+indistinguible del radier.
+
 ## Nunca usar text-shadow
 
 Chromium, al imprimir a PDF, rasteriza el desenfoque de `text-shadow` como un
@@ -81,6 +102,13 @@ Tres datos que el documento hoy **no** resuelve y que no se inventaron:
 Ojo con el correo: `lib/data.js` todavía trae `rarcaya@arcaya.cl` como
 `SITE.email`, es decir el sitio publica uno distinto del que usa este
 documento. Hay que decidir cuál es el correcto y alinearlos.
+
+## El nombre de Duramet
+
+Acá el recinto se llama **Duramet**, a secas. `lib/data.js` todavía lo llama
+"Inversiones Duramet" en `name`, `title`, `alt`, `about`, `description` y el
+mensaje de WhatsApp, y `../recorrido/build.js` también. Está pendiente
+alinear el sitio y los demás generadores.
 
 ## Datos
 

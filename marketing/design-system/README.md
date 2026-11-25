@@ -1,5 +1,9 @@
 # Portal de Bodegas — sistema de diseño
 
+**Versión visual en PDF**: `salida/sistema-de-diseno.pdf`, 8 láminas, generada
+por `build.js` con las fuentes y los tokens reales. Es la que conviene compartir;
+este texto es la referencia para buscar un valor concreto.
+
 Valores reales extraídos de `lib/data.js`, `app/layout.jsx`, `app/globals.css`
 y `marketing/shared/brand.js`. Si algo cambia allá, este documento queda
 desactualizado: esas son las fuentes de verdad.

@@ -10,8 +10,18 @@ const fs = require("fs");
 const path = require("path");
 const { chromium } = require("playwright");
 const {
-  FONTS, C, logo, wordmark, whatsappButton, chromePath,
+  FONTS, C, REPO, whatsappButton, chromePath,
 } = require("../shared/brand.js");
+
+// Los archivos reales de marca. No se usan logo() ni wordmark() de
+// ../shared/brand.js: esos son una reconstrucción en SVG que no coincide con
+// el logotipo real —ni en el dibujo del isotipo ni en la tipografía de la
+// palabra—. Un sistema de diseño no puede documentar una aproximación.
+const asset = (f) =>
+  "data:image/png;base64," +
+  fs.readFileSync(path.join(REPO, "public/brand", f)).toString("base64");
+const ISOTIPO = asset("isotipo.png");
+const LOGOTIPO = asset("logo.png");
 
 const CHROME = chromePath();
 const W = 1920;
@@ -84,9 +94,12 @@ const ICONOS = [
 ];
 
 // ── Piezas ────────────────────────────────────────────────────────────────────
+// El logotipo real no tiene versión para fondo oscuro, así que en este
+// documento —que es todo navy— va sobre una tarjeta blanca de esquinas rectas.
+// Es la solución honesta mientras no exista la versión invertida.
 const pie = (n) => `
 <div class="pie">
-  <div class="pie-l">${logo(true)}${wordmark(true)}</div>
+  <div class="pie-chip"><img src="${LOGOTIPO}" alt=""></div>
   <div class="pie-n">Sistema de dise&ntilde;o &nbsp;&middot;&nbsp; ${String(n).padStart(2, "0")} / ${TOTAL}</div>
 </div>`;
 
@@ -217,37 +230,29 @@ const escala = () => `
 const logotipo = () => `
 <div class="slide plano">
   <div style="position:absolute;left:104px;right:104px;top:118px">
-    ${cabecera("Logotipo", "Isotipo y palabra, siempre juntos",
-      "El logotipo es texto, no imagen: se compone en Plus Jakarta Sans 800 con el &laquo;de&raquo; en azul.")}
+    ${cabecera("Logotipo", "Un archivo, no una composici&oacute;n",
+      "Se usa el archivo tal cual. No se recompone con tipograf&iacute;a ni se recolorea.")}
     <div class="logos">
-      <div class="logo-caja oscura">
-        <svg width="184" height="184" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="48" fill="none" stroke="#ffffff" stroke-width="4"/>
-          <path d="M27 52 50 30 73 52 73 75 27 75Z" fill="none" stroke="#ffffff"
-            stroke-width="5" stroke-linejoin="round"/>
-          <rect x="42" y="58" width="16" height="17" fill="${C.blue}"/>
-        </svg>
-        <div class="logo-pie" style="color:rgba(255,255,255,.62)">Sobre fondo oscuro</div>
+      <div class="logo-caja"><img src="${ISOTIPO}" style="height:196px">
+        <div class="logo-pie">Isotipo</div></div>
+      <div class="logo-caja ancha"><img src="${LOGOTIPO}" style="height:92px">
+        <div class="logo-pie">Logotipo en conjunto</div></div>
+    </div>
+    <div class="logo-fila">
+      <div class="logo-specs">
+        <div class="ls"><b>Archivos</b>public/brand/isotipo.png &middot; logo.png</div>
+        <div class="ls"><b>Fondo</b>Blanco o claro. Ver advertencia &rarr;</div>
+        <div class="ls"><b>Caja</b>Siempre min&uacute;scula</div>
+        <div class="ls"><b>Invariante</b>El &laquo;de&raquo; va en azul</div>
       </div>
-      <div class="logo-caja clara">
-        <svg width="184" height="184" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="48" fill="${C.navy}"/>
-          <path d="M27 52 50 30 73 52 73 75 27 75Z" fill="none" stroke="#f3f4f5"
-            stroke-width="5" stroke-linejoin="round"/>
-          <rect x="42" y="58" width="16" height="17" fill="${C.blue}"/>
-        </svg>
-        <div class="logo-pie" style="color:${C.slate}">Sobre fondo claro</div>
-      </div>
-      <div class="logo-txt">
-        <div class="wordmark-xl">portal <span style="color:${C.blue}">de</span> bodegas</div>
-        <div class="logo-specs">
-          <div class="ls"><b>Familia</b>Plus Jakarta Sans 800</div>
-          <div class="ls"><b>Cuerpo</b>34 px en el pie de marca</div>
-          <div class="ls"><b>Tracking</b>&minus;.01em</div>
-          <div class="ls"><b>Caja</b>Siempre min&uacute;scula</div>
-          <div class="ls"><b>Separaci&oacute;n</b>20 px entre isotipo y palabra</div>
-          <div class="ls"><b>Invariante</b>El &laquo;de&raquo; va en azul en las dos versiones</div>
-        </div>
+      <div class="aviso">
+        <div class="aviso-t">No existe versi&oacute;n para fondo oscuro</div>
+        <div class="aviso-d">Sobre navy el c&iacute;rculo del isotipo desaparece y la palabra,
+          que es navy, se reduce a los blancos interiores de las letras. Esto es el archivo
+          real puesto sobre el fondo de marca:</div>
+        <div class="aviso-demo"><img src="${LOGOTIPO}" style="height:62px"></div>
+        <div class="aviso-n">Mientras no exista la versi&oacute;n invertida, en piezas oscuras
+          va sobre tarjeta blanca de esquinas rectas &mdash; como en el pie de este documento.</div>
       </div>
     </div>
   </div>
@@ -442,21 +447,29 @@ h1{font-family:Fraunces,Georgia,serif;font-weight:600;color:#fff;font-size:64px;
   transform:scale(.45);transform-origin:left top}
 
 /* Logotipo */
-.logos{display:flex;gap:44px;margin-top:40px;align-items:stretch}
-.logo-caja{width:300px;flex:none;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:40px 0 28px}
-.logo-caja.oscura{background:${C.navy};outline:1px solid rgba(255,255,255,.2);outline-offset:-1px}
-.logo-caja.clara{background:#ffffff}
-.logo-pie{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:16px;
-  letter-spacing:.14em;text-transform:uppercase;margin-top:26px}
-.logo-txt{flex:1;display:flex;flex-direction:column;justify-content:center}
-.wordmark-xl{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:72px;
-  letter-spacing:-.01em;color:#fff}
-.logo-specs{margin-top:34px}
-.ls{display:flex;gap:18px;font-family:Inter,sans-serif;font-weight:300;font-size:21px;
+.logos{display:flex;gap:38px;margin-top:28px;align-items:stretch}
+.logo-caja{width:330px;flex:none;background:#fff;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:34px 0 22px}
+.logo-caja.ancha{flex:1;width:auto}
+.logo-pie{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:15px;
+  letter-spacing:.16em;text-transform:uppercase;margin-top:24px;color:${C.slate}}
+.logo-fila{display:flex;gap:56px;margin-top:26px;align-items:flex-start}
+.logo-specs{flex:1}
+.ls{display:flex;gap:18px;font-family:Inter,sans-serif;font-weight:300;font-size:20px;
   color:rgba(255,255,255,.82);padding:11px 0;border-top:1px solid rgba(255,255,255,.13)}
-.ls b{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:16px;letter-spacing:.16em;
-  text-transform:uppercase;color:${C.blueLight};width:210px;flex:none;padding-top:4px}
+.ls b{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:15px;letter-spacing:.16em;
+  text-transform:uppercase;color:${C.blueLight};width:190px;flex:none;padding-top:4px}
+.aviso{width:770px;flex:none;border-left:4px solid ${C.blue};padding-left:34px}
+.aviso-t{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:28px;color:#fff}
+.aviso-d{font-family:Inter,sans-serif;font-weight:300;font-size:19px;line-height:1.46;
+  color:rgba(255,255,255,.7);margin-top:11px}
+.aviso-demo{margin-top:12px;padding:8px 0}
+.aviso-n{font-family:Inter,sans-serif;font-weight:300;font-size:17px;line-height:1.42;
+  color:rgba(255,255,255,.52);margin-top:8px}
+
+/* Pie: tarjeta blanca porque el logotipo real no tiene versión invertida */
+.pie-chip{background:#fff;padding:11px 16px;display:inline-flex;align-items:center}
+.pie-chip img{height:30px;display:block}
 
 /* Componentes */
 .comps{display:flex;flex-wrap:wrap;gap:30px 44px;margin-top:34px}

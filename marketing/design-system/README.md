@@ -111,32 +111,36 @@ El canalón es **40 px** en escritorio y **20 px** bajo 768 px de ancho.
 
 ## 4. Logotipo
 
-Isotipo y logotipo van juntos, separados por 20 px.
+**El logotipo es un archivo, no una composición tipográfica.** Se usa tal
+cual, sin redibujar, recomponer ni recolorear.
 
-El isotipo es un círculo con la silueta de una nave industrial y un portón
-sólido en azul:
+| | |
+|---|---|
+| Isotipo | `public/brand/isotipo.png` |
+| Logotipo en conjunto | `public/brand/logo.png` |
+| Caja | Siempre minúscula |
+| Invariante | El «de» va en azul |
 
-```html
-<svg width="56" height="56" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="48" fill="#011943"/>
-  <path d="M27 52 50 30 73 52 73 75 27 75Z" fill="none"
-        stroke="#f3f4f5" stroke-width="5" stroke-linejoin="round"/>
-  <rect x="42" y="58" width="16" height="17" fill="#0685de"/>
-</svg>
-```
+El isotipo es un monograma dentro de un círculo navy: una **B** construida
+con un asta vertical y una curva, que al mismo tiempo dibuja la silueta de
+una nave con su portón, resuelto como un cuadrado azul sólido en la base.
 
-Sobre fondo oscuro el círculo va sin relleno y con borde blanco de 4, y la
-silueta en blanco. El portón se mantiene azul en las dos versiones.
+### Dos advertencias
 
-El logotipo es texto, no imagen: Plus Jakarta Sans 800, 34 px,
-`letter-spacing -.01em`, en minúsculas, con **"de" en azul**:
+**1. No existe versión para fondo oscuro.** El círculo del isotipo es navy
+y la palabra también: sobre el fondo de marca el círculo desaparece y el
+texto se reduce a los blancos interiores de las letras. Mientras no exista
+la versión invertida, en piezas oscuras el logotipo va sobre tarjeta blanca
+de esquinas rectas. Esto importa porque **todas las piezas sociales son
+navy**.
 
-> portal <span>de</span> bodegas
-
-Sobre fondo claro el texto va en `navy`; sobre oscuro, en blanco. El "de"
-siempre azul.
-
----
+**2. `marketing/shared/brand.js` no usa el logotipo real.** Sus funciones
+`logo()` y `wordmark()` son una reconstrucción en SVG que no coincide: ni el
+dibujo del isotipo —una silueta de galpón, no el monograma— ni la tipografía
+de la palabra, que ahí se compone en Plus Jakarta Sans 800. Todas las piezas
+sociales, los reels y el catálogo generados hasta ahora llevan esa
+reconstrucción. Está pendiente decidir si se reemplaza, lo que implicaría
+regenerar los entregables.
 
 ## 5. Elementos recurrentes
 
